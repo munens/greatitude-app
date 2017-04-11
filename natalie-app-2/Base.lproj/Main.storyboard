@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,6 +35,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Qc-0E-nNe">
                                         <rect key="frame" x="0.0" y="0.0" width="55" height="30"/>
                                         <state key="normal" title="Sign-up"/>
+                                        <connections>
+                                            <segue destination="RN4-ba-VsX" kind="show" id="l2J-S2-FPO"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmj-El-A0I">
                                         <rect key="frame" x="135" y="0.0" width="38" height="30"/>
@@ -54,6 +58,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="cJj-Pg-Lj1">
+            <objects>
+                <viewController id="RN4-ba-VsX" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="55K-IZ-mDX"/>
+                        <viewControllerLayoutGuide type="bottom" id="UxV-5c-LBA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jh7-jp-fgU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDB-nP-cWe">
+                                <rect key="frame" x="46" y="50" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVg-VO-Esl">
+                                <rect key="frame" x="36" y="87" width="303" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="oio-an-xrM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SDB-nP-cWe" firstAttribute="trailing" secondItem="Jh7-jp-fgU" secondAttribute="trailingMargin" constant="30" id="2yb-ci-I5g"/>
+                            <constraint firstItem="SDB-nP-cWe" firstAttribute="leading" secondItem="Jh7-jp-fgU" secondAttribute="leadingMargin" constant="30" id="WVT-lG-VS1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eVg-VO-Esl" secondAttribute="trailing" constant="20" id="YFJ-sA-UHA"/>
+                            <constraint firstItem="SDB-nP-cWe" firstAttribute="top" secondItem="55K-IZ-mDX" secondAttribute="bottom" constant="30" id="kqB-I3-V01"/>
+                            <constraint firstItem="eVg-VO-Esl" firstAttribute="top" secondItem="SDB-nP-cWe" secondAttribute="bottom" constant="16" id="s8c-PR-wCL"/>
+                            <constraint firstItem="eVg-VO-Esl" firstAttribute="leading" secondItem="Jh7-jp-fgU" secondAttribute="leadingMargin" constant="20" id="yGK-hl-GzD"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1h3-f9-2Hf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1141.5999999999999" y="-88.605697151424295"/>
         </scene>
     </scenes>
     <resources>
