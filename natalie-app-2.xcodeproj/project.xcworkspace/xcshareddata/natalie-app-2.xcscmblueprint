@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A470AB652FC4C30D0ACDA5435F612D7F6A9A5DB0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D00BC20D2387F6E0B5FC011F1DDDBE2A6179235B" : 9223372036854775807,
+    "A470AB652FC4C30D0ACDA5435F612D7F6A9A5DB0" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "ADE614D7-40EA-454C-86A9-8CB56FFEE8E9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D00BC20D2387F6E0B5FC011F1DDDBE2A6179235B" : "natalie-app\/",
+    "A470AB652FC4C30D0ACDA5435F612D7F6A9A5DB0" : "natalie-app-2\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "natalie-app-2",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "natalie-app-2.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/bitbucket.org\/munens\/natalie-app-2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A470AB652FC4C30D0ACDA5435F612D7F6A9A5DB0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "bitbucket.org:munens\/natalie-app.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D00BC20D2387F6E0B5FC011F1DDDBE2A6179235B"
+    }
+  ]
+}
