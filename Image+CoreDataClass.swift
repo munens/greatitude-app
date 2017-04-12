@@ -9,7 +9,10 @@
 import Foundation
 import CoreData
 
-@objc(Image)
-public class Image: NSManagedObject {
 
+public class Image: NSManagedObject {
+    public override func awakeFromInsert() {
+        super.awakeFromInsert()
+        self.created_at = NSDate()
+    }
 }

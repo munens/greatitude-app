@@ -17,6 +17,7 @@ extension Image {
     }
 
     @NSManaged public var url: String?
+    @NSManaged public var created_at: NSDate?
     @NSManaged public var toUser: User?
 
 }
