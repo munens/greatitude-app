@@ -251,10 +251,10 @@
             </objects>
             <point key="canvasLocation" x="1141.5999999999999" y="-88.605697151424295"/>
         </scene>
-        <!--View Controller-->
+        <!--LoginVC-->
         <scene sceneID="zzz-Vw-0Ys">
             <objects>
-                <viewController id="Yvl-BJ-L3A" sceneMemberID="viewController">
+                <viewController id="Yvl-BJ-L3A" customClass="LoginVC" customModule="natalie_app_2" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Que-Ij-vdL"/>
                         <viewControllerLayoutGuide type="bottom" id="KgJ-Nv-hsD"/>
