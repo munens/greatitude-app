@@ -8,8 +8,10 @@
 
 import UIKit
 
-class ChooseImageVC: UINavigationController {
+class ChooseImageVC: UIViewController {
 
+    
+    
     @IBOutlet weak var scrollView: UIScrollView!
     var images = [UIImageView]()
     
@@ -23,15 +25,16 @@ class ChooseImageVC: UINavigationController {
     override func viewDidAppear(_ animated: Bool) {
         var contentWidth: CGFloat = 0.0
         
-        
-        //var scrollWidth = scrollView.frame.size.width
+        var scrollWidth = scrollView.frame.size.width
         for x in 0...4 {
-            let image = UIImage(named: "icon\(x).jpg")
+            //let image = UIImage(named: "")
+            let image = imageWithImage(image: UIImage(named: "img\(x).jpg")!, newSize: CGSize(width: 500, height: 500))
+            
             let imageView = UIImageView(image: image)
             images.append(imageView)
             
             var newX: CGFloat = 0.0
-            newX = scrollView.frame.size.width / 2 + scrollView.frame.size.width * CGFloat(x)
+            newX = scrollWidth / 2 + scrollWidth * CGFloat(x)
             
             contentWidth += newX
             
@@ -41,6 +44,7 @@ class ChooseImageVC: UINavigationController {
         }
         
         scrollView.backgroundColor = UIColor.black
+        //scrollView.clipsToBounds = false
         
         scrollView.contentSize = CGSize(width: contentWidth, height: view.frame.size.height)
     }
@@ -50,7 +54,13 @@ class ChooseImageVC: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    func imageWithImage(image:UIImage, newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
+    }
 
     /*
     // MARK: - Navigation

@@ -245,7 +245,7 @@
                                     <navigationItem title="Saved Photos" id="WjS-9r-yiW">
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="fLr-ut-dbH">
                                             <connections>
-                                                <segue destination="TdO-jU-Htu" kind="show" id="CRS-91-EfF"/>
+                                                <segue destination="DcQ-VV-0DF" kind="show" id="lee-jv-AiM"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -265,38 +265,38 @@
             <point key="canvasLocation" x="2093.5999999999999" y="97.601199400299862"/>
         </scene>
         <!--Choose ImageVC-->
-        <scene sceneID="Jm3-Nx-j4R">
+        <scene sceneID="Gx0-xQ-JPm">
             <objects>
-                <viewController id="TdO-jU-Htu" customClass="ChooseImageVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DcQ-VV-0DF" customClass="ChooseImageVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3Du-pZ-wbj"/>
-                        <viewControllerLayoutGuide type="bottom" id="Vce-vy-Cgj"/>
+                        <viewControllerLayoutGuide type="top" id="SKh-vP-HPM"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Vm-bE-fKb"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lm1-td-Fl7">
+                    <view key="view" contentMode="scaleToFill" id="Kpp-mH-yd9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPR-bw-4QH">
-                                <rect key="frame" x="58" y="0.0" width="220" height="667"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2kf-Sd-dTm">
+                                <rect key="frame" x="77" y="20" width="220" height="647"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="259" id="3rY-zw-dqK"/>
+                                    <constraint firstAttribute="width" constant="220" id="Don-5n-qHN"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Vce-vy-Cgj" firstAttribute="top" secondItem="HPR-bw-4QH" secondAttribute="bottom" id="gRL-ro-wA9"/>
-                            <constraint firstItem="HPR-bw-4QH" firstAttribute="centerX" secondItem="lm1-td-Fl7" secondAttribute="centerX" id="ngN-3E-yGD"/>
-                            <constraint firstItem="HPR-bw-4QH" firstAttribute="top" secondItem="lm1-td-Fl7" secondAttribute="top" id="ycB-ht-TLI"/>
+                            <constraint firstItem="2kf-Sd-dTm" firstAttribute="centerX" secondItem="Kpp-mH-yd9" secondAttribute="centerX" id="8KC-hj-1u4"/>
+                            <constraint firstItem="7Vm-bE-fKb" firstAttribute="top" secondItem="2kf-Sd-dTm" secondAttribute="bottom" id="af4-1v-YlE"/>
+                            <constraint firstItem="2kf-Sd-dTm" firstAttribute="top" secondItem="SKh-vP-HPM" secondAttribute="bottom" id="olF-A9-Iju"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="scrollView" destination="HPR-bw-4QH" id="ofD-RQ-cES"/>
+                        <outlet property="scrollView" destination="2kf-Sd-dTm" id="lo5-we-5eA"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XQm-o4-vLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dpT-GB-P7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3122.4000000000001" y="98.50074962518741"/>
+            <point key="canvasLocation" x="2909" y="102"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="zzz-Vw-0Ys">
