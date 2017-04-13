@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "natalie-app-2/LoginVC.swift"
-            timestampString = "513769893.81552"
+            timestampString = "513774190.257543"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "LoginVC"
             landmarkType = "3">
          </BreakpointContent>

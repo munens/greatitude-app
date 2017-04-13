@@ -56,14 +56,19 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate {
         //var fetchResult = ad.managedObjectContext?.executeFetchRequest(fetchRequest, error: &error)
         do {
             let result = try context.fetch(fetchRequest)
-        
-            let user:User? = result.first as? User
-            print(user)
-            if user?.email == email && user?.password == password {
-                return true
-            } else {
-                return false
+            print(result)
+            let users:[User] = result as! [User]
+            
+            for user in users {
+                print(user.email)
+                print(user.password)
+                if user.email == email && user.password == password {
+                    return true
+                }
             }
+            
+            return false;
+            
         } catch {
             print("\(error)")
             return false
