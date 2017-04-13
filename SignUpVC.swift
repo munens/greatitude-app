@@ -7,20 +7,28 @@
 //
 
 import UIKit
+import CoreData
 
 class SignUpVC: UIViewController {
 
+    @IBOutlet weak var firstNameField: UITextField!
+    @IBOutlet weak var lastNameField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordConfirmationField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
+//    
 
     /*
     // MARK: - Navigation
@@ -31,5 +39,36 @@ class SignUpVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func signUpPressed(_ sender: UIButton) {
+        
+        var user:User!
+        
+        //let desc:NSEntityDescription? = NSEntityDescription.entity(forEntityName: "user", in: context)
+        
+        let desc = NSEntityDescription.entity(forEntityName: "User", in: context)
+        
+        user =  User(entity: desc!, insertInto: context)
+        
+        if let firstname = firstNameField.text {
+            user.firstname = firstname
+        }
+
+        if let lastname = lastNameField.text {
+            user.lastname = lastname
+        }
+        
+        if let email = emailField.text {
+            user.email = email
+        }
+       
+        if let password = passwordField.text {
+            user.password = password
+        }
+        
+        ad.saveContext();
+        
+        //_ = WelcomeVC?.popViewController(animated: true);
+    }
 
 }
