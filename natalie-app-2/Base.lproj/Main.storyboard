@@ -226,6 +226,51 @@
             </objects>
             <point key="canvasLocation" x="1141.5999999999999" y="-88.605697151424295"/>
         </scene>
+        <!--Root View Controller-->
+        <scene sceneID="3i1-mM-GBf">
+            <objects>
+                <tableViewController id="zny-YS-Ikg" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YiU-Fq-e6O">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="q2D-Zz-pVO">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q2D-Zz-pVO" id="qkH-zj-GOU">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zny-YS-Ikg" id="cVD-TR-zxc"/>
+                            <outlet property="delegate" destination="zny-YS-Ikg" id="cBX-Xu-cKy"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="6JI-Cj-m2P"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GED-CN-mqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3206" y="283"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XnQ-Eb-lKR">
+            <objects>
+                <navigationController id="nxc-L5-XcR" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8r2-lx-igP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zny-YS-Ikg" kind="relationship" relationship="rootViewController" id="2n5-ZY-7le"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gNm-SF-T34" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2092" y="283"/>
+        </scene>
         <!--LoginVC-->
         <scene sceneID="zzz-Vw-0Ys">
             <objects>
@@ -306,6 +351,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginPressed:" destination="Yvl-BJ-L3A" eventType="touchUpInside" id="PGz-cI-YWO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -325,6 +373,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="0nN-cG-ewi" secondAttribute="trailing" constant="20" id="zLB-yZ-V6J"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="YeZ-Zj-8Xe" id="rGW-Sw-hHI"/>
+                        <outlet property="passwordField" destination="vPt-MB-HoK" id="8HH-S9-VAf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMp-Nb-oYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

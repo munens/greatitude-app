@@ -9,10 +9,14 @@
 import UIKit
 
 class LoginVC: UIViewController {
-
+    
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
     override func viewDidLoad() {
+    
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -31,5 +35,10 @@ class LoginVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func loginPressed(_ sender: Any) {
+        let email = emailField.text
+        let password = passwordField.text
+    }
 
 }
