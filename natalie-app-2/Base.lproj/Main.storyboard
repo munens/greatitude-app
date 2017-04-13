@@ -264,10 +264,10 @@
             </objects>
             <point key="canvasLocation" x="2093.5999999999999" y="97.601199400299862"/>
         </scene>
-        <!--View Controller-->
+        <!--Choose ImageVC-->
         <scene sceneID="Jm3-Nx-j4R">
             <objects>
-                <viewController id="TdO-jU-Htu" sceneMemberID="viewController">
+                <viewController id="TdO-jU-Htu" customClass="ChooseImageVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Du-pZ-wbj"/>
                         <viewControllerLayoutGuide type="bottom" id="Vce-vy-Cgj"/>
@@ -275,12 +275,28 @@
                     <view key="view" contentMode="scaleToFill" id="lm1-td-Fl7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPR-bw-4QH">
+                                <rect key="frame" x="58" y="0.0" width="220" height="667"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="259" id="3rY-zw-dqK"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vce-vy-Cgj" firstAttribute="top" secondItem="HPR-bw-4QH" secondAttribute="bottom" id="gRL-ro-wA9"/>
+                            <constraint firstItem="HPR-bw-4QH" firstAttribute="centerX" secondItem="lm1-td-Fl7" secondAttribute="centerX" id="ngN-3E-yGD"/>
+                            <constraint firstItem="HPR-bw-4QH" firstAttribute="top" secondItem="lm1-td-Fl7" secondAttribute="top" id="ycB-ht-TLI"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="HPR-bw-4QH" id="ofD-RQ-cES"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XQm-o4-vLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3123" y="99"/>
+            <point key="canvasLocation" x="3122.4000000000001" y="98.50074962518741"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="zzz-Vw-0Ys">
