@@ -42,12 +42,15 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate {
     @IBAction func loginPressed(_ sender: Any) {
         let email = emailField.text
         let password = passwordField.text
-        let result = authenticateUser(email: email, password: password)
-        print(result)
-        
+        let user = authenticateUser(email: email, password: password)
+        if (user != nil) {
+            performSegue(withIdentifier: "MainVC", sender: user)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
-    func authenticateUser(email: String?, password: String?) -> Bool {
+    func authenticateUser(email: String?, password: String?) -> Any? {
         //let predicate = NSPredicate (format: "email = %@", email!)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         //fetchRequest.predicate = predicate
@@ -60,21 +63,25 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate {
             let users:[User] = result as! [User]
             
             for user in users {
-                print(user.email)
-                print(user.password)
                 if user.email == email && user.password == password {
-                    return true
+                    return user;
                 }
             }
-            
-            return false;
-            
+            return nil;
         } catch {
             print("\(error)")
-            return false
+            return nil;
         }
-        
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as?
+            MainVC {
+            
+            if let user = sender as? User {
+                destination.selectedUser = user
+            }
+        }
     }
     
 //    func attemptFetch() {

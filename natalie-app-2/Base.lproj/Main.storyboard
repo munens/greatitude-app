@@ -238,12 +238,49 @@
                     <view key="view" contentMode="scaleToFill" id="6Xh-2w-b08">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syP-Q9-4vk">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Saved Photos" id="WjS-9r-yiW">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fLr-ut-dbH">
+                                            <connections>
+                                                <segue destination="TdO-jU-Htu" kind="show" id="CRS-91-EfF"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="syP-Q9-4vk" secondAttribute="trailing" id="2NN-g0-3fM"/>
+                            <constraint firstItem="syP-Q9-4vk" firstAttribute="leading" secondItem="6Xh-2w-b08" secondAttribute="leading" id="AU7-o5-nZt"/>
+                            <constraint firstItem="syP-Q9-4vk" firstAttribute="top" secondItem="kn0-JU-rfo" secondAttribute="bottom" id="k8z-1w-Rrd"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HME-U1-6YA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2095" y="98"/>
+            <point key="canvasLocation" x="2093.5999999999999" y="97.601199400299862"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Jm3-Nx-j4R">
+            <objects>
+                <viewController id="TdO-jU-Htu" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Du-pZ-wbj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vce-vy-Cgj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lm1-td-Fl7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XQm-o4-vLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3123" y="99"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="zzz-Vw-0Ys">
@@ -350,6 +387,7 @@
                     <connections>
                         <outlet property="emailField" destination="YeZ-Zj-8Xe" id="rGW-Sw-hHI"/>
                         <outlet property="passwordField" destination="vPt-MB-HoK" id="8HH-S9-VAf"/>
+                        <segue destination="KSr-ho-2PN" kind="showDetail" identifier="MainVC" id="Crq-x6-gCB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMp-Nb-oYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -360,4 +398,7 @@
     <resources>
         <image name="Welcome.png" width="305" height="105"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Crq-x6-gCB"/>
+    </inferredMetricsTieBreakers>
 </document>

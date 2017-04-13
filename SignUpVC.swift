@@ -73,7 +73,6 @@ class SignUpVC: UIViewController {
             dismiss(animated: true, completion: nil)
         }
         
-        //_ = WelcomeVC?.popViewController(animated: true);
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
