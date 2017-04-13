@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    var controller: NSFetchedResultsController<User>!
     
     override func viewDidLoad() {
     
@@ -39,6 +42,57 @@ class LoginVC: UIViewController {
     @IBAction func loginPressed(_ sender: Any) {
         let email = emailField.text
         let password = passwordField.text
+        let result = authenticateUser(email: email, password: password)
+        print(result)
+        
     }
-
+    
+    func authenticateUser(email: String?, password: String?) -> Bool {
+        //let predicate = NSPredicate (format: "email = %@", email!)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        //fetchRequest.predicate = predicate
+        //var error:NSError? = nil
+        
+        //var fetchResult = ad.managedObjectContext?.executeFetchRequest(fetchRequest, error: &error)
+        do {
+            let result = try context.fetch(fetchRequest)
+        
+            let user:User? = result.first as? User
+            print(user)
+            if user?.email == email && user?.password == password {
+                return true
+            } else {
+                return false
+            }
+        } catch {
+            print("\(error)")
+            return false
+        }
+        
+        
+    }
+    
+//    func attemptFetch() {
+//        
+//        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+//        let dateSort = NSSortDescriptor(key: "created_at", ascending: false)
+//        
+//        fetchRequest.sortDescriptors = [dateSort]
+//        
+//        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+//        
+//        do {
+//            try controller.performFetch()
+//            
+//        } catch {
+//            
+//            let error = error as NSError
+//            print("\(error)")
+//        }
+//    }
+//
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath? ) {
+//        
+//    }
+    
 }

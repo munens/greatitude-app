@@ -65,10 +65,25 @@ class SignUpVC: UIViewController {
         if let password = passwordField.text {
             user.password = password
         }
-        
-        ad.saveContext();
+        print(user)
+        if(user.firstname != "" && user.lastname != "" && user.email != "" && user.password != ""){
+            ad.saveContext()
+            performSegue(withIdentifier: "MainVC", sender: user)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
         
         //_ = WelcomeVC?.popViewController(animated: true);
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as?
+            MainVC {
+            
+            if let user = sender as? User {
+                destination.selectedUser = user
+            }
+        }
     }
 
 }

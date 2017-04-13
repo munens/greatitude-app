@@ -8,8 +8,18 @@
 
 import UIKit
 
-class MainVC: UINavigationController {
-
+class MainVC: UIViewController {
+    
+    private var _user:User!
+    
+    var selectedUser: User {
+        get {
+            return _user
+        } set {
+            _user = newValue
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,5 +41,7 @@ class MainVC: UINavigationController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
 
 }
