@@ -27,8 +27,8 @@ class ChooseImageVC: UIViewController {
         
         let scrollWidth = scrollView.frame.size.width
         for x in 0...4 {
-            //let image = UIImage(named: "")
-            let image = imageWithImage(image: UIImage(named: "img\(x).jpg")!, newSize: CGSize(width: 500, height: 500))
+            
+            let image = UIImage(named: "img\(x)")
             
             let imageView = UIImageView(image: image)
             images.append(imageView)
@@ -40,13 +40,17 @@ class ChooseImageVC: UIViewController {
             
             scrollView.addSubview(imageView)
             
-            imageView.frame = CGRect(x: newX - 75, y: (scrollView.frame.size.height / 2) - 75, width: 500, height: 350)
+            imageView.frame = CGRect(x: newX - 75, y: (scrollView.frame.size.height / 2) - 145, width: 500, height: 350)
+            
+            print("content Width 1: \(contentWidth)")
         }
+        
+        print("content Width 2: \(contentWidth)")
         
         scrollView.backgroundColor = UIColor.black
         //scrollView.clipsToBounds = false
         
-        scrollView.contentSize = CGSize(width: contentWidth, height: 350)
+        scrollView.contentSize = CGSize(width: (contentWidth - 2150.0), height: 350)
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +58,7 @@ class ChooseImageVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /*
     func imageWithImage(image:UIImage, newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
         image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
@@ -61,6 +66,7 @@ class ChooseImageVC: UIViewController {
         UIGraphicsEndImageContext()
         return newImage
     }
+     */
 
     /*
     // MARK: - Navigation
