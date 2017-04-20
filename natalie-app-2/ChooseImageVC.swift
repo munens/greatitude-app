@@ -25,7 +25,7 @@ class ChooseImageVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         var contentWidth: CGFloat = 0.0
         
-        var scrollWidth = scrollView.frame.size.width
+        let scrollWidth = scrollView.frame.size.width
         for x in 0...4 {
             //let image = UIImage(named: "")
             let image = imageWithImage(image: UIImage(named: "img\(x).jpg")!, newSize: CGSize(width: 500, height: 500))
@@ -40,13 +40,13 @@ class ChooseImageVC: UIViewController {
             
             scrollView.addSubview(imageView)
             
-            imageView.frame = CGRect(x: newX - 75, y: (scrollView.frame.size.height / 2) - 75, width: 150, height: 50)
+            imageView.frame = CGRect(x: newX - 75, y: (scrollView.frame.size.height / 2) - 75, width: 500, height: 350)
         }
         
         scrollView.backgroundColor = UIColor.black
         //scrollView.clipsToBounds = false
         
-        scrollView.contentSize = CGSize(width: contentWidth, height: view.frame.size.height)
+        scrollView.contentSize = CGSize(width: contentWidth, height: 350)
     }
 
     override func didReceiveMemoryWarning() {
