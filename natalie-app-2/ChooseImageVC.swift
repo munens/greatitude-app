@@ -19,6 +19,14 @@ class ChooseImageVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let scrollViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(scrollViewTapped(_:)))
+        
+        scrollViewTapGestureRecognizer.numberOfTapsRequired = 1
+        scrollViewTapGestureRecognizer.isEnabled = true
+        scrollViewTapGestureRecognizer.cancelsTouchesInView = false
+        
+        // add to scroll view:
+        scrollView.addGestureRecognizer(scrollViewTapGestureRecognizer)
         
     }
     
@@ -40,7 +48,7 @@ class ChooseImageVC: UIViewController {
             
             scrollView.addSubview(imageView)
             
-            imageView.frame = CGRect(x: newX - 75, y: (scrollView.frame.size.height / 2) - 145, width: 500, height: 350)
+            imageView.frame = CGRect(x: newX - 75, y: (scrollView.frame.size.height / 2) - 145, width: 300, height: 200)
             
             print("content Width 1: \(contentWidth)")
         }
@@ -50,23 +58,38 @@ class ChooseImageVC: UIViewController {
         scrollView.backgroundColor = UIColor.black
         //scrollView.clipsToBounds = false
         
-        scrollView.contentSize = CGSize(width: (contentWidth - 2150.0), height: 350)
+        scrollView.contentSize = CGSize(width: (contentWidth - 2500.0), height: 350)
     }
-
+    
+    func scrollViewTapped(_ sender: UITapGestureRecognizer){
+        print("the scroll view has been tapped.")
+        // get location of tap
+        sender.location(ofTouch: <#T##Int#>, in: <#T##UIView?#>)
+        // go through all images
+        // check if location of tap matches that of any of the image views
+        // create a blue rectangle around any of those views.
+        
+    }
+    /*
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        getTouchLocation(touches: touches as NSSet)
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        getTouchLocation(touches: touches as NSSet)
+    }
+    
+    func getTouchLocation(touches: NSSet){
+        let touch = touches.allObjects[0]
+        
+        
+    }*/
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-    func imageWithImage(image:UIImage, newSize:CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
-    }
-     */
 
     /*
     // MARK: - Navigation
