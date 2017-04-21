@@ -63,9 +63,13 @@ class ChooseImageVC: UIViewController {
     
     func imageViewTapped(_ sender: UITapGestureRecognizer){
         //let tap_location = sender.location(in: scrollView)
-        sender.view?.layer.borderColor = UIColor.blue.cgColor
-        sender.view?.layer.borderWidth = 4
-        print("image has been tapped at \(sender.location(in: scrollView))")
+        for image in images {
+            image.layer.borderWidth = 0
+        }
+        let chosen_image = sender.view
+        chosen_image?.layer.borderColor = UIColor.blue.cgColor
+        chosen_image?.layer.borderWidth = 4
+        
     }
     
     
