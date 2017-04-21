@@ -11,6 +11,9 @@ import UIKit
 class ChooseImageVC: UIViewController {
 
     
+    @IBAction func backButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBOutlet weak var scrollView: UIScrollView!
     var images = [UIImageView]()

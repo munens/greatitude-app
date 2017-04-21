@@ -276,17 +276,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0bt-bg-96d">
+                                <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="hbC-fI-gUn"/>
+                                </constraints>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2kf-Sd-dTm">
-                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                                <rect key="frame" x="16" y="65" width="343" height="602"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="tvT-BH-1vv"/>
+                                </constraints>
                             </scrollView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="do9-W4-6yb">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Pick an image:" id="yZF-ef-hpr">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="ScY-Gv-4Ui">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="DcQ-VV-0DF" id="N20-uD-HtU"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Pick &gt;" id="c8k-D7-VS8"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="0bt-bg-96d" firstAttribute="top" secondItem="SKh-vP-HPM" secondAttribute="bottom" constant="45" id="0Hy-I6-j8n"/>
+                            <constraint firstItem="do9-W4-6yb" firstAttribute="top" secondItem="SKh-vP-HPM" secondAttribute="bottom" id="5fX-mC-fy1"/>
                             <constraint firstItem="2kf-Sd-dTm" firstAttribute="centerX" secondItem="Kpp-mH-yd9" secondAttribute="centerX" id="8KC-hj-1u4"/>
+                            <constraint firstItem="7Vm-bE-fKb" firstAttribute="top" secondItem="0bt-bg-96d" secondAttribute="bottom" id="9DA-FQ-QjZ"/>
+                            <constraint firstItem="do9-W4-6yb" firstAttribute="leading" secondItem="Kpp-mH-yd9" secondAttribute="leading" id="EV8-u2-KwL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2kf-Sd-dTm" secondAttribute="trailing" id="SiF-J1-ymb"/>
                             <constraint firstItem="2kf-Sd-dTm" firstAttribute="leading" secondItem="Kpp-mH-yd9" secondAttribute="leadingMargin" id="XbH-Gs-mPQ"/>
                             <constraint firstItem="7Vm-bE-fKb" firstAttribute="top" secondItem="2kf-Sd-dTm" secondAttribute="bottom" id="af4-1v-YlE"/>
-                            <constraint firstItem="2kf-Sd-dTm" firstAttribute="top" secondItem="SKh-vP-HPM" secondAttribute="bottom" id="olF-A9-Iju"/>
+                            <constraint firstAttribute="trailing" secondItem="do9-W4-6yb" secondAttribute="trailing" id="heN-B1-acX"/>
+                            <constraint firstItem="2kf-Sd-dTm" firstAttribute="top" secondItem="SKh-vP-HPM" secondAttribute="bottom" constant="45" id="olF-A9-Iju"/>
                         </constraints>
                     </view>
                     <connections>
@@ -295,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpT-GB-P7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2909" y="102"/>
+            <point key="canvasLocation" x="2908" y="101.19940029985008"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="zzz-Vw-0Ys">
