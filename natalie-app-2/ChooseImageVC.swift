@@ -19,14 +19,6 @@ class ChooseImageVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let scrollViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(scrollViewTapped(_:)))
-        
-        scrollViewTapGestureRecognizer.numberOfTapsRequired = 1
-        scrollViewTapGestureRecognizer.isEnabled = true
-        scrollViewTapGestureRecognizer.cancelsTouchesInView = false
-        
-        // add to scroll view:
-        scrollView.addGestureRecognizer(scrollViewTapGestureRecognizer)
         
     }
     
@@ -46,14 +38,22 @@ class ChooseImageVC: UIViewController {
             
             contentWidth += newX
             
-            scrollView.addSubview(imageView)
-            
             imageView.frame = CGRect(x: newX - 75, y: (scrollView.frame.size.height / 2) - 145, width: 300, height: 200)
             
-            print("content Width 1: \(contentWidth)")
+            // give every image a UITapGestureRecognizer - allow a function to be called everytime as image is tapped.
+            let imageTapRecognizer = UITapGestureRecognizer(target: self, action:#selector( imageViewTapped(_:)))
+            imageTapRecognizer.delegate = self as? UIGestureRecognizerDelegate
+            imageTapRecognizer.numberOfTapsRequired = 1
+            imageTapRecognizer.isEnabled = true
+            imageTapRecognizer.cancelsTouchesInView = false
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(imageTapRecognizer)
+            
+            scrollView.addSubview(imageView)
+            //print("content Width 1: \(contentWidth)")
         }
         
-        print("content Width 2: \(contentWidth)")
+        //print("content Width 2: \(contentWidth)")
         
         scrollView.backgroundColor = UIColor.black
         //scrollView.clipsToBounds = false
@@ -61,15 +61,14 @@ class ChooseImageVC: UIViewController {
         scrollView.contentSize = CGSize(width: (contentWidth - 2500.0), height: 350)
     }
     
-    func scrollViewTapped(_ sender: UITapGestureRecognizer){
-        print("the scroll view has been tapped.")
-        // get location of tap
-        sender.location(ofTouch: <#T##Int#>, in: <#T##UIView?#>)
-        // go through all images
-        // check if location of tap matches that of any of the image views
-        // create a blue rectangle around any of those views.
-        
+    func imageViewTapped(_ sender: UITapGestureRecognizer){
+        //let tap_location = sender.location(in: scrollView)
+        sender.view?.layer.borderColor = UIColor.blue.cgColor
+        sender.view?.layer.borderWidth = 4
+        print("image has been tapped at \(sender.location(in: scrollView))")
     }
+    
+    
     /*
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         getTouchLocation(touches: touches as NSSet)
