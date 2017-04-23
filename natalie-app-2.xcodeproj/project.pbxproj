@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C539B1EC1EAC53A4006C3233 /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = C539B1EB1EAC53A4006C3233 /* Welcome.png */; };
 		E8B6103D1E9E68F90019EBED /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6103C1E9E68F90019EBED /* LoginVC.swift */; };
 		E8B610401E9E6F180019EBED /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8B6103E1E9E6F180019EBED /* Model.xcdatamodeld */; };
 		E8B610901E9E903E0019EBED /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6108C1E9E903E0019EBED /* User+CoreDataClass.swift */; };
@@ -23,7 +24,6 @@
 		E8DE92B31E9D447C007FC971 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8DE92B11E9D447C007FC971 /* LaunchScreen.storyboard */; };
 		E8DE92BE1E9D447C007FC971 /* natalie_app_2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE92BD1E9D447C007FC971 /* natalie_app_2Tests.swift */; };
 		E8DE92C91E9D447C007FC971 /* natalie_app_2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE92C81E9D447C007FC971 /* natalie_app_2UITests.swift */; };
-		E8DE92D71E9D4520007FC971 /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = E8DE92D61E9D4520007FC971 /* Welcome.png */; };
 		E8DE92DB1E9D6639007FC971 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE92DA1E9D6639007FC971 /* SignUpVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C539B1EB1EAC53A4006C3233 /* Welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Welcome.png; sourceTree = "<group>"; };
 		E8B6103C1E9E68F90019EBED /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E8B6103F1E9E6F180019EBED /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		E8B6108C1E9E903E0019EBED /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "../User+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -67,7 +68,6 @@
 		E8DE92C41E9D447C007FC971 /* natalie-app-2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "natalie-app-2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DE92C81E9D447C007FC971 /* natalie_app_2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = natalie_app_2UITests.swift; sourceTree = "<group>"; };
 		E8DE92CA1E9D447C007FC971 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8DE92D61E9D4520007FC971 /* Welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Welcome.png; path = "../../natalie-app/natalie-app/Welcome.png"; sourceTree = "<group>"; };
 		E8DE92DA1E9D6639007FC971 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpVC.swift; path = ../SignUpVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,8 +155,8 @@
 				E8B610941E9E90600019EBED /* Model */,
 				E8DE92A81E9D447C007FC971 /* AppDelegate.swift */,
 				E8DE92AC1E9D447C007FC971 /* Main.storyboard */,
-				E8DE92D61E9D4520007FC971 /* Welcome.png */,
 				E8DE92AF1E9D447C007FC971 /* Assets.xcassets */,
+				C539B1EB1EAC53A4006C3233 /* Welcome.png */,
 				E8DE92B11E9D447C007FC971 /* LaunchScreen.storyboard */,
 				E8DE92B41E9D447C007FC971 /* Info.plist */,
 				E8B6103E1E9E6F180019EBED /* Model.xcdatamodeld */,
@@ -291,8 +291,8 @@
 			files = (
 				E8B611161E9FA2130019EBED /* images in Resources */,
 				E8DE92B31E9D447C007FC971 /* LaunchScreen.storyboard in Resources */,
+				C539B1EC1EAC53A4006C3233 /* Welcome.png in Resources */,
 				E8DE92B01E9D447C007FC971 /* Assets.xcassets in Resources */,
-				E8DE92D71E9D4520007FC971 /* Welcome.png in Resources */,
 				E8DE92AE1E9D447C007FC971 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
