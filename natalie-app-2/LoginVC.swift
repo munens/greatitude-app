@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class LoginVC: UIViewController, NSFetchedResultsControllerDelegate {
+class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -21,6 +21,8 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        emailField.delegate = self
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpVC.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -65,7 +67,6 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate {
         //var fetchResult = ad.managedObjectContext?.executeFetchRequest(fetchRequest, error: &error)
         do {
             let result = try context.fetch(fetchRequest)
-            print(result)
             let users:[User] = result as! [User]
             
             for user in users {
@@ -90,27 +91,61 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate {
         }
     }
     
-//    func attemptFetch() {
-//        
-//        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
-//        let dateSort = NSSortDescriptor(key: "created_at", ascending: false)
-//        
-//        fetchRequest.sortDescriptors = [dateSort]
-//        
-//        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-//        
-//        do {
-//            try controller.performFetch()
-//            
-//        } catch {
-//            
-//            let error = error as NSError
-//            print("\(error)")
-//        }
-//    }
-//
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath? ) {
-//        
-//    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let validation = emailTest.evaluate(with: emailField.text)
+        if(validation == false){
+            emailField.layer.borderColor = UIColor.red.cgColor
+            emailField.layer.borderWidth = 1
+            emailField.placeholder = "Email should be in the correct format."
+            createOverlay()
+            
+        } else {
+            emailField.layer.borderWidth = 0
+            emailField.placeholder = ""
+        }
+        return validation;
+    }
+    
+    func createOverlay() {
+        let deadlineTime = DispatchTime.now() + .seconds(4)
+        let window = UIApplication.shared.keyWindow!
+        
+        let rectangleView = UIView(frame: CGRect(x:0, y:30, width: self.view.frame.size.width, height: 20))
+        rectangleView.backgroundColor = UIColor.red
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
+        label.text = "email is in invalid format"
+        label.textColor = UIColor.white
+        label.textAlignment = NSTextAlignment.center
+        
+        rectangleView.addSubview(label)
+        window.addSubview(rectangleView)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            rectangleView.removeFromSuperview()
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return true;
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        resignFirstResponder()
+        return true
+    }
     
 }
