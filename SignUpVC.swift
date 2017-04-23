@@ -103,8 +103,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
-        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
-        let validation = emailTest.evaluate(with: "This email is valid / invalid")
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let validation = emailTest.evaluate(with: emailField.text)
         if(validation == false){
             emailField.layer.borderColor = UIColor.red.cgColor
             emailField.layer.borderWidth = 1
