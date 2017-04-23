@@ -109,11 +109,31 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             emailField.layer.borderColor = UIColor.red.cgColor
             emailField.layer.borderWidth = 1
             emailField.placeholder = "Email should be in the correct format."
+            createOverlay()
+            
         } else {
-            resignFirstResponder()
+            emailField.layer.borderWidth = 0
+            emailField.placeholder = ""
         }
-        print("validation is \(validation)")
         return validation;
+    }
+    
+    func createOverlay() {
+        let deadlineTime = DispatchTime.now() + .seconds(4)
+        let window = UIApplication.shared.keyWindow!
+        
+        let rectangleView = UIView(frame: CGRect(x:0, y:30, width: self.view.frame.size.width, height: 20))
+        rectangleView.backgroundColor = UIColor.red
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
+        label.text = "email is in invalid format"
+        label.textColor = UIColor.white
+        label.textAlignment = NSTextAlignment.center
+        
+        rectangleView.addSubview(label)
+        window.addSubview(rectangleView)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            rectangleView.removeFromSuperview()
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
