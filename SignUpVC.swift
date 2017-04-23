@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class SignUpVC: UIViewController {
+class SignUpVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
@@ -22,6 +22,8 @@ class SignUpVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        emailField.delegate = self
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpVC.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -29,13 +31,7 @@ class SignUpVC: UIViewController {
     func dismissKeyboard(){
         view.endEditing(true)
     }
-
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-//    
-
+    
     /*
     // MARK: - Navigation
 
@@ -89,6 +85,44 @@ class SignUpVC: UIViewController {
                 destination.selectedUser = user
             }
         }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        let validation = emailTest.evaluate(with: "This email is valid / invalid")
+        if(validation == false){
+            emailField.layer.borderColor = UIColor.red.cgColor
+            emailField.layer.borderWidth = 1
+            emailField.placeholder = "Email should be in the correct format."
+        } else {
+            resignFirstResponder()
+        }
+        print("validation is \(validation)")
+        return validation;
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return true;
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        resignFirstResponder()
+        return true
     }
 
 }
