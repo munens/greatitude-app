@@ -54,7 +54,10 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         if (user != nil) {
             performSegue(withIdentifier: "MainVC", sender: user)
         } else {
-            dismiss(animated: true, completion: nil)
+            emailField.text = ""
+            passwordField.text = ""
+            createAuthenticationOverlay()
+            //dismiss(animated: true, completion: nil)
         }
     }
     
@@ -78,6 +81,26 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         } catch {
             print("\(error)")
             return nil;
+        }
+    }
+    
+    func createAuthenticationOverlay(){
+        let deadlineTime = DispatchTime.now() + .seconds(5)
+        let window = UIApplication.shared.keyWindow!
+        
+        let rectangleView = UIView(frame: CGRect(x:0, y:30, width: self.view.frame.size.width, height: 20))
+        rectangleView.backgroundColor = UIColor.red
+        
+        let label = UILabel(frame: CGRect(x:0, y:0, width: self.view.frame.size.width, height: 20))
+        label.text = "The email or password combination is incorrect"
+        label.textColor = UIColor.white
+        label.textAlignment = NSTextAlignment.center
+        
+        rectangleView.addSubview(label)
+        
+        window.addSubview(rectangleView)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            rectangleView.removeFromSuperview()
         }
     }
     
@@ -114,7 +137,6 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
             emailField.layer.borderWidth = 1
             emailField.placeholder = "Email should be in the correct format."
             createOverlay()
-            
         } else {
             emailField.layer.borderWidth = 0
             emailField.placeholder = ""
