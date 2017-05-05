@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainVC: UIViewController {
+class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var _user:User!
     
@@ -42,6 +42,17 @@ class MainVC: UIViewController {
     }
     */
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
-
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // create a dequeue reuseable cell here to return.
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
 }
