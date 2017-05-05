@@ -258,13 +258,31 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="4" translatesAutoresizingMaskIntoConstraints="NO" id="2GN-hD-t05">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lnw-9M-dWX">
+                                <rect key="frame" x="16" y="79" width="343" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="300" id="Fpw-hH-EJj">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="300"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fpw-hH-EJj" id="n2H-1D-cFt">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="299.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Lnw-9M-dWX" firstAttribute="top" secondItem="syP-Q9-4vk" secondAttribute="bottom" constant="16" id="0lZ-YH-CbY"/>
                             <constraint firstAttribute="trailing" secondItem="syP-Q9-4vk" secondAttribute="trailing" id="2NN-g0-3fM"/>
                             <constraint firstItem="syP-Q9-4vk" firstAttribute="leading" secondItem="6Xh-2w-b08" secondAttribute="leading" id="AU7-o5-nZt"/>
+                            <constraint firstItem="Lnw-9M-dWX" firstAttribute="leading" secondItem="6Xh-2w-b08" secondAttribute="leading" constant="16" id="GL2-mi-IHj"/>
                             <constraint firstAttribute="trailing" secondItem="2GN-hD-t05" secondAttribute="trailing" id="Ip8-FI-882"/>
+                            <constraint firstAttribute="trailing" secondItem="Lnw-9M-dWX" secondAttribute="trailing" constant="16" id="QtE-pP-wN9"/>
                             <constraint firstItem="2GN-hD-t05" firstAttribute="top" secondItem="syP-Q9-4vk" secondAttribute="bottom" id="dbW-Sn-TX4"/>
+                            <constraint firstItem="e2U-wD-YlD" firstAttribute="top" secondItem="Lnw-9M-dWX" secondAttribute="bottom" constant="16" id="gId-qN-aVn"/>
                             <constraint firstItem="syP-Q9-4vk" firstAttribute="top" secondItem="kn0-JU-rfo" secondAttribute="bottom" id="k8z-1w-Rrd"/>
                             <constraint firstItem="2GN-hD-t05" firstAttribute="leading" secondItem="6Xh-2w-b08" secondAttribute="leading" id="prq-zW-i1n"/>
                             <constraint firstItem="e2U-wD-YlD" firstAttribute="top" secondItem="2GN-hD-t05" secondAttribute="bottom" id="xZc-ME-qbw"/>
