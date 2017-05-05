@@ -19,7 +19,7 @@ class ImageQuoteCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        quoteImageView.isHidden = true
+        quoteImageOverlay.isHidden = true
     }
     
     /*
@@ -29,5 +29,10 @@ class ImageQuoteCell: UITableViewCell {
         // Configure the view for the selected state
     }
     */
+    
+    func configureCell(){
+        // give the quote image view an image to place on UI:
+        quoteImageView.image = UIImage(named: "original")
+    }
 
 }

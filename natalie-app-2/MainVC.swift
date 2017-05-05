@@ -13,6 +13,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     private var _user:User!
     @IBOutlet weak var tableView: UITableView!
     
+    
     var selectedUser: User {
         get {
             return _user
@@ -26,6 +27,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
         // Do any additional setup after loading the view.
         tableView.delegate = self
+        tableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +56,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create a dequeue reuseable cell here to return.
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageQuoteCell", for: indexPath) as? ImageQuoteCell {
+            cell.configureCell()
+            return cell
+        }
+        
         return UITableViewCell()
     }
     
@@ -62,10 +69,13 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func viewBtnPressed(_ sender: UIButton) {
+        
     }
     @IBAction func editBtnPressed(_ sender: UIButton) {
+        
     }
     @IBAction func shareBtnPressed(_ sender: UIButton) {
+        
     }
 
 }

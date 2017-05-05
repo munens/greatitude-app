@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C539B1EC1EAC53A4006C3233 /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = C539B1EB1EAC53A4006C3233 /* Welcome.png */; };
 		C5F131691EBCF92D00624711 /* ImageQuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F131681EBCF92D00624711 /* ImageQuoteCell.swift */; };
+		C5FB4D0E1EBD2BD000096321 /* ImageQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */; };
 		E8B6103D1E9E68F90019EBED /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6103C1E9E68F90019EBED /* LoginVC.swift */; };
 		E8B610401E9E6F180019EBED /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8B6103E1E9E6F180019EBED /* Model.xcdatamodeld */; };
 		E8B610901E9E903E0019EBED /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6108C1E9E903E0019EBED /* User+CoreDataClass.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		C539B1EB1EAC53A4006C3233 /* Welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Welcome.png; sourceTree = "<group>"; };
 		C5F131681EBCF92D00624711 /* ImageQuoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageQuoteCell.swift; sourceTree = "<group>"; };
+		C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageQuote.swift; sourceTree = "<group>"; };
 		E8B6103C1E9E68F90019EBED /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E8B6103F1E9E6F180019EBED /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		E8B6108C1E9E903E0019EBED /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "../User+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -106,6 +108,14 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		C5FB4D0C1EBD2BA500096321 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		E8B610941E9E90600019EBED /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +170,7 @@
 		E8DE92A71E9D447C007FC971 /* natalie-app-2 */ = {
 			isa = PBXGroup;
 			children = (
+				C5FB4D0C1EBD2BA500096321 /* Model */,
 				C5F131671EBCF90E00624711 /* View */,
 				E8B611151E9FA2130019EBED /* images */,
 				E8B610961E9EC0CD0019EBED /* Controllers */,
@@ -332,6 +343,7 @@
 				C5F131691EBCF92D00624711 /* ImageQuoteCell.swift in Sources */,
 				E8B610931E9E903E0019EBED /* Image+CoreDataProperties.swift in Sources */,
 				E8B611141E9F2A520019EBED /* MainVC.swift in Sources */,
+				C5FB4D0E1EBD2BD000096321 /* ImageQuote.swift in Sources */,
 				E8DE92AB1E9D447C007FC971 /* WelcomeVC.swift in Sources */,
 				E8DE92DB1E9D6639007FC971 /* SignUpVC.swift in Sources */,
 				E8B610901E9E903E0019EBED /* User+CoreDataClass.swift in Sources */,
