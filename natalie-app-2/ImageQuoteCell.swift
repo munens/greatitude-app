@@ -15,6 +15,7 @@ class ImageQuoteCell: UITableViewCell {
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var quoteImageView: UIImageView!
     @IBOutlet weak var quoteImageOverlay: UIView!
+    @IBOutlet weak var imageQuoteName: UILabel!
  
     override func awakeFromNib() {
         super.awakeFromNib()
