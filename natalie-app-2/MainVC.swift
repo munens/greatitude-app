@@ -11,6 +11,7 @@ import UIKit
 class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var _user:User!
+    @IBOutlet weak var tableView: UITableView!
     
     var selectedUser: User {
         get {
@@ -24,6 +25,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +48,10 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create a dequeue reuseable cell here to return.
         return UITableViewCell()
@@ -55,4 +61,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return 3
     }
     
+    @IBAction func viewBtnPressed(_ sender: UIButton) {
+    }
+    @IBAction func editBtnPressed(_ sender: UIButton) {
+    }
+    @IBAction func shareBtnPressed(_ sender: UIButton) {
+    }
+
 }

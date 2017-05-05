@@ -9,10 +9,17 @@
 import UIKit
 
 class ImageQuoteCell: UITableViewCell {
-
+    
+    @IBOutlet weak var viewBtn: UIButton!
+    @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var quoteImageView: UIImageView!
+    @IBOutlet weak var quoteImageOverlay: UIView!
+ 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        quoteImageView.isHidden = true
     }
     
     /*
@@ -22,8 +29,5 @@ class ImageQuoteCell: UITableViewCell {
         // Configure the view for the selected state
     }
     */
-    
-    
-    
 
 }

@@ -285,6 +285,9 @@
                                                                     <state key="normal" title="View">
                                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="viewBtnPressed:" destination="KSr-ho-2PN" eventType="touchUpInside" id="meg-CW-wuZ"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBe-rd-krd">
                                                                     <rect key="frame" x="102.5" y="0.0" width="102" height="30"/>
@@ -293,6 +296,9 @@
                                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="editBtnPressed:" destination="KSr-ho-2PN" eventType="touchUpInside" id="aYq-9P-noF"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nd9-ZX-uR6">
                                                                     <rect key="frame" x="204.5" y="0.0" width="102.5" height="30"/>
@@ -301,6 +307,9 @@
                                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="shareBtnPressed:" destination="KSr-ho-2PN" eventType="touchUpInside" id="F4y-9w-bKQ"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -326,6 +335,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.2403146404" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <outlet property="editBtn" destination="UBe-rd-krd" id="Tcj-Nw-bLU"/>
+                                            <outlet property="quoteImageOverlay" destination="lCD-jF-aLh" id="WiC-7l-NJJ"/>
+                                            <outlet property="quoteImageView" destination="GqR-FF-q1w" id="clf-no-qwx"/>
+                                            <outlet property="shareBtn" destination="nd9-ZX-uR6" id="aXF-ZX-vck"/>
+                                            <outlet property="viewBtn" destination="dBB-bV-Bhf" id="epa-us-G5O"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -345,6 +361,9 @@
                             <constraint firstItem="e2U-wD-YlD" firstAttribute="top" secondItem="2GN-hD-t05" secondAttribute="bottom" id="xZc-ME-qbw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="Lnw-9M-dWX" id="JJu-E2-aYM"/>
+                    </connections>
                 </viewController>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IL1-YM-MHj">
                     <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
