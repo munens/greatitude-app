@@ -28,6 +28,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,6 +53,33 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let tableViewCell = tableView.cellForRow(at: indexPath)
+        tableViewCell?.layer.borderWidth = 4
+        tableViewCell?.layer.borderColor = UIColor.blue.cgColor
+        
+        let cell = tableViewCell as! ImageQuoteCell
+        cell.quoteImageOverlay.isHidden = false
+    }
+    /*
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+      /* TODO deselect all rows that arent chosen */
+        
+    }*/
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let index = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: index, animated: true)
+            //imageQuoteCell = index as? ImageQuoteCell
+        
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
