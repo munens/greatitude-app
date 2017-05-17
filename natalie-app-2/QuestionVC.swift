@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class QuestionVC: UIViewController {
+class QuestionVC: UIViewController, UITextViewDelegate {
     
     private var _user:User!
     
@@ -23,15 +23,31 @@ class QuestionVC: UIViewController {
     
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var questionTextView: UITextField!
+    @IBOutlet weak var questionTextView: UITextView!
     @IBOutlet weak var buttonStackView: UIStackView!
+    @IBOutlet weak var selectPicBtn: UIButton!
+    @IBOutlet weak var nxtBtn: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view:
+        selectPicBtn.layer.borderWidth = 1.0
+        selectPicBtn.layer.borderColor = UIColor.white.cgColor
+        selectPicBtn.layer.cornerRadius = 3
+        
+        nxtBtn.layer.borderWidth = 1.0
+        nxtBtn.layer.borderColor = UIColor.white.cgColor
+        nxtBtn.layer.cornerRadius = 3
+        
         questionLabel.alpha = 0.0
+        
+        questionTextView.delegate = self
         questionTextView.alpha = 0.0
+        questionTextView.text = "I am grateful for.."
+        questionTextView.textColor = .lightGray
+        questionTextView.layer.cornerRadius = 3
+        
         buttonStackView.alpha = 0.0
         
     }
@@ -49,6 +65,10 @@ class QuestionVC: UIViewController {
             self.questionTextView.fadeIn(1.0, delay: 0.5)
         })
         
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        buttonStackView.fadeIn(1.0, delay: 0.5)
     }
     
 
