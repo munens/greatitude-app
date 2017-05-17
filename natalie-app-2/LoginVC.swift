@@ -52,7 +52,7 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         let password = passwordField.text
         let user = authenticateUser(email: email, password: password)
         if (user != nil) {
-            performSegue(withIdentifier: "MainVC", sender: user)
+            performSegue(withIdentifier: "QuestionVC", sender: user)
         } else {
             emailField.text = ""
             passwordField.text = ""
@@ -106,7 +106,7 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as?
-            MainVC {
+            QuestionVC {
             
             if let user = sender as? User {
                 destination.selectedUser = user
