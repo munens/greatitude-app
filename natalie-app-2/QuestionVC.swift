@@ -11,9 +11,15 @@ import UIKit
 
 class QuestionVC: UIViewController, UITextViewDelegate {
     
-    //private var _user:User!
+    private var _user:User!
     
-    var selectedUser: User?
+    var selectedUser: User {
+        get {
+            return _user
+        } set {
+            return _user = newValue
+        }
+    }
     
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
@@ -56,9 +62,7 @@ class QuestionVC: UIViewController, UITextViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         //print(selectedUser!)
-        //if selectedUser != nil {
-            greetingLabel.text = "Hi, \(selectedUser?.firstname).."
-        //}
+        greetingLabel.text = "Hi, \(selectedUser.firstname!).."
         
         self.greetingLabel.fadeOut(1.0, delay: 1.0, completion: {(finished: Bool) -> Void in
             self.questionLabel.fadeIn(1.0, delay: 0.5)
@@ -73,7 +77,6 @@ class QuestionVC: UIViewController, UITextViewDelegate {
             questionTextView.textColor = .black
         }
         buttonStackView.fadeIn(1.0, delay: 0.5)
-        
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

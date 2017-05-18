@@ -247,11 +247,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Saved Photos" id="WjS-9r-yiW">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fLr-ut-dbH">
-                                            <connections>
-                                                <segue destination="DcQ-VV-0DF" kind="show" id="lee-jv-AiM"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fLr-ut-dbH"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -549,6 +545,7 @@
                                         </state>
                                         <connections>
                                             <action selector="nextBtnPressed:" destination="oOB-jy-mNu" eventType="touchUpInside" id="G9S-0i-jJO"/>
+                                            <segue destination="DcQ-VV-0DF" kind="showDetail" identifier="ChooseImageVC" id="ZEy-Ro-UVk"/>
                                         </connections>
                                     </button>
                                 </subviews>
