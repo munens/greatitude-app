@@ -17,7 +17,7 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     var controller: NSFetchedResultsController<User>!
     
     override func viewDidLoad() {
-    
+        
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
@@ -30,29 +30,29 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     func dismissKeyboard(){
         view.endEditing(true)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     @IBAction func loginPressed(_ sender: Any) {
         let email = emailField.text
         let password = passwordField.text
         let user = authenticateUser(email: email, password: password)
         if (user != nil) {
-            performSegue(withIdentifier: "MainVC", sender: user)
+            performSegue(withIdentifier: "QuestionVC", sender: user)
         } else {
             emailField.text = ""
             passwordField.text = ""
@@ -105,12 +105,9 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as?
-            MainVC {
-            
-            if let user = sender as? User {
-                destination.selectedUser = user
-            }
+        guard let questionVC = segue.destination as? QuestionVC else { return }
+        if let user = sender as? User {
+            questionVC.selectedUser = user
         }
     }
     
