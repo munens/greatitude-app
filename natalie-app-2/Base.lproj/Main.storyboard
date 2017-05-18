@@ -188,6 +188,7 @@
                                 </state>
                                 <connections>
                                     <action selector="signUpPressed:" destination="RN4-ba-VsX" eventType="touchUpInside" id="1G3-gn-ZQG"/>
+                                    <segue destination="oOB-jy-mNu" kind="showDetail" identifier="QuestionVC" id="VOO-BW-qav"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -224,12 +225,11 @@
                         <outlet property="lastNameField" destination="ARg-jI-e9M" id="xT1-Ut-Xgb"/>
                         <outlet property="passwordConfirmationField" destination="g9O-Ee-pr9" id="Sz5-GP-aXa"/>
                         <outlet property="passwordField" destination="hrz-FI-2WY" id="SPI-mc-1J0"/>
-                        <segue destination="KSr-ho-2PN" kind="showDetail" identifier="MainVC" id="vbm-8N-HrZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1h3-f9-2Hf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1141.5999999999999" y="-88.605697151424295"/>
+            <point key="canvasLocation" x="1127" y="-108"/>
         </scene>
         <!--MainVC-->
         <scene sceneID="eL8-Su-14d">
@@ -247,11 +247,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Saved Photos" id="WjS-9r-yiW">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fLr-ut-dbH">
-                                            <connections>
-                                                <segue destination="DcQ-VV-0DF" kind="show" id="lee-jv-AiM"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fLr-ut-dbH"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -400,7 +396,7 @@
                 </button>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HME-U1-6YA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2093.5999999999999" y="97.601199400299862"/>
+            <point key="canvasLocation" x="2094" y="-370"/>
         </scene>
         <!--Choose ImageVC-->
         <scene sceneID="Gx0-xQ-JPm">
@@ -462,7 +458,131 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpT-GB-P7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2908" y="101.19940029985008"/>
+            <point key="canvasLocation" x="3063" y="-347"/>
+        </scene>
+        <!--QuestionVC-->
+        <scene sceneID="GXk-o7-ucf">
+            <objects>
+                <viewController id="oOB-jy-mNu" customClass="QuestionVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TP0-MT-GxQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="0kA-Lx-7xL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bw8-b0-LoI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo_41997_20151004" translatesAutoresizingMaskIntoConstraints="NO" id="okD-ds-rOB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhf-dL-a4N">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.19587435787671234" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="barTintColor" red="1" green="1" blue="1" alpha="0.2403146404" colorSpace="custom" customColorSpace="displayP3"/>
+                                <items>
+                                    <navigationItem id="29C-EZ-VCf">
+                                        <barButtonItem key="leftBarButtonItem" title="See Portfolio" id="WWv-0n-8np"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wB8-Du-tMR">
+                                <rect key="frame" x="32" y="164" width="311" height="0.0"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="39.5"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="rQP-Jb-xk0">
+                                <rect key="frame" x="32" y="164" width="311" height="135.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you thankful for?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GIO-mk-MYk">
+                                        <rect key="frame" x="0.0" y="0.0" width="311" height="31.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26.5"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="x3a-zn-fov">
+                                        <rect key="frame" x="0.0" y="50.5" width="311" height="85"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="85" id="YS9-5A-YyG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="x3a-zn-fov" firstAttribute="top" secondItem="GIO-mk-MYk" secondAttribute="bottom" constant="19" id="HZc-KI-ZSc"/>
+                                    <constraint firstAttribute="trailing" secondItem="x3a-zn-fov" secondAttribute="trailing" id="JRr-LT-gOx"/>
+                                    <constraint firstItem="x3a-zn-fov" firstAttribute="leading" secondItem="rQP-Jb-xk0" secondAttribute="leading" id="j0n-Vj-RcH"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="RlP-MI-Lwt">
+                                <rect key="frame" x="32" y="321.5" width="311" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGs-Fw-aqD">
+                                        <rect key="frame" x="0.0" y="0.0" width="136" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="122" id="TyC-Ne-7dd"/>
+                                        </constraints>
+                                        <state key="normal" title="Select a picture">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selectPicBtnPressed:" destination="oOB-jy-mNu" eventType="touchUpInside" id="dqX-di-kDe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ck-tY-67c">
+                                        <rect key="frame" x="175" y="0.0" width="136" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="122" id="qYM-Eu-Kpe"/>
+                                        </constraints>
+                                        <state key="normal" title="Next">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="nextBtnPressed:" destination="oOB-jy-mNu" eventType="touchUpInside" id="G9S-0i-jJO"/>
+                                            <segue destination="DcQ-VV-0DF" kind="showDetail" identifier="ChooseImageVC" id="ZEy-Ro-UVk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="rQP-Jb-xk0" secondAttribute="trailing" constant="16" id="0Ot-d3-buS"/>
+                            <constraint firstItem="0kA-Lx-7xL" firstAttribute="top" secondItem="okD-ds-rOB" secondAttribute="bottom" id="6KI-NQ-4si"/>
+                            <constraint firstItem="rQP-Jb-xk0" firstAttribute="top" secondItem="wB8-Du-tMR" secondAttribute="bottom" id="9KX-G8-eOt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RlP-MI-Lwt" secondAttribute="trailing" constant="16" id="BmG-7h-9Xn"/>
+                            <constraint firstItem="wB8-Du-tMR" firstAttribute="leading" secondItem="bw8-b0-LoI" secondAttribute="leadingMargin" constant="16" id="D7b-wO-pdQ"/>
+                            <constraint firstItem="mhf-dL-a4N" firstAttribute="top" secondItem="bw8-b0-LoI" secondAttribute="top" id="IS3-Sm-txk"/>
+                            <constraint firstItem="wB8-Du-tMR" firstAttribute="top" secondItem="mhf-dL-a4N" secondAttribute="bottom" constant="120" id="Ot8-Fg-pyM"/>
+                            <constraint firstItem="RlP-MI-Lwt" firstAttribute="leading" secondItem="bw8-b0-LoI" secondAttribute="leadingMargin" constant="16" id="QY8-mw-avi"/>
+                            <constraint firstAttribute="trailing" secondItem="mhf-dL-a4N" secondAttribute="trailing" id="Vlj-lX-Ndu"/>
+                            <constraint firstItem="okD-ds-rOB" firstAttribute="leading" secondItem="bw8-b0-LoI" secondAttribute="leading" id="ab5-3T-4Od"/>
+                            <constraint firstItem="mhf-dL-a4N" firstAttribute="leading" secondItem="bw8-b0-LoI" secondAttribute="leading" id="cWG-vS-9Gq"/>
+                            <constraint firstItem="RlP-MI-Lwt" firstAttribute="top" secondItem="rQP-Jb-xk0" secondAttribute="bottom" constant="22" id="cZh-1v-jPP"/>
+                            <constraint firstItem="okD-ds-rOB" firstAttribute="top" secondItem="bw8-b0-LoI" secondAttribute="top" id="eoU-eq-hU0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wB8-Du-tMR" secondAttribute="trailing" constant="16" id="pgN-Ma-65o"/>
+                            <constraint firstAttribute="trailing" secondItem="okD-ds-rOB" secondAttribute="trailing" id="vyn-Sn-ao1"/>
+                            <constraint firstItem="rQP-Jb-xk0" firstAttribute="leading" secondItem="bw8-b0-LoI" secondAttribute="leadingMargin" constant="16" id="zjB-Ts-mA8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonStackView" destination="RlP-MI-Lwt" id="ti2-R1-2RV"/>
+                        <outlet property="greetingLabel" destination="wB8-Du-tMR" id="bNi-nN-E0D"/>
+                        <outlet property="nxtBtn" destination="9ck-tY-67c" id="i81-t2-yCc"/>
+                        <outlet property="questionLabel" destination="GIO-mk-MYk" id="f6x-jr-Una"/>
+                        <outlet property="questionTextView" destination="x3a-zn-fov" id="r8n-hg-CgD"/>
+                        <outlet property="selectPicBtn" destination="lGs-Fw-aqD" id="TSh-Pt-Sv8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iaL-GJ-8b1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2093.5999999999999" y="321.58920539730138"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="zzz-Vw-0Ys">
@@ -573,7 +693,7 @@
                     <connections>
                         <outlet property="emailField" destination="YeZ-Zj-8Xe" id="rGW-Sw-hHI"/>
                         <outlet property="passwordField" destination="vPt-MB-HoK" id="8HH-S9-VAf"/>
-                        <segue destination="KSr-ho-2PN" kind="showDetail" identifier="MainVC" id="Crq-x6-gCB"/>
+                        <segue destination="oOB-jy-mNu" kind="show" identifier="QuestionVC" id="V4L-0a-UBE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMp-Nb-oYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -587,8 +707,9 @@
         <image name="Welcome.png" width="305" height="105"/>
         <image name="abstract-1851065_1920" width="1920" height="1277"/>
         <image name="original" width="500" height="377"/>
+        <image name="photo_41997_20151004" width="2490" height="1625"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Crq-x6-gCB"/>
+        <segue reference="VOO-BW-qav"/>
     </inferredMetricsTieBreakers>
 </document>

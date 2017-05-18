@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C539B1EC1EAC53A4006C3233 /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = C539B1EB1EAC53A4006C3233 /* Welcome.png */; };
+		C5628FBF1ECBCFDD00A3555F /* QuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */; };
 		C5F131691EBCF92D00624711 /* ImageQuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F131681EBCF92D00624711 /* ImageQuoteCell.swift */; };
 		C5FB4D0E1EBD2BD000096321 /* ImageQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */; };
 		E8B6103D1E9E68F90019EBED /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6103C1E9E68F90019EBED /* LoginVC.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		C539B1EB1EAC53A4006C3233 /* Welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Welcome.png; sourceTree = "<group>"; };
+		C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionVC.swift; sourceTree = "<group>"; };
 		C5F131681EBCF92D00624711 /* ImageQuoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageQuoteCell.swift; sourceTree = "<group>"; };
 		C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageQuote.swift; sourceTree = "<group>"; };
 		E8B6103C1E9E68F90019EBED /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				E8DE92AA1E9D447C007FC971 /* WelcomeVC.swift */,
 				E8B611131E9F2A520019EBED /* MainVC.swift */,
 				E8B611171E9FA5230019EBED /* ChooseImageVC.swift */,
+				C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 			files = (
 				C5F131691EBCF92D00624711 /* ImageQuoteCell.swift in Sources */,
 				E8B610931E9E903E0019EBED /* Image+CoreDataProperties.swift in Sources */,
+				C5628FBF1ECBCFDD00A3555F /* QuestionVC.swift in Sources */,
 				E8B611141E9F2A520019EBED /* MainVC.swift in Sources */,
 				C5FB4D0E1EBD2BD000096321 /* ImageQuote.swift in Sources */,
 				E8DE92AB1E9D447C007FC971 /* WelcomeVC.swift in Sources */,

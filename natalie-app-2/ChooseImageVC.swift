@@ -57,7 +57,7 @@ class ChooseImageVC: UIViewController {
             
             contentWidth += newX
             
-            imageView.frame = CGRect(x: newX - 75, y: (scrollView.frame.size.height / 2) - 145, width: 300, height: 200)
+            imageView.frame = CGRect(x: newX - 75, y: (scrollView.frame.size.height / 2) - 145, width: 345, height: 230)
             
             // give every image a UITapGestureRecognizer - allow a function to be called everytime as image is tapped.
             let imageTapRecognizer = UITapGestureRecognizer(target: self, action:#selector( imageViewTapped(_:)))
