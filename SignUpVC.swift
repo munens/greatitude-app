@@ -17,6 +17,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordConfirmationField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    var user: User!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -44,7 +46,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func signUpPressed(_ sender: UIButton) {
         
-        var user:User!
+        // var user:User!
         
         //let desc:NSEntityDescription? = NSEntityDescription.entity(forEntityName: "user", in: context)
         
@@ -70,7 +72,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         print(user)
         if(user.firstname != "" && user.lastname != "" && user.email != "" && user.password != ""){
             ad.saveContext()
-            performSegue(withIdentifier: "MainVC", sender: user)
+            // performSegue(withIdentifier: "MainVC", sender: user)
+            performSegue(withIdentifier: "QuestionVC", sender: user)
         } else {
             dismiss(animated: true, completion: nil)
         }
@@ -84,6 +87,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 destination.selectedUser = user
             }
         }
+        guard let questionVC = segue.destination as? QuestionVC else { return }
+        questionVC.selectedUser = user
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
