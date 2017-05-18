@@ -50,7 +50,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         
         let desc = NSEntityDescription.entity(forEntityName: "User", in: context)
         
-        user =  User(entity: desc!, insertInto: context)
+        user = User(entity: desc!, insertInto: context)
         
         if let firstname = firstNameField.text {
             user.firstname = firstname
@@ -67,10 +67,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         if let password = passwordField.text {
             user.password = password
         }
-        print(user)
+
         if(user.firstname != "" && user.lastname != "" && user.email != "" && user.password != ""){
             ad.saveContext()
-            performSegue(withIdentifier: "MainVC", sender: user)
+            if(user != nil){
+                performSegue(withIdentifier: "QuestionVC", sender: user)
+            }
         } else {
             dismiss(animated: true, completion: nil)
         }
@@ -79,7 +81,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as?
-            MainVC {
+            QuestionVC {
             
             if let user = sender as? User {
                 destination.selectedUser = user
