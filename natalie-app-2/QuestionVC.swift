@@ -11,7 +11,9 @@ import UIKit
 
 class QuestionVC: UIViewController, UITextViewDelegate {
     
-    var selectedUser: User!
+    //private var _user:User!
+    
+    var selectedUser: User?
     
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
@@ -24,7 +26,7 @@ class QuestionVC: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view:
-        print(selectedUser)
+        //print(selectedUser!)
         
         selectPicBtn.layer.borderWidth = 1.0
         selectPicBtn.layer.borderColor = UIColor.white.cgColor
@@ -53,7 +55,11 @@ class QuestionVC: UIViewController, UITextViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        greetingLabel.text = "Hi, \(selectedUser.firstname!).."
+        //print(selectedUser!)
+        //if selectedUser != nil {
+            greetingLabel.text = "Hi, \(selectedUser?.firstname).."
+        //}
+        
         self.greetingLabel.fadeOut(1.0, delay: 1.0, completion: {(finished: Bool) -> Void in
             self.questionLabel.fadeIn(1.0, delay: 0.5)
             self.questionTextView.fadeIn(1.0, delay: 0.5)
@@ -61,12 +67,13 @@ class QuestionVC: UIViewController, UITextViewDelegate {
         
     }
     
-    func textViewDidChange(_ textView: UITextView) {
-        buttonStackView.fadeIn(1.0, delay: 0.5)
+    func textViewDidBeginEditing(_ textView: UITextView) {
         if questionTextView.text == "I am thankful for.." {
             questionTextView.text = ""
             questionTextView.textColor = .black
         }
+        buttonStackView.fadeIn(1.0, delay: 0.5)
+        
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

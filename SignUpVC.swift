@@ -17,6 +17,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordConfirmationField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    var user: User!
+    
+    let desc = NSEntityDescription.entity(forEntityName: "User", in: context)
+    
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -43,12 +49,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     */
     
     @IBAction func signUpPressed(_ sender: UIButton) {
-        
-        var user:User!
-        
-        //let desc:NSEntityDescription? = NSEntityDescription.entity(forEntityName: "user", in: context)
-        
-        let desc = NSEntityDescription.entity(forEntityName: "User", in: context)
         
         user = User(entity: desc!, insertInto: context)
         
@@ -80,11 +80,18 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as?
-            QuestionVC {
-            
-            if let user = sender as? User {
-                destination.selectedUser = user
+//        guard let questionVC = segue.destination as? QuestionVC else { return }
+//        if let user = sender as? User {
+//            questionVC.selectedUser = user
+//        }
+        print(sender!)
+        
+        if segue.identifier == "QuestionVC" {
+            if let questionVC = segue.destination as? QuestionVC {
+                if let user = sender as? User {
+                    print(user)
+                    questionVC.selectedUser = user
+                }
             }
         }
     }
