@@ -35,7 +35,7 @@ class ChooseImageVC: UIViewController {
         for x in 0...4 {
             
             let image = UIImage(named: "img\(x)")
-            let label = UILabel(frame: CGRect(x:0, y:240, width: 300, height: 30))
+            let label = UILabel(frame: CGRect(x:0, y:240, width: 345, height: 30))
             label.text = themes[x]
             label.textAlignment = NSTextAlignment.center
             
