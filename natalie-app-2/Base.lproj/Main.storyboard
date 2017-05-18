@@ -188,6 +188,7 @@
                                 </state>
                                 <connections>
                                     <action selector="signUpPressed:" destination="RN4-ba-VsX" eventType="touchUpInside" id="1G3-gn-ZQG"/>
+                                    <segue destination="oOB-jy-mNu" kind="showDetail" identifier="QuestionVC" id="VOO-BW-qav"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -224,7 +225,6 @@
                         <outlet property="lastNameField" destination="ARg-jI-e9M" id="xT1-Ut-Xgb"/>
                         <outlet property="passwordConfirmationField" destination="g9O-Ee-pr9" id="Sz5-GP-aXa"/>
                         <outlet property="passwordField" destination="hrz-FI-2WY" id="SPI-mc-1J0"/>
-                        <segue destination="KSr-ho-2PN" kind="showDetail" identifier="MainVC" id="vbm-8N-HrZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1h3-f9-2Hf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -712,4 +712,7 @@
         <image name="original" width="500" height="377"/>
         <image name="photo_41997_20151004" width="2490" height="1625"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="VOO-BW-qav"/>
+    </inferredMetricsTieBreakers>
 </document>

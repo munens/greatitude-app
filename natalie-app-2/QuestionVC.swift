@@ -11,15 +11,7 @@ import UIKit
 
 class QuestionVC: UIViewController, UITextViewDelegate {
     
-    private var _user:User!
-    
-    var selectedUser: User {
-        get {
-            return _user
-        } set {
-            _user = newValue
-        }
-    }
+    var selectedUser: User!
     
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
@@ -32,6 +24,8 @@ class QuestionVC: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view:
+        print(selectedUser)
+        
         selectPicBtn.layer.borderWidth = 1.0
         selectPicBtn.layer.borderColor = UIColor.white.cgColor
         selectPicBtn.layer.cornerRadius = 3
@@ -44,7 +38,7 @@ class QuestionVC: UIViewController, UITextViewDelegate {
         
         questionTextView.delegate = self
         questionTextView.alpha = 0.0
-        questionTextView.text = "I am grateful for.."
+        questionTextView.text = "I am thankful for.."
         questionTextView.textColor = .lightGray
         questionTextView.layer.cornerRadius = 3
         
@@ -69,8 +63,18 @@ class QuestionVC: UIViewController, UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         buttonStackView.fadeIn(1.0, delay: 0.5)
+        if questionTextView.text == "I am thankful for.." {
+            questionTextView.text = ""
+            questionTextView.textColor = .black
+        }
     }
     
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if questionTextView.text == "" {
+            questionTextView.text = "I am thankful for.."
+            questionTextView.textColor = .lightGray
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -87,6 +91,7 @@ class QuestionVC: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func nextBtnPressed(_ sender: Any) {
+        
     }
     
     
