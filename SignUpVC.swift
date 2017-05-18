@@ -80,7 +80,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as?
             MainVC {
-            
             if let user = sender as? User {
                 destination.selectedUser = user
             }
