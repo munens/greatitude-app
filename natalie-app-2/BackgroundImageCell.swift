@@ -24,7 +24,7 @@ class BackgroundImageCell: UICollectionViewCell {
         self.backgroundImage = backgroundImage
         
         backgroundImageView.image = UIImage(named: "\(self.backgroundImage.name)" )
-        backgroundImageLabel.text = self.backgroundImage.name
+        //backgroundImageLabel.text = self.backgroundImage.name
     }
     
 }
