@@ -479,19 +479,51 @@
                                 <rect key="frame" x="16" y="119" width="343" height="528"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.18327268835616439" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bmm-ou-c3C">
-                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="itemSize" width="100" height="110"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FLR-9I-fBm">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FLR-9I-fBm" customClass="BackgroundImageCell" customModule="natalie_app_2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="110"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iu0-aI-qOq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="90"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="90" id="CZi-Fn-Sw4"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sundays at dawn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1C2-vp-FL7">
+                                                    <rect key="frame" x="0.0" y="89" width="100" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="0sl-8i-yVS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="1C2-vp-FL7" secondAttribute="trailing" id="Fd1-og-XDg"/>
+                                            <constraint firstAttribute="trailing" secondItem="1C2-vp-FL7" secondAttribute="trailing" id="FtB-L9-HxP"/>
+                                            <constraint firstItem="Iu0-aI-qOq" firstAttribute="top" secondItem="FLR-9I-fBm" secondAttribute="top" id="Q5n-7D-HOZ"/>
+                                            <constraint firstItem="1C2-vp-FL7" firstAttribute="leading" secondItem="FLR-9I-fBm" secondAttribute="leading" id="Yis-ig-p3w"/>
+                                            <constraint firstAttribute="trailing" secondItem="Iu0-aI-qOq" secondAttribute="trailing" id="dnX-yz-TqU"/>
+                                            <constraint firstItem="Iu0-aI-qOq" firstAttribute="leading" secondItem="FLR-9I-fBm" secondAttribute="leading" id="q3y-JC-4b9"/>
+                                            <constraint firstItem="1C2-vp-FL7" firstAttribute="leading" secondItem="FLR-9I-fBm" secondAttribute="leading" id="sIV-v1-eJp"/>
+                                            <constraint firstAttribute="bottom" secondItem="1C2-vp-FL7" secondAttribute="bottom" id="vf0-o2-gke"/>
+                                            <constraint firstAttribute="bottom" secondItem="1C2-vp-FL7" secondAttribute="bottom" id="xst-ck-EuN"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="backgroundImageLabel" destination="1C2-vp-FL7" id="c4l-BT-gfO"/>
+                                            <outlet property="backgroundImageView" destination="Iu0-aI-qOq" id="kNC-ff-Nrf"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -533,10 +565,13 @@
                             <constraint firstItem="6Bh-lo-S41" firstAttribute="top" secondItem="KUU-3H-nSG" secondAttribute="top" id="vjx-dV-zfZ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroundCollectionView" destination="dAe-gn-X1j" id="yYg-Rv-Bps"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CLk-ro-yFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4366" y="322"/>
+            <point key="canvasLocation" x="4365.6000000000004" y="321.58920539730138"/>
         </scene>
         <!--QuestionVC-->
         <scene sceneID="GXk-o7-ucf">

@@ -8,12 +8,28 @@
 
 import UIKit
 
-class ChooseBackgroundVC: UIViewController {
+class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet weak var backgroundCollectionView: UICollectionView!
+    
+    var backgroundImages = [BackgroundImage]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        backgroundCollectionView.delegate = self
+        createImageBackgrounds()
+        
+    }
+    
+    func createImageBackgrounds(){
+        for x in 0...12 {
+            //let image = UIImage(named: "ocean\(x)")
+            
+            let backgroundImage = BackgroundImage(name: "ocean\(x)")
+            backgroundImages.append(backgroundImage)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,5 +47,30 @@ class ChooseBackgroundVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BackgroundImageCell", for: indexPath) as? BackgroundImageCell {
+            
+            let backgroundImage = backgroundImages[indexPath.row]
+            cell.configureCell(backgroundImage)
+            
+            return cell
+        }
+        
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
 
 }
