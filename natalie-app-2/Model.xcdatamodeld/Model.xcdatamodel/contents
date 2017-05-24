@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Image" representedClassName=".Image" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="portfolioItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="image" inverseEntity="PortfolioItem" syncable="YES"/>
+    </entity>
+    <entity name="Portfolio" representedClassName="Portfolio" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="portfolioItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="portfolio" inverseEntity="PortfolioItem" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="portfolio" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="PortfolioItem" representedClassName="PortfolioItem" syncable="YES" codeGenerationType="class">
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="toUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="toImage" inverseEntity="User" syncable="YES"/>
+        <attribute name="quote" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="portfolioItem" inverseEntity="Image" syncable="YES"/>
+        <relationship name="portfolio" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Portfolio" inverseName="portfolioItem" inverseEntity="Portfolio" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="portfolioItem" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -11,10 +22,13 @@
         <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="toImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="toUser" inverseEntity="Image" syncable="YES"/>
+        <relationship name="portfolio" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Portfolio" inverseName="user" inverseEntity="Portfolio" syncable="YES"/>
+        <relationship name="portfolioItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="user" inverseEntity="PortfolioItem" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Image" positionX="-54" positionY="18" width="128" height="88"/>
-        <element name="User" positionX="-279" positionY="-207" width="128" height="133"/>
+        <element name="Image" positionX="-191" positionY="198" width="128" height="73"/>
+        <element name="User" positionX="-560" positionY="-297" width="128" height="150"/>
+        <element name="PortfolioItem" positionX="-153" positionY="-54" width="128" height="118"/>
+        <element name="Portfolio" positionX="-155" positionY="-378" width="128" height="88"/>
     </elements>
 </model>
