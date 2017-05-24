@@ -1,5 +1,5 @@
 //
-//  User+CoreDataClass.swift
+//  Portfolio+CoreDataClass.swift
 //  natalie-app-2
 //
 //  Created by Munene Kaumbutho on 2017-05-24.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-
-public class User: NSManagedObject {
+@objc(Portfolio)
+public class Portfolio: NSManagedObject {
 
 }

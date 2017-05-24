@@ -4,12 +4,12 @@
         <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="portfolioItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="image" inverseEntity="PortfolioItem" syncable="YES"/>
     </entity>
-    <entity name="Portfolio" representedClassName="Portfolio" syncable="YES" codeGenerationType="class">
+    <entity name="Portfolio" representedClassName="Portfolio" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="portfolioItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="portfolio" inverseEntity="PortfolioItem" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="portfolio" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="PortfolioItem" representedClassName="PortfolioItem" syncable="YES" codeGenerationType="class">
+    <entity name="PortfolioItem" representedClassName="PortfolioItem" syncable="YES">
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="quote" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="portfolioItem" inverseEntity="Image" syncable="YES"/>
@@ -26,9 +26,9 @@
         <relationship name="portfolioItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="user" inverseEntity="PortfolioItem" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Image" positionX="-191" positionY="198" width="128" height="73"/>
+        <element name="Image" positionX="-83" positionY="252" width="128" height="73"/>
         <element name="User" positionX="-560" positionY="-297" width="128" height="150"/>
-        <element name="PortfolioItem" positionX="-153" positionY="-54" width="128" height="118"/>
+        <element name="PortfolioItem" positionX="-92" positionY="27" width="128" height="118"/>
         <element name="Portfolio" positionX="-155" positionY="-378" width="128" height="88"/>
     </elements>
 </model>

@@ -2,7 +2,7 @@
 //  Image+CoreDataProperties.swift
 //  natalie-app-2
 //
-//  Created by Kuzivakwashe Mutonga on 2017-04-12.
+//  Created by Munene Kaumbutho on 2017-05-24.
 //  Copyright © 2017 Munene Kaumbutho - Evan Zhang. All rights reserved.
 //
 
@@ -16,8 +16,7 @@ extension Image {
         return NSFetchRequest<Image>(entityName: "Image")
     }
 
-    @NSManaged public var url: String?
-    @NSManaged public var created_at: NSDate?
-    @NSManaged public var toUser: User?
+    @NSManaged public var image: NSObject?
+    @NSManaged public var portfolioItem: PortfolioItem?
 
 }

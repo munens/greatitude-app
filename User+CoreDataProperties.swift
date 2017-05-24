@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  natalie-app-2
 //
-//  Created by Kuzivakwashe Mutonga on 2017-04-12.
+//  Created by Munene Kaumbutho on 2017-05-24.
 //  Copyright © 2017 Munene Kaumbutho - Evan Zhang. All rights reserved.
 //
 
@@ -16,28 +16,46 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
+    @NSManaged public var created_at: NSDate?
+    @NSManaged public var email: String?
     @NSManaged public var firstname: String?
     @NSManaged public var lastname: String?
-    @NSManaged public var email: String?
     @NSManaged public var password: String?
-    @NSManaged public var created_at: NSDate?
-    @NSManaged public var toImage: NSSet?
+    @NSManaged public var portfolio: NSSet?
+    @NSManaged public var portfolioItem: NSSet?
 
 }
 
-// MARK: Generated accessors for toImage
+// MARK: Generated accessors for portfolio
 extension User {
 
-    @objc(addToImageObject:)
-    @NSManaged public func addToToImage(_ value: Image)
+    @objc(addPortfolioObject:)
+    @NSManaged public func addToPortfolio(_ value: Portfolio)
 
-    @objc(removeToImageObject:)
-    @NSManaged public func removeFromToImage(_ value: Image)
+    @objc(removePortfolioObject:)
+    @NSManaged public func removeFromPortfolio(_ value: Portfolio)
 
-    @objc(addToImage:)
-    @NSManaged public func addToToImage(_ values: NSSet)
+    @objc(addPortfolio:)
+    @NSManaged public func addToPortfolio(_ values: NSSet)
 
-    @objc(removeToImage:)
-    @NSManaged public func removeFromToImage(_ values: NSSet)
+    @objc(removePortfolio:)
+    @NSManaged public func removeFromPortfolio(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for portfolioItem
+extension User {
+
+    @objc(addPortfolioItemObject:)
+    @NSManaged public func addToPortfolioItem(_ value: PortfolioItem)
+
+    @objc(removePortfolioItemObject:)
+    @NSManaged public func removeFromPortfolioItem(_ value: PortfolioItem)
+
+    @objc(addPortfolioItem:)
+    @NSManaged public func addToPortfolioItem(_ values: NSSet)
+
+    @objc(removePortfolioItem:)
+    @NSManaged public func removeFromPortfolioItem(_ values: NSSet)
 
 }

@@ -2,7 +2,7 @@
 //  Image+CoreDataClass.swift
 //  natalie-app-2
 //
-//  Created by Kuzivakwashe Mutonga on 2017-04-12.
+//  Created by Munene Kaumbutho on 2017-05-24.
 //  Copyright © 2017 Munene Kaumbutho - Evan Zhang. All rights reserved.
 //
 
@@ -11,8 +11,5 @@ import CoreData
 
 
 public class Image: NSManagedObject {
-    public override func awakeFromInsert() {
-        super.awakeFromInsert()
-        self.created_at = NSDate()
-    }
+
 }
