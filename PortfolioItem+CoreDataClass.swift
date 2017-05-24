@@ -11,5 +11,10 @@ import CoreData
 
 @objc(PortfolioItem)
 public class PortfolioItem: NSManagedObject {
-
+    public override func awakeFromInsert() {
+        super.awakeFromInsert()
+        
+        // create a date whenever new portfolio item is created:
+        self.created_at = NSDate()
+    }
 }

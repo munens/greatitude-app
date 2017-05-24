@@ -103,6 +103,16 @@ class QuestionVC: UIViewController, UITextViewDelegate {
     @IBAction func nextBtnPressed(_ sender: Any) {
         if (questionTextView.text != nil && questionTextView.text != "") {
             
+            let portfolioItem = PortfolioItem(context: context)
+            
+            if let quote = questionTextView.text {
+                
+                portfolioItem.quote = quote
+            }
+            
+            portfolioItem.user = selectedUser
+            
+            ad.saveContext()
         }
     }
     
