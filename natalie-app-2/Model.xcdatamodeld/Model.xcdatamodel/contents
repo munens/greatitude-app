@@ -14,7 +14,7 @@
         <relationship name="toImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="toUser" inverseEntity="Image" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="-279" positionY="-207" width="128" height="133"/>
         <element name="Image" positionX="-54" positionY="18" width="128" height="88"/>
+        <element name="User" positionX="-279" positionY="-207" width="128" height="133"/>
     </elements>
 </model>

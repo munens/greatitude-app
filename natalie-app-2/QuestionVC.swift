@@ -101,7 +101,9 @@ class QuestionVC: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func nextBtnPressed(_ sender: Any) {
-        
+        if (questionTextView.text != nil && questionTextView.text != "") {
+            
+        }
     }
     
     
