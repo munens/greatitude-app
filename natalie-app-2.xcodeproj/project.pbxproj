@@ -17,6 +17,7 @@
 		C5A0D1FC1ED638600053CDCD /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0D1F41ED638600053CDCD /* Image+CoreDataProperties.swift */; };
 		C5A0D1FD1ED638600053CDCD /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0D1F51ED638600053CDCD /* User+CoreDataClass.swift */; };
 		C5A0D1FE1ED638600053CDCD /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0D1F61ED638600053CDCD /* User+CoreDataProperties.swift */; };
+		C5A0D2001ED672E20053CDCD /* EditPortfolioItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0D1FF1ED672E20053CDCD /* EditPortfolioItemVC.swift */; };
 		C5AD5DA21ECE61F400223064 /* ChooseBackgroundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD5DA11ECE61F400223064 /* ChooseBackgroundVC.swift */; };
 		C5AD5DA61ECE80F300223064 /* BackgroundImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD5DA51ECE80F300223064 /* BackgroundImageCell.swift */; };
 		C5AD5DA81ECE884D00223064 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD5DA71ECE884D00223064 /* BackgroundImage.swift */; };
@@ -65,6 +66,7 @@
 		C5A0D1F41ED638600053CDCD /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Image+CoreDataProperties.swift"; path = "../Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C5A0D1F51ED638600053CDCD /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "../User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C5A0D1F61ED638600053CDCD /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C5A0D1FF1ED672E20053CDCD /* EditPortfolioItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPortfolioItemVC.swift; sourceTree = "<group>"; };
 		C5AD5DA11ECE61F400223064 /* ChooseBackgroundVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseBackgroundVC.swift; sourceTree = "<group>"; };
 		C5AD5DA51ECE80F300223064 /* BackgroundImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundImageCell.swift; sourceTree = "<group>"; };
 		C5AD5DA71ECE884D00223064 /* BackgroundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				E8B611171E9FA5230019EBED /* ChooseImageVC.swift */,
 				C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */,
 				C5AD5DA11ECE61F400223064 /* ChooseBackgroundVC.swift */,
+				C5A0D1FF1ED672E20053CDCD /* EditPortfolioItemVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				E8DE92AB1E9D447C007FC971 /* WelcomeVC.swift in Sources */,
 				C5AD5DA61ECE80F300223064 /* BackgroundImageCell.swift in Sources */,
 				C5A0D1F81ED638600053CDCD /* PortfolioItem+CoreDataProperties.swift in Sources */,
+				C5A0D2001ED672E20053CDCD /* EditPortfolioItemVC.swift in Sources */,
 				C5A0D1FC1ED638600053CDCD /* Image+CoreDataProperties.swift in Sources */,
 				E8DE92DB1E9D6639007FC971 /* SignUpVC.swift in Sources */,
 				C5A0D1F91ED638600053CDCD /* Portfolio+CoreDataClass.swift in Sources */,

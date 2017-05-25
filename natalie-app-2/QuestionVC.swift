@@ -106,7 +106,6 @@ class QuestionVC: UIViewController, UITextViewDelegate {
             let portfolioItem = PortfolioItem(context: context)
             
             if let quote = questionTextView.text {
-                
                 portfolioItem.quote = quote
             }
             
@@ -115,8 +114,6 @@ class QuestionVC: UIViewController, UITextViewDelegate {
             ad.saveContext()
         }
     }
-    
-    
 }
 
 extension UIView {

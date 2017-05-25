@@ -12,6 +12,11 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var backgroundCollectionView: UICollectionView!
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    
+    var selectedUser: User!
+    var newPortfolioItem: PortfolioItem!
+    
     var backgroundImages = [BackgroundImage]()
 
     override func viewDidLoad() {
@@ -23,12 +28,17 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         
         createImageBackgrounds()
         
+        //let attributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 9)]
+        //navigationBar.topItem?.backBarButtonItem?.setTitleTextAttributes(attributes, for: UIControlState.normal)
+        
+    }
+    
+    func backButtonPressed() {
+        
     }
     
     func createImageBackgrounds(){
         for x in 0...12 {
-            //let image = UIImage(named: "ocean\(x)")
-            
             let backgroundImage = BackgroundImage(name: "ocean\(x)")
             backgroundImages.append(backgroundImage)
         }
