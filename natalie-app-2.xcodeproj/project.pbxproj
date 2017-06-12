@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3424147DA2219AB5C178BE71 /* Pods_natalie_app_2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E75CD80181D04DB59C55CD /* Pods_natalie_app_2Tests.framework */; };
+		86C4681EA3A354B0732737CD /* Pods_natalie_app_2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7658D75CD64A7B62E02DD2B /* Pods_natalie_app_2UITests.framework */; };
 		C539B1EC1EAC53A4006C3233 /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = C539B1EB1EAC53A4006C3233 /* Welcome.png */; };
 		C5628FBF1ECBCFDD00A3555F /* QuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */; };
 		C5A0D1F71ED638600053CDCD /* PortfolioItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0D1EF1ED638600053CDCD /* PortfolioItem+CoreDataClass.swift */; };
@@ -23,6 +25,7 @@
 		C5AD5DA81ECE884D00223064 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD5DA71ECE884D00223064 /* BackgroundImage.swift */; };
 		C5F131691EBCF92D00624711 /* ImageQuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F131681EBCF92D00624711 /* ImageQuoteCell.swift */; };
 		C5FB4D0E1EBD2BD000096321 /* ImageQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */; };
+		E0CB7F5419ADEBCC6086D042 /* Pods_natalie_app_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D90C6CD83E182A184F8A63 /* Pods_natalie_app_2.framework */; };
 		E8B6103D1E9E68F90019EBED /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6103C1E9E68F90019EBED /* LoginVC.swift */; };
 		E8B610401E9E6F180019EBED /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8B6103E1E9E6F180019EBED /* Model.xcdatamodeld */; };
 		E8B611141E9F2A520019EBED /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B611131E9F2A520019EBED /* MainVC.swift */; };
@@ -56,6 +59,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03AA1EBC8044063A37F5173D /* Pods-natalie-app-2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natalie-app-2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-natalie-app-2UITests/Pods-natalie-app-2UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		0536B8045324526384D83B3E /* Pods-natalie-app-2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natalie-app-2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-natalie-app-2Tests/Pods-natalie-app-2Tests.release.xcconfig"; sourceTree = "<group>"; };
+		61E75CD80181D04DB59C55CD /* Pods_natalie_app_2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_natalie_app_2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CD4CDA082D7CA722AE57B01 /* Pods-natalie-app-2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natalie-app-2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-natalie-app-2UITests/Pods-natalie-app-2UITests.release.xcconfig"; sourceTree = "<group>"; };
+		91D90C6CD83E182A184F8A63 /* Pods_natalie_app_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_natalie_app_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A49BCB2CA448B48755E1AE70 /* Pods-natalie-app-2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natalie-app-2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-natalie-app-2/Pods-natalie-app-2.debug.xcconfig"; sourceTree = "<group>"; };
 		C539B1EB1EAC53A4006C3233 /* Welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Welcome.png; sourceTree = "<group>"; };
 		C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionVC.swift; sourceTree = "<group>"; };
 		C5A0D1EF1ED638600053CDCD /* PortfolioItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PortfolioItem+CoreDataClass.swift"; path = "../PortfolioItem+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -72,6 +81,7 @@
 		C5AD5DA71ECE884D00223064 /* BackgroundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		C5F131681EBCF92D00624711 /* ImageQuoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageQuoteCell.swift; sourceTree = "<group>"; };
 		C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageQuote.swift; sourceTree = "<group>"; };
+		CC3F916E41D0E217415D5C39 /* Pods-natalie-app-2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natalie-app-2.release.xcconfig"; path = "Pods/Target Support Files/Pods-natalie-app-2/Pods-natalie-app-2.release.xcconfig"; sourceTree = "<group>"; };
 		E8B6103C1E9E68F90019EBED /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E8B6103F1E9E6F180019EBED /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		E8B611131E9F2A520019EBED /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -91,6 +101,8 @@
 		E8DE92C81E9D447C007FC971 /* natalie_app_2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = natalie_app_2UITests.swift; sourceTree = "<group>"; };
 		E8DE92CA1E9D447C007FC971 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8DE92DA1E9D6639007FC971 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpVC.swift; path = ../SignUpVC.swift; sourceTree = "<group>"; };
+		F7658D75CD64A7B62E02DD2B /* Pods_natalie_app_2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_natalie_app_2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC96F24D64DCFB861F2C59CF /* Pods-natalie-app-2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natalie-app-2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-natalie-app-2Tests/Pods-natalie-app-2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0CB7F5419ADEBCC6086D042 /* Pods_natalie_app_2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3424147DA2219AB5C178BE71 /* Pods_natalie_app_2Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,12 +126,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86C4681EA3A354B0732737CD /* Pods_natalie_app_2UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D4A38CB9A0B63D5139CA606 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A49BCB2CA448B48755E1AE70 /* Pods-natalie-app-2.debug.xcconfig */,
+				CC3F916E41D0E217415D5C39 /* Pods-natalie-app-2.release.xcconfig */,
+				FC96F24D64DCFB861F2C59CF /* Pods-natalie-app-2Tests.debug.xcconfig */,
+				0536B8045324526384D83B3E /* Pods-natalie-app-2Tests.release.xcconfig */,
+				03AA1EBC8044063A37F5173D /* Pods-natalie-app-2UITests.debug.xcconfig */,
+				8CD4CDA082D7CA722AE57B01 /* Pods-natalie-app-2UITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9D622CF4547D35122716D5E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91D90C6CD83E182A184F8A63 /* Pods_natalie_app_2.framework */,
+				61E75CD80181D04DB59C55CD /* Pods_natalie_app_2Tests.framework */,
+				F7658D75CD64A7B62E02DD2B /* Pods_natalie_app_2UITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C5F131671EBCF90E00624711 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +219,8 @@
 				E8DE92BC1E9D447C007FC971 /* natalie-app-2Tests */,
 				E8DE92C71E9D447C007FC971 /* natalie-app-2UITests */,
 				E8DE92A61E9D447C007FC971 /* Products */,
+				3D4A38CB9A0B63D5139CA606 /* Pods */,
+				9D622CF4547D35122716D5E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -238,9 +278,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8DE92CD1E9D447C007FC971 /* Build configuration list for PBXNativeTarget "natalie-app-2" */;
 			buildPhases = (
+				2F2E871D939945E63928E52C /* [CP] Check Pods Manifest.lock */,
 				E8DE92A11E9D447C007FC971 /* Sources */,
 				E8DE92A21E9D447C007FC971 /* Frameworks */,
 				E8DE92A31E9D447C007FC971 /* Resources */,
+				E621A4833A1712E59ED9D497 /* [CP] Embed Pods Frameworks */,
+				6949A76D53A1A938F6A1F34C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -255,9 +298,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8DE92D01E9D447C007FC971 /* Build configuration list for PBXNativeTarget "natalie-app-2Tests" */;
 			buildPhases = (
+				1BCA0A0C4309605D6AEA6977 /* [CP] Check Pods Manifest.lock */,
 				E8DE92B51E9D447C007FC971 /* Sources */,
 				E8DE92B61E9D447C007FC971 /* Frameworks */,
 				E8DE92B71E9D447C007FC971 /* Resources */,
+				CB85DE82C44B5E4ECA9F1255 /* [CP] Embed Pods Frameworks */,
+				8C0A9FE6AF629C8BEF4A18F6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,9 +319,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8DE92D31E9D447C007FC971 /* Build configuration list for PBXNativeTarget "natalie-app-2UITests" */;
 			buildPhases = (
+				C4978497D5DC85595498A1AF /* [CP] Check Pods Manifest.lock */,
 				E8DE92C01E9D447C007FC971 /* Sources */,
 				E8DE92C11E9D447C007FC971 /* Frameworks */,
 				E8DE92C21E9D447C007FC971 /* Resources */,
+				DF11538D03F31B0EA07473C4 /* [CP] Embed Pods Frameworks */,
+				C88271D934F05AF933697056 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -361,6 +410,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1BCA0A0C4309605D6AEA6977 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2F2E871D939945E63928E52C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6949A76D53A1A938F6A1F34C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-natalie-app-2/Pods-natalie-app-2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C0A9FE6AF629C8BEF4A18F6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-natalie-app-2Tests/Pods-natalie-app-2Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4978497D5DC85595498A1AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C88271D934F05AF933697056 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-natalie-app-2UITests/Pods-natalie-app-2UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB85DE82C44B5E4ECA9F1255 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-natalie-app-2Tests/Pods-natalie-app-2Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF11538D03F31B0EA07473C4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-natalie-app-2UITests/Pods-natalie-app-2UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E621A4833A1712E59ED9D497 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-natalie-app-2/Pods-natalie-app-2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E8DE92A11E9D447C007FC971 /* Sources */ = {
@@ -540,6 +727,7 @@
 		};
 		E8DE92CE1E9D447C007FC971 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A49BCB2CA448B48755E1AE70 /* Pods-natalie-app-2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "natalie-app-2/Info.plist";
@@ -552,6 +740,7 @@
 		};
 		E8DE92CF1E9D447C007FC971 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC3F916E41D0E217415D5C39 /* Pods-natalie-app-2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "natalie-app-2/Info.plist";
@@ -564,6 +753,7 @@
 		};
 		E8DE92D11E9D447C007FC971 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC96F24D64DCFB861F2C59CF /* Pods-natalie-app-2Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -578,6 +768,7 @@
 		};
 		E8DE92D21E9D447C007FC971 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0536B8045324526384D83B3E /* Pods-natalie-app-2Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -592,6 +783,7 @@
 		};
 		E8DE92D41E9D447C007FC971 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03AA1EBC8044063A37F5173D /* Pods-natalie-app-2UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "natalie-app-2UITests/Info.plist";
@@ -605,6 +797,7 @@
 		};
 		E8DE92D51E9D447C007FC971 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8CD4CDA082D7CA722AE57B01 /* Pods-natalie-app-2UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "natalie-app-2UITests/Info.plist";

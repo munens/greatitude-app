@@ -1,0 +1,674 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		34CB9945E925CF2D7F41304674522B23 /* Pods-natalie-app-2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 240E27B06671AA70176AB4D29BB7C00A /* Pods-natalie-app-2-dummy.m */; };
+		802D02E572156D81176054F4C6AFF927 /* Pods-natalie-app-2Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 67FF4BB54CF0E9E43445E952517EDC10 /* Pods-natalie-app-2Tests-dummy.m */; };
+		856A2F3856BBF20F7ED2D458D6370217 /* Pods-natalie-app-2-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AFF1888BDE01A5DF457461229C0A7F80 /* Pods-natalie-app-2-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8F26D2148DB37D69650EB676B6CBBCAC /* Pods-natalie-app-2Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B673537B444F057C3547E5ED0A9F0CC /* Pods-natalie-app-2Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9F86DFB7C41A5F90184A5A379E81E9DD /* Pods-natalie-app-2UITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 95F092AD6BC8E9D60B73227447DBC456 /* Pods-natalie-app-2UITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0B04ED6A3592860390F3CAA8CDA87ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		B82C6F33A65D7D8DABE72067CA8545C6 /* Pods-natalie-app-2UITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 586004595B771311109AE1B82A30268E /* Pods-natalie-app-2UITests-dummy.m */; };
+		EA28902A9E7C53D8EB9379C44C1B28FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		F2B4354321006CD8A5E946CB7AB33DE1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0803B601F8556ECCF06AF39FC145A813 /* Pods-natalie-app-2-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-natalie-app-2-frameworks.sh"; sourceTree = "<group>"; };
+		083AE280E56C9633FA64C8F03C5B0D90 /* Pods-natalie-app-2UITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-natalie-app-2UITests-frameworks.sh"; sourceTree = "<group>"; };
+		0ADCD53B246956B5266B0CE7B62B70D5 /* Pods-natalie-app-2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-natalie-app-2UITests.release.xcconfig"; sourceTree = "<group>"; };
+		0F79FD0840BC8D3D0B2484BC46FFD50B /* Pods-natalie-app-2.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-natalie-app-2.modulemap"; sourceTree = "<group>"; };
+		20614C8290A9C7F1462995F1A166299A /* Pods-natalie-app-2Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-natalie-app-2Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		240E27B06671AA70176AB4D29BB7C00A /* Pods-natalie-app-2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-natalie-app-2-dummy.m"; sourceTree = "<group>"; };
+		2E8F26AC588E15023A3548190FC5647D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		467D0F10180481B306DCFCDC88BBCBF8 /* Pods_natalie_app_2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_natalie_app_2UITests.framework; path = "Pods-natalie-app-2UITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B673537B444F057C3547E5ED0A9F0CC /* Pods-natalie-app-2Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-natalie-app-2Tests-umbrella.h"; sourceTree = "<group>"; };
+		586004595B771311109AE1B82A30268E /* Pods-natalie-app-2UITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-natalie-app-2UITests-dummy.m"; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		67FF4BB54CF0E9E43445E952517EDC10 /* Pods-natalie-app-2Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-natalie-app-2Tests-dummy.m"; sourceTree = "<group>"; };
+		687156302A7E709EB21003C151F8ECD7 /* Pods-natalie-app-2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-natalie-app-2Tests.release.xcconfig"; sourceTree = "<group>"; };
+		7177E7C575159BE4AD480171AD8FCE80 /* Pods-natalie-app-2UITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-natalie-app-2UITests-resources.sh"; sourceTree = "<group>"; };
+		88AA4852C6EC9B401CA2DDCF7231AD1E /* Pods-natalie-app-2-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-natalie-app-2-acknowledgements.plist"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		95F092AD6BC8E9D60B73227447DBC456 /* Pods-natalie-app-2UITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-natalie-app-2UITests-umbrella.h"; sourceTree = "<group>"; };
+		98C5C74497FC03F7E6B7738ADE3BC10F /* Pods-natalie-app-2-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-natalie-app-2-acknowledgements.markdown"; sourceTree = "<group>"; };
+		98DD7FF18471573B362A991479787574 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DED2F2113A6B18F39583CA2D207BC71 /* Pods-natalie-app-2UITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-natalie-app-2UITests.modulemap"; sourceTree = "<group>"; };
+		9EF55670714C841254EDFC7E193FB562 /* Pods-natalie-app-2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-natalie-app-2UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9F9AF5813E834C740892B4C98FFEB2C6 /* Pods-natalie-app-2UITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-natalie-app-2UITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		A39FE99B2AC7823F79D4752BE763D4CC /* Pods-natalie-app-2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-natalie-app-2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		AB50DDEEFAA29EE4016F15AD1449DF05 /* Pods-natalie-app-2Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-natalie-app-2Tests-frameworks.sh"; sourceTree = "<group>"; };
+		AFF1888BDE01A5DF457461229C0A7F80 /* Pods-natalie-app-2-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-natalie-app-2-umbrella.h"; sourceTree = "<group>"; };
+		B47A58C71CD441FBE41E060E03B53923 /* Pods_natalie_app_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_natalie_app_2.framework; path = "Pods-natalie-app-2.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8EC822F8C99E1E28B97011832939CE2 /* Pods-natalie-app-2Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-natalie-app-2Tests.modulemap"; sourceTree = "<group>"; };
+		C620BD0E0BD42B734323692590822FA3 /* Pods-natalie-app-2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-natalie-app-2.release.xcconfig"; sourceTree = "<group>"; };
+		D9059D87716DF7DC0026563972A065E0 /* Pods-natalie-app-2-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-natalie-app-2-resources.sh"; sourceTree = "<group>"; };
+		DC955C9AC4C7B1CA7F0010E16DFCE77C /* Pods-natalie-app-2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-natalie-app-2.debug.xcconfig"; sourceTree = "<group>"; };
+		ECAEE915CD94ABED20DA27CA7E29812B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECEE1AB7BE390B92D1AA92FCA1D9D27B /* Pods-natalie-app-2Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-natalie-app-2Tests-resources.sh"; sourceTree = "<group>"; };
+		F2A7C7CE14ED4DAF67491D280DE8FB37 /* Pods-natalie-app-2Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-natalie-app-2Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		F81A469B4AA8632B46F0242965319AC5 /* Pods_natalie_app_2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_natalie_app_2Tests.framework; path = "Pods-natalie-app-2Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB9EF8F1F3449B7F32BD9342B3C7E157 /* Pods-natalie-app-2UITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-natalie-app-2UITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		311FA7E55101E6CEB5E63DF0502EC9B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0B04ED6A3592860390F3CAA8CDA87ED /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		631D09BE96D63A8CE942524E19C7AF6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2B4354321006CD8A5E946CB7AB33DE1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D422AE908B71D573E1861D0BE1C4ECC9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA28902A9E7C53D8EB9379C44C1B28FF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0DEF3AFE81ACC54CE4FF79430D763687 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B47A58C71CD441FBE41E060E03B53923 /* Pods_natalie_app_2.framework */,
+				F81A469B4AA8632B46F0242965319AC5 /* Pods_natalie_app_2Tests.framework */,
+				467D0F10180481B306DCFCDC88BBCBF8 /* Pods_natalie_app_2UITests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4DA1B38F992CEE53A4EB6D762F0EACE2 /* Pods-natalie-app-2UITests */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F26AC588E15023A3548190FC5647D /* Info.plist */,
+				9DED2F2113A6B18F39583CA2D207BC71 /* Pods-natalie-app-2UITests.modulemap */,
+				FB9EF8F1F3449B7F32BD9342B3C7E157 /* Pods-natalie-app-2UITests-acknowledgements.markdown */,
+				9F9AF5813E834C740892B4C98FFEB2C6 /* Pods-natalie-app-2UITests-acknowledgements.plist */,
+				586004595B771311109AE1B82A30268E /* Pods-natalie-app-2UITests-dummy.m */,
+				083AE280E56C9633FA64C8F03C5B0D90 /* Pods-natalie-app-2UITests-frameworks.sh */,
+				7177E7C575159BE4AD480171AD8FCE80 /* Pods-natalie-app-2UITests-resources.sh */,
+				95F092AD6BC8E9D60B73227447DBC456 /* Pods-natalie-app-2UITests-umbrella.h */,
+				9EF55670714C841254EDFC7E193FB562 /* Pods-natalie-app-2UITests.debug.xcconfig */,
+				0ADCD53B246956B5266B0CE7B62B70D5 /* Pods-natalie-app-2UITests.release.xcconfig */,
+			);
+			name = "Pods-natalie-app-2UITests";
+			path = "Target Support Files/Pods-natalie-app-2UITests";
+			sourceTree = "<group>";
+		};
+		53C83BCE92EDB3D088905161B7B45AAE /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B430B7F4B322FA6925F0EC40D69A992C /* Pods-natalie-app-2 */,
+				94B38372E3D8C49190FCFD9EF8D374C9 /* Pods-natalie-app-2Tests */,
+				4DA1B38F992CEE53A4EB6D762F0EACE2 /* Pods-natalie-app-2UITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				0DEF3AFE81ACC54CE4FF79430D763687 /* Products */,
+				53C83BCE92EDB3D088905161B7B45AAE /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		94B38372E3D8C49190FCFD9EF8D374C9 /* Pods-natalie-app-2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				ECAEE915CD94ABED20DA27CA7E29812B /* Info.plist */,
+				B8EC822F8C99E1E28B97011832939CE2 /* Pods-natalie-app-2Tests.modulemap */,
+				20614C8290A9C7F1462995F1A166299A /* Pods-natalie-app-2Tests-acknowledgements.markdown */,
+				F2A7C7CE14ED4DAF67491D280DE8FB37 /* Pods-natalie-app-2Tests-acknowledgements.plist */,
+				67FF4BB54CF0E9E43445E952517EDC10 /* Pods-natalie-app-2Tests-dummy.m */,
+				AB50DDEEFAA29EE4016F15AD1449DF05 /* Pods-natalie-app-2Tests-frameworks.sh */,
+				ECEE1AB7BE390B92D1AA92FCA1D9D27B /* Pods-natalie-app-2Tests-resources.sh */,
+				4B673537B444F057C3547E5ED0A9F0CC /* Pods-natalie-app-2Tests-umbrella.h */,
+				A39FE99B2AC7823F79D4752BE763D4CC /* Pods-natalie-app-2Tests.debug.xcconfig */,
+				687156302A7E709EB21003C151F8ECD7 /* Pods-natalie-app-2Tests.release.xcconfig */,
+			);
+			name = "Pods-natalie-app-2Tests";
+			path = "Target Support Files/Pods-natalie-app-2Tests";
+			sourceTree = "<group>";
+		};
+		B430B7F4B322FA6925F0EC40D69A992C /* Pods-natalie-app-2 */ = {
+			isa = PBXGroup;
+			children = (
+				98DD7FF18471573B362A991479787574 /* Info.plist */,
+				0F79FD0840BC8D3D0B2484BC46FFD50B /* Pods-natalie-app-2.modulemap */,
+				98C5C74497FC03F7E6B7738ADE3BC10F /* Pods-natalie-app-2-acknowledgements.markdown */,
+				88AA4852C6EC9B401CA2DDCF7231AD1E /* Pods-natalie-app-2-acknowledgements.plist */,
+				240E27B06671AA70176AB4D29BB7C00A /* Pods-natalie-app-2-dummy.m */,
+				0803B601F8556ECCF06AF39FC145A813 /* Pods-natalie-app-2-frameworks.sh */,
+				D9059D87716DF7DC0026563972A065E0 /* Pods-natalie-app-2-resources.sh */,
+				AFF1888BDE01A5DF457461229C0A7F80 /* Pods-natalie-app-2-umbrella.h */,
+				DC955C9AC4C7B1CA7F0010E16DFCE77C /* Pods-natalie-app-2.debug.xcconfig */,
+				C620BD0E0BD42B734323692590822FA3 /* Pods-natalie-app-2.release.xcconfig */,
+			);
+			name = "Pods-natalie-app-2";
+			path = "Target Support Files/Pods-natalie-app-2";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		53F608D9BB068152C48113BB94555921 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F86DFB7C41A5F90184A5A379E81E9DD /* Pods-natalie-app-2UITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72D129F2A52AD9306E387A70EE6A78DD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F26D2148DB37D69650EB676B6CBBCAC /* Pods-natalie-app-2Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E65A72041BB5305B52C9724BD185DE1A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				856A2F3856BBF20F7ED2D458D6370217 /* Pods-natalie-app-2-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		939B968D53BB011C7654F617F98FBBFE /* Pods-natalie-app-2UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F7A4DD3191803980D2C19AF67DB6AC2 /* Build configuration list for PBXNativeTarget "Pods-natalie-app-2UITests" */;
+			buildPhases = (
+				B424F6F927B62D98B6A01B94EBC64FAD /* Sources */,
+				631D09BE96D63A8CE942524E19C7AF6C /* Frameworks */,
+				53F608D9BB068152C48113BB94555921 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-natalie-app-2UITests";
+			productName = "Pods-natalie-app-2UITests";
+			productReference = 467D0F10180481B306DCFCDC88BBCBF8 /* Pods_natalie_app_2UITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C7F7E6FE06AEF27FACD81FBE706228C0 /* Pods-natalie-app-2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21BEBF727569428247AA7DE48DA65B42 /* Build configuration list for PBXNativeTarget "Pods-natalie-app-2Tests" */;
+			buildPhases = (
+				B02C2F79B890F4C390226607D33BF67B /* Sources */,
+				D422AE908B71D573E1861D0BE1C4ECC9 /* Frameworks */,
+				72D129F2A52AD9306E387A70EE6A78DD /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-natalie-app-2Tests";
+			productName = "Pods-natalie-app-2Tests";
+			productReference = F81A469B4AA8632B46F0242965319AC5 /* Pods_natalie_app_2Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D46241DB23E654F5C80183E5A7B90AC5 /* Pods-natalie-app-2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0542F3215262B716B820B34AB4F09DF /* Build configuration list for PBXNativeTarget "Pods-natalie-app-2" */;
+			buildPhases = (
+				80E33ED33FB0BAB8A943883F3FF085EF /* Sources */,
+				311FA7E55101E6CEB5E63DF0502EC9B8 /* Frameworks */,
+				E65A72041BB5305B52C9724BD185DE1A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-natalie-app-2";
+			productName = "Pods-natalie-app-2";
+			productReference = B47A58C71CD441FBE41E060E03B53923 /* Pods_natalie_app_2.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 0DEF3AFE81ACC54CE4FF79430D763687 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D46241DB23E654F5C80183E5A7B90AC5 /* Pods-natalie-app-2 */,
+				C7F7E6FE06AEF27FACD81FBE706228C0 /* Pods-natalie-app-2Tests */,
+				939B968D53BB011C7654F617F98FBBFE /* Pods-natalie-app-2UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		80E33ED33FB0BAB8A943883F3FF085EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34CB9945E925CF2D7F41304674522B23 /* Pods-natalie-app-2-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B02C2F79B890F4C390226607D33BF67B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				802D02E572156D81176054F4C6AFF927 /* Pods-natalie-app-2Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B424F6F927B62D98B6A01B94EBC64FAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B82C6F33A65D7D8DABE72067CA8545C6 /* Pods-natalie-app-2UITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		163D87BE96A63549B0EACF1CC31A2E90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		4EF5DEC98B0C30673CCDABEC0F75D2BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0ADCD53B246956B5266B0CE7B62B70D5 /* Pods-natalie-app-2UITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-natalie-app-2UITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-natalie-app-2UITests/Pods-natalie-app-2UITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_natalie_app_2UITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		707B86CFB21B645E37109F39754D4051 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7FB8A7065548E7442369A8A6CFDA0E02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A39FE99B2AC7823F79D4752BE763D4CC /* Pods-natalie-app-2Tests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-natalie-app-2Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-natalie-app-2Tests/Pods-natalie-app-2Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_natalie_app_2Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CEDF8FDFA443A469F6A6B2866EE1073C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9EF55670714C841254EDFC7E193FB562 /* Pods-natalie-app-2UITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-natalie-app-2UITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-natalie-app-2UITests/Pods-natalie-app-2UITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_natalie_app_2UITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D34D521CCE66030B2F97639C8CC8BEC4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C620BD0E0BD42B734323692590822FA3 /* Pods-natalie-app-2.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-natalie-app-2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-natalie-app-2/Pods-natalie-app-2.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_natalie_app_2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E5BE64FD58DF6E61EDFB47F2D68423E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 687156302A7E709EB21003C151F8ECD7 /* Pods-natalie-app-2Tests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-natalie-app-2Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-natalie-app-2Tests/Pods-natalie-app-2Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_natalie_app_2Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F329618F4F8FB6C14A3E54413755187D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC955C9AC4C7B1CA7F0010E16DFCE77C /* Pods-natalie-app-2.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-natalie-app-2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-natalie-app-2/Pods-natalie-app-2.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_natalie_app_2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21BEBF727569428247AA7DE48DA65B42 /* Build configuration list for PBXNativeTarget "Pods-natalie-app-2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FB8A7065548E7442369A8A6CFDA0E02 /* Debug */,
+				E5BE64FD58DF6E61EDFB47F2D68423E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				163D87BE96A63549B0EACF1CC31A2E90 /* Debug */,
+				707B86CFB21B645E37109F39754D4051 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F7A4DD3191803980D2C19AF67DB6AC2 /* Build configuration list for PBXNativeTarget "Pods-natalie-app-2UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEDF8FDFA443A469F6A6B2866EE1073C /* Debug */,
+				4EF5DEC98B0C30673CCDABEC0F75D2BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0542F3215262B716B820B34AB4F09DF /* Build configuration list for PBXNativeTarget "Pods-natalie-app-2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F329618F4F8FB6C14A3E54413755187D /* Debug */,
+				D34D521CCE66030B2F97639C8CC8BEC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
