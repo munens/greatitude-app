@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import FacebookLogin
 
 class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate {
     
@@ -19,6 +20,12 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        let loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
+        loginButton.frame.origin.y = 100
+        loginButton.frame.origin.x = 40
+        
+        view.addSubview(loginButton)
         
         // Do any additional setup after loading the view.
         emailField.delegate = self
@@ -46,6 +53,7 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
      // Pass the selected object to the new view controller.
      }
      */
+    
     
     @IBAction func loginPressed(_ sender: Any) {
         let email = emailField.text

@@ -6,7 +6,10 @@ target 'natalie-app-2' do
   use_frameworks!
 
   # Pods for natalie-app-2
-  'FBSDKLoginKit'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
+  
 
   target 'natalie-app-2Tests' do
     inherit! :search_paths
