@@ -8,9 +8,11 @@
 
 import UIKit
 import CoreData
-import FacebookLogin
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate {
+
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -21,17 +23,42 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         
         super.viewDidLoad()
         
-        let loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
-        loginButton.frame.origin.y = 100
-        loginButton.frame.origin.x = 40
-        
-        view.addSubview(loginButton)
+        if(FBSDKAccessToken.current() != nil) {
+            self.returnUserData()
+            
+        } else {
+            
+            let loginButton = FBSDKLoginButton()
+            loginButton.readPermissions = ["public_profile", "email", "public_profile"]
+            
+            loginButton.frame.origin.y = 100
+            loginButton.frame.origin.x = 40
+            
+            loginButton.delegate = self as! FBSDKLoginButtonDelegate
+            
+            
+            view.addSubview(loginButton)
+        }
+       
         
         // Do any additional setup after loading the view.
         emailField.delegate = self
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpVC.dismissKeyboard))
         view.addGestureRecognizer(tap)
+    }
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        print("user is logged in")
+        
+        if(error != nil){
+            print("munesh: error with facebook login")
+        } else if result.isCancelled {
+            print("munesh: User has cancelled login")
+        } else {
+            print("munesh: success - user has authenticated successfully")
+            self.returnUserData()
+        }
     }
     
     func dismissKeyboard(){
@@ -43,6 +70,22 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         // Dispose of any resources that can be recreated.
     }
     
+    func returnUserData() {
+        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "first_name, last_name, email, name"])
+        graphRequest?.start(completionHandler: { (connection, result, error) -> Void in
+            if error != nil {
+                print("munesh: error with graph request \(String(describing: error))")
+            } else {
+                if let email = (result as AnyObject).value(forKey: "email") {
+                    if let user = self.authenticateUser(email: email as? String, password: nil) {
+                        self.performSegue(withIdentifier: "QuestionVC", sender: user)
+                    }
+                }
+            }
+        })
+    }
+    
+    
     
     /*
      // MARK: - Navigation
@@ -53,7 +96,7 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
      // Pass the selected object to the new view controller.
      }
      */
-    
+
     
     @IBAction func loginPressed(_ sender: Any) {
         let email = emailField.text

@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class SignUpVC: UIViewController, UITextFieldDelegate {
 
@@ -32,6 +34,14 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         emailField.delegate = self
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpVC.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        let facebookSignupBtn = UIButton(frame: CGRect(x: 40, y: 100, width: 200, height: 45))
+        facebookSignupBtn.backgroundColor = UIColor.init(red: 59, green: 89, blue: 152, alpha: 0)
+        
+        facebookSignupBtn.setTitle("Sign up with facebook", for: .normal)
+        facebookSignupBtn.addTarget(self, action: #selector(SignUpVC.facebookSignupBtnClicked), for: .touchUpInside)
+        //facebookSignupBtn.addTarget(self, action: self.facebookSignupBtnClicked, for: .touchUpInside)
+        view.addSubview(facebookSignupBtn)
     }
     
     func dismissKeyboard(){
@@ -47,6 +57,56 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @objc func facebookSignupBtnClicked() {
+        let signupManager = FBSDKLoginManager()
+            
+        signupManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+            if error != nil {
+                print("munesh: unable to authenticate with facebook: \(String(describing: error))")
+            } else if result?.isCancelled == true {
+                print("munesh: authentication has been cancelled")
+            } else {
+                print("munesh: Successful authentication with facebook")
+                print("munesh: \(String(describing: result))")
+                self.returnUserData()
+            }
+        }
+    
+    }
+    
+    func returnUserData() {
+        
+        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email"])
+        graphRequest?.start(completionHandler: { (connection, result, error) -> Void in
+            if(error != nil){
+                print("munesh: error with graph request \(String(describing: error))")
+            } else {
+                let user = User(entity: self.desc!, insertInto: context)
+                print("fetched user : \(String(describing: result))")
+                //print("fetched user email: \((result as AnyObject).value(forKey: "email"))")
+                
+                if let firstname = (result as AnyObject).value(forKey: "first_name") {
+                    user.firstname = firstname as? String
+                }
+                
+                if let lastname = (result as AnyObject).value(forKey: "last_name") {
+                    user.lastname = lastname as? String
+                }
+                
+                if let email = (result as AnyObject).value(forKey: "email") {
+                    user.email = email as? String
+                }
+                
+                print(user)
+                
+                ad.saveContext()
+                self.performSegue(withIdentifier: "QuestionVC", sender: user)
+                
+            }
+        
+        })
+    }
     
     @IBAction func signUpPressed(_ sender: UIButton) {
         
