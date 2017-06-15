@@ -23,22 +23,16 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         
         super.viewDidLoad()
         
-        if(FBSDKAccessToken.current() != nil) {
-            self.returnUserData()
             
-        } else {
+        let loginButton = FBSDKLoginButton()
+        loginButton.readPermissions = ["public_profile", "email", "public_profile"]
             
-            let loginButton = FBSDKLoginButton()
-            loginButton.readPermissions = ["public_profile", "email", "public_profile"]
+        loginButton.frame.origin.y = 100
+        loginButton.frame.origin.x = 40
             
-            loginButton.frame.origin.y = 100
-            loginButton.frame.origin.x = 40
+        loginButton.delegate = self as! FBSDKLoginButtonDelegate
             
-            loginButton.delegate = self as! FBSDKLoginButtonDelegate
-            
-            view.addSubview(loginButton)
-        }
-       
+        view.addSubview(loginButton)
         
         // Do any additional setup after loading the view.
         emailField.delegate = self

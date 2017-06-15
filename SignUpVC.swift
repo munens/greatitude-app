@@ -23,7 +23,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     let desc = NSEntityDescription.entity(forEntityName: "User", in: context)
     
-    
+    let MyKeyChainWrapper = KeychainWrapper()
     
     override func viewDidLoad() {
         
@@ -81,6 +81,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         graphRequest?.start(completionHandler: { (connection, result, error) -> Void in
             if(error != nil){
                 print("munesh: error with graph request \(String(describing: error))")
+                connection?.cancel()
             } else {
                 let user = User(entity: self.desc!, insertInto: context)
                 print("fetched user : \(String(describing: result))")
@@ -89,6 +90,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 if let firstname = (result as AnyObject).value(forKey: "first_name") {
                     user.firstname = firstname as? String
                 }
+                
                 
                 if let lastname = (result as AnyObject).value(forKey: "last_name") {
                     user.lastname = lastname as? String
@@ -102,6 +104,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 
                 ad.saveContext()
                 self.performSegue(withIdentifier: "QuestionVC", sender: user)
+                connection?.cancel()
                 
             }
         
@@ -131,6 +134,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         if(user.firstname != "" && user.lastname != "" && user.email != "" && user.password != ""){
             ad.saveContext()
             if(user != nil){
+                addUserToKeyChain(email: user.email!, password: user.password!)
                 performSegue(withIdentifier: "QuestionVC", sender: user)
             }
         } else {
@@ -139,12 +143,24 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         
     }
     
+    func addUserToKeyChain(email: String, password: String) -> Void {
+        let hasLoginKey = UserDefaults.standard.bool(forKey: "hasLoginKey")
+        if hasLoginKey == false {
+            UserDefaults.standard.setValue(email, forKey: "email")
+        }
+        
+        MyKeyChainWrapper.mySetObject(password, forKey: kSecValueData)
+        MyKeyChainWrapper.writeToKeychain()
+        UserDefaults.standard.set(true, forKey: "hasLoginKey")
+        UserDefaults.standard.synchronize()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        guard let questionVC = segue.destination as? QuestionVC else { return }
 //        if let user = sender as? User {
 //            questionVC.selectedUser = user
 //        }
-        print(sender!)
+
         
         if segue.identifier == "QuestionVC" {
             if let questionVC = segue.destination as? QuestionVC {
