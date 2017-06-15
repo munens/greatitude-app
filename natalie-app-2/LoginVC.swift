@@ -36,7 +36,6 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
             
             loginButton.delegate = self as! FBSDKLoginButtonDelegate
             
-            
             view.addSubview(loginButton)
         }
        
@@ -95,9 +94,7 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
      }
-     */
-
-    
+    */
     @IBAction func loginPressed(_ sender: Any) {
         let email = emailField.text
         let password = passwordField.text
