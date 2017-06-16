@@ -190,7 +190,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signUpPressed:" destination="RN4-ba-VsX" eventType="touchUpInside" id="1G3-gn-ZQG"/>
-                                    <segue destination="oOB-jy-mNu" kind="show" identifier="QuestionVC" action="showDetailViewController:sender:" id="VOO-BW-qav"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -618,7 +617,7 @@
         <!--QuestionVC-->
         <scene sceneID="GXk-o7-ucf">
             <objects>
-                <viewController id="oOB-jy-mNu" customClass="QuestionVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuestionVC" id="oOB-jy-mNu" customClass="QuestionVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TP0-MT-GxQ"/>
                         <viewControllerLayoutGuide type="bottom" id="0kA-Lx-7xL"/>
@@ -868,6 +867,6 @@
         <image name="photo_41997_20151004" width="2490" height="1625"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DFN-wd-j2m"/>
+        <segue reference="V4L-0a-UBE"/>
     </inferredMetricsTieBreakers>
 </document>

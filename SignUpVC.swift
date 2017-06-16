@@ -134,8 +134,13 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         if(user.firstname != "" && user.lastname != "" && user.email != "" && user.password != ""){
             ad.saveContext()
             if(user != nil){
+                let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+                
+                questionVC.selectedUser = user
+                print(user)
                 addUserToKeyChain(email: user.email!, password: user.password!)
-                performSegue(withIdentifier: "QuestionVC", sender: user)
+                //performSegue(withIdentifier: "QuestionVC", sender: user)
+                self.present(questionVC, animated: true, completion: nil)
             }
         } else {
             dismiss(animated: true, completion: nil)
