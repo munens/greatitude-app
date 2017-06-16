@@ -23,13 +23,18 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
             self.returnUserData()
         }
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         let hasLoginKey = UserDefaults.standard.bool(forKey: "hasLoginKey")
         if hasLoginKey == true {
-            let email = UserDefaults.standard.object(forKey: "email")
-            print(email)
-            user = getUser(email: email as! String) as! User
-            if user != nil {
-                performSegue(withIdentifier: "QuestionVC", sender: user)
+            
+            if let email = UserDefaults.standard.object(forKey: "email") {
+                
+                if let user =  getUser(email: email as! String) {
+                    print(user)
+                    performSegue(withIdentifier: "QuestionVC", sender: user)
+                }
             }
             
         }

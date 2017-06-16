@@ -42,7 +42,7 @@ class QuestionVC: UIViewController, UITextViewDelegate {
         nxtBtn.layer.borderColor = UIColor.white.cgColor
         nxtBtn.layer.cornerRadius = 3
         
-        questionLabel.alpha = 0.0
+        questionLabel.alpha = 0.5
         
         questionTextView.delegate = self
         questionTextView.alpha = 0.0

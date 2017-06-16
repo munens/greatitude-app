@@ -100,7 +100,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                     user.email = email as? String
                 }
                 
-                print(user)
+                // addUserToKeyChain(email: user.email!, password: nil)
                 
                 ad.saveContext()
                 self.performSegue(withIdentifier: "QuestionVC", sender: user)
@@ -143,7 +143,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         
     }
     
-    func addUserToKeyChain(email: String, password: String) -> Void {
+    func addUserToKeyChain(email: String, password: Any) -> Void {
         let hasLoginKey = UserDefaults.standard.bool(forKey: "hasLoginKey")
         if hasLoginKey == false {
             UserDefaults.standard.setValue(email, forKey: "email")
@@ -156,20 +156,19 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let questionVC = segue.destination as? QuestionVC else { return }
-//        if let user = sender as? User {
-//            questionVC.selectedUser = user
-//        }
-
-        
-        if segue.identifier == "QuestionVC" {
-            if let questionVC = segue.destination as? QuestionVC {
-                if let user = sender as? User {
-                    print(user)
-                    questionVC.selectedUser = user
-                }
-            }
+        guard let questionVC = segue.destination as? QuestionVC else { return }
+        if let user = sender as? User {
+            questionVC.selectedUser = user
         }
+
+//        if segue.identifier == "QuestionVC" {
+//            if let questionVC = segue.destination as? QuestionVC {
+//                if let user = sender as? User {
+//                    print(user)
+//                    questionVC.selectedUser = user
+//                }
+//            }
+//        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

@@ -57,10 +57,13 @@
                             <constraint firstItem="Eyi-g0-MeN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sfZ-Xp-EWp"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="oOB-jy-mNu" kind="show" identifier="QuestionVC" action="showDetailViewController:sender:" id="DFN-wd-j2m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
+            <point key="canvasLocation" x="86" y="322"/>
         </scene>
         <!--Sign UpVC-->
         <scene sceneID="cJj-Pg-Lj1">
@@ -187,7 +190,7 @@
                                 </state>
                                 <connections>
                                     <action selector="signUpPressed:" destination="RN4-ba-VsX" eventType="touchUpInside" id="1G3-gn-ZQG"/>
-                                    <segue destination="oOB-jy-mNu" kind="showDetail" identifier="QuestionVC" id="VOO-BW-qav"/>
+                                    <segue destination="oOB-jy-mNu" kind="show" identifier="QuestionVC" action="showDetailViewController:sender:" id="VOO-BW-qav"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -852,7 +855,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMp-Nb-oYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1141.5999999999999" y="599.55022488755628"/>
+            <point key="canvasLocation" x="1126" y="748"/>
         </scene>
     </scenes>
     <resources>
@@ -865,6 +868,6 @@
         <image name="photo_41997_20151004" width="2490" height="1625"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VOO-BW-qav"/>
+        <segue reference="DFN-wd-j2m"/>
     </inferredMetricsTieBreakers>
 </document>
