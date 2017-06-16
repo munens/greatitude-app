@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class QuestionVC: UIViewController, UITextViewDelegate {
+class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private var _user:User!
     
@@ -26,13 +26,20 @@ class QuestionVC: UIViewController, UITextViewDelegate {
     @IBOutlet weak var questionTextView: UITextView!
     @IBOutlet weak var buttonStackView: UIStackView!
     @IBOutlet weak var selectPicBtn: UIButton!
+    @IBOutlet weak var viewPortfolioBtn: UIButton!
     @IBOutlet weak var nxtBtn: UIButton!
+    
+    var imagePickerController: UIImagePickerController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view:
         //print(selectedUser!)
+        
+        imagePickerController = UIImagePickerController()
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
         
         selectPicBtn.layer.borderWidth = 1.0
         selectPicBtn.layer.borderColor = UIColor.white.cgColor
@@ -41,6 +48,10 @@ class QuestionVC: UIViewController, UITextViewDelegate {
         nxtBtn.layer.borderWidth = 1.0
         nxtBtn.layer.borderColor = UIColor.white.cgColor
         nxtBtn.layer.cornerRadius = 3
+        
+        viewPortfolioBtn.layer.borderWidth = 1.0
+        viewPortfolioBtn.layer.borderColor = UIColor.white.cgColor
+        viewPortfolioBtn.layer.cornerRadius = 3
         
         questionLabel.alpha = 0.0
         
@@ -85,6 +96,13 @@ class QuestionVC: UIViewController, UITextViewDelegate {
             questionTextView.textColor = .lightGray
         }
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+           
+        }
+        imagePickerController.dismiss(animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
@@ -98,6 +116,7 @@ class QuestionVC: UIViewController, UITextViewDelegate {
     
     
     @IBAction func selectPicBtnPressed(_ sender: Any) {
+        present(imagePickerController, animated: true, completion: nil)
     }
     
     @IBAction func nextBtnPressed(_ sender: Any) {
