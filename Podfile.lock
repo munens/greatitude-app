@@ -1,4 +1,7 @@
 PODS:
+  - AWSCore (2.5.5)
+  - AWSS3 (2.5.5):
+    - AWSCore (= 2.5.5)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -26,11 +29,14 @@ PODS:
     - FBSDKCoreKit
 
 DEPENDENCIES:
+  - AWSS3
   - FacebookCore
   - FacebookLogin
   - FacebookShare
 
 SPEC CHECKSUMS:
+  AWSCore: 665371d51ccdfe62430c586e3cb8e57eff8ce09d
+  AWSS3: 7a910824991e5dc13971f7ae73230d354666880e
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
@@ -39,6 +45,6 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 1fa529fc622d7b32ebeaffbecd377180833c6d30
   FBSDKShareKit: 21ab3c8d173f4fa20c47c1061f3a9fac5950b5fa
 
-PODFILE CHECKSUM: 23f419d1de2ba9a0e4f2381690c65a53d583628d
+PODFILE CHECKSUM: c0644839e212dcf56e721110f770a86d4e481428
 
 COCOAPODS: 1.2.1

@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import FBSDKLoginKit
+import AWSCore
+import AWSS3
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

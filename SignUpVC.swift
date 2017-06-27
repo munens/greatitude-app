@@ -103,7 +103,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 // addUserToKeyChain(email: user.email!, password: nil)
                 
                 ad.saveContext()
-                self.performSegue(withIdentifier: "QuestionVC", sender: user)
+                //self.performSegue(withIdentifier: "QuestionVC", sender: user)
+                
+                let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+                questionVC.selectedUser = user
+                self.present(questionVC, animated: true, completion: nil)
                 connection?.cancel()
                 
             }
