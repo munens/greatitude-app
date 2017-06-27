@@ -11,6 +11,8 @@ target 'natalie-app-2' do
   pod 'FacebookShare'
   
   pod 'AWSS3'
+  pod 'AWSCognito'
+  
 
   target 'natalie-app-2Tests' do
     inherit! :search_paths

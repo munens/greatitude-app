@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWSS3
 
 class ChooseImageVC: UIViewController {
 
@@ -15,6 +16,8 @@ class ChooseImageVC: UIViewController {
     }
     
     @IBOutlet weak var editButton: UIBarButtonItem!
+    
+    let transferManager = AWSS3TransferManager.default()
     
     @IBOutlet weak var scrollView: UIScrollView!
     var images = [UIImageView]()
@@ -31,6 +34,40 @@ class ChooseImageVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         var contentWidth: CGFloat = 0.0
         
+        let downloadFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("img0.jpg")
+        let downloadRequest = AWSS3TransferManagerDownloadRequest()
+        
+        downloadRequest?.bucket = "natalie-app"
+        downloadRequest?.key = "img0.jpg"
+        downloadRequest?.downloadingFileURL = downloadFileURL
+        
+        
+        transferManager.download(downloadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
+                if let error = task.error as NSError? {
+                    if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
+            
+                        switch(code){
+                            case .cancelled, .paused:
+                                break
+                            default:
+                                print("Error downloading: \(String(describing: downloadRequest?.key)) Error: \(error)")
+                        }
+                    } else {
+                        print("Error downloading: \(String(describing: downloadRequest?.key)) Error: \(error)")
+                    }
+                    return nil
+                }
+            
+                print("Download complete for: \(String(describing: downloadRequest?.key))")
+                let downloadOutput = task.result
+                return nil
+        })
+    
+
+
+    
+    
+    
         let scrollWidth = scrollView.frame.size.width
         for x in 0...4 {
             
@@ -79,6 +116,8 @@ class ChooseImageVC: UIViewController {
         
         scrollView.contentSize = CGSize(width: (contentWidth - 2500.0), height: 350)
     }
+    
+    
     
     func imageViewTapped(_ sender: UITapGestureRecognizer){
         //let tap_location = sender.location(in: scrollView)

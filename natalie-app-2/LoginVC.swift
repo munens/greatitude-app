@@ -11,7 +11,7 @@ import CoreData
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate {
+class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate, FBSDKLoginButtonDelegate {
 
     
     @IBOutlet weak var emailField: UITextField!
@@ -19,18 +19,20 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     
     var controller: NSFetchedResultsController<User>!
     
+    let loginButton = FBSDKLoginButton()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
             
-        let loginButton = FBSDKLoginButton()
+        
         loginButton.readPermissions = ["public_profile", "email", "public_profile"]
             
         loginButton.frame.origin.y = 100
         loginButton.frame.origin.x = 40
             
-        loginButton.delegate = self as! FBSDKLoginButtonDelegate
+        loginButton.delegate = self as FBSDKLoginButtonDelegate
             
         view.addSubview(loginButton)
         
@@ -54,6 +56,10 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         }
     }
     
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("User has logged out")
+    }
+    
     func dismissKeyboard(){
         view.endEditing(true)
     }
@@ -70,8 +76,12 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
                 print("munesh: error with graph request \(String(describing: error))")
             } else {
                 if let email = (result as AnyObject).value(forKey: "email") {
+                    print("returning user data email")
                     if let user = self.authenticateUser(email: email as? String, password: nil) {
-                        self.performSegue(withIdentifier: "QuestionVC", sender: user)
+                        //self.performSegue(withIdentifier: "QuestionVC", sender: user)
+                        let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+                        questionVC.selectedUser = user as! User
+                        self.present(questionVC, animated: true, completion: nil)
                     }
                 }
             }
@@ -94,7 +104,9 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         let password = passwordField.text
         let user = authenticateUser(email: email, password: password)
         if (user != nil) {
-            performSegue(withIdentifier: "QuestionVC", sender: user)
+            let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+            questionVC.selectedUser = user as! User
+            self.present(questionVC, animated: true, completion: nil)
         } else {
             emailField.text = ""
             passwordField.text = ""

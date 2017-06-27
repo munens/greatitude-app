@@ -1,6 +1,0 @@
-framework module Pods_natalie_app_2UITests {
-  umbrella header "Pods-natalie-app-2UITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

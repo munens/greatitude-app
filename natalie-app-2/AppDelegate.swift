@@ -10,7 +10,9 @@ import UIKit
 import CoreData
 import FBSDKLoginKit
 import AWSCore
+import AWSCognito
 import AWSS3
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        let credentialProvider = AWSCognitoCredentialsProvider(regionType: .USEast2, identityPoolId: "us-east-2:0a75c746-5dff-4b2f-9fcb-d1fec643388e")
+        let configuration = AWSServiceConfiguration(region: .USEast2, credentialsProvider: credentialProvider)
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
         
         return true
     }

@@ -853,7 +853,6 @@
                     <connections>
                         <outlet property="emailField" destination="YeZ-Zj-8Xe" id="rGW-Sw-hHI"/>
                         <outlet property="passwordField" destination="vPt-MB-HoK" id="8HH-S9-VAf"/>
-                        <segue destination="oOB-jy-mNu" kind="show" identifier="QuestionVC" id="V4L-0a-UBE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMp-Nb-oYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -870,7 +869,4 @@
         <image name="pexels-photo-186645" width="5004" height="3084"/>
         <image name="photo_41997_20151004" width="2490" height="1625"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="DFN-wd-j2m"/>
-    </inferredMetricsTieBreakers>
 </document>
