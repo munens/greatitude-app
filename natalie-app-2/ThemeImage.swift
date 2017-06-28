@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Theme.swift
 //  natalie-app-2
 //
 //  Created by Munene Kaumbutho on 2017-06-28.
@@ -8,26 +8,24 @@
 
 import Foundation
 
-class Background {
+//
+//  theme.swift
+//  natalie-app-2
+//
+//  Created by Munene Kaumbutho on 2017-06-27.
+//  Copyright © 2017 Munene Kaumbutho - Evan Zhang. All rights reserved.
+//
+
+import Foundation
+
+class ThemeImage {
     
-    private var _name: String!
     
     private var _filename: String!
     
+    private var _name: String!
+    
     private var _imageURL: String!
-    
-    
-    var name: String {
-        
-        if _name == nil {
-            
-            return ""
-            
-        }
-        
-        return _name
-        
-    }
     
     
     var filename: String {
@@ -39,6 +37,19 @@ class Background {
         }
         
         return _filename
+        
+    }
+    
+    
+    var name: String {
+        
+        if _name == nil {
+            
+            return ""
+            
+        }
+        
+        return _name
         
     }
     
@@ -56,13 +67,12 @@ class Background {
     }
     
     
-    init(name: String, filename: String, imageURL: String){
-        
-        self._name = name
+    init(filename: String, name: String, imageURL: String) {
         
         self._filename = filename
         
+        self._name = name
+        
         self._imageURL = imageURL
     }
-    
 }

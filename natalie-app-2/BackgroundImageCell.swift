@@ -13,14 +13,14 @@ class BackgroundImageCell: UICollectionViewCell {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var backgroundImageLabel: UILabel!
     
-    var background: Background!
+    var background: BackgroundImage!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     
-    func configureCell(_ background: Background){
+    func configureCell(_ background: BackgroundImage){
         self.background = background
         
         backgroundImageView.image = UIImage(named: "\(self.background.imageURL)" )

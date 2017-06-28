@@ -19,26 +19,26 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     var selectedUser: User!
     var newPortfolioItem: PortfolioItem!
     
-    var backgrounds = [Background]()
-    var backgroundList = [Background]()
+    var backgrounds = [BackgroundImage]()
+    var backgroundList = [BackgroundImage]()
     
     var transferManager = AWSS3TransferManager.default()
     
     
-    let b1 = Background(name: "Sundays at dawn", filename: "ocean0.jpg", imageURL: "")
-    let b2 = Background(name: "Sundays at dawn", filename: "ocean1.jpg", imageURL: "")
-    let b3 = Background(name: "Sundays at dawn", filename: "ocean2.jpeg", imageURL: "")
-    let b4 = Background(name: "Sundays at dawn", filename: "ocean3.jpeg", imageURL: "")
-    let b5 = Background(name: "Sundays at dawn", filename: "ocean4.jpeg", imageURL: "")
-    let b6 = Background(name: "Sundays at dawn", filename: "ocean5.jpeg", imageURL: "")
-    let b7 = Background(name: "Sundays at dawn", filename: "ocean6.jpeg", imageURL: "")
-    let b8 = Background(name: "Sundays at dawn", filename: "ocean7.jpeg", imageURL: "")
-    let b9 = Background(name: "Sundays at dawn", filename: "ocean8.jpeg", imageURL: "")
-    let b10 = Background(name: "Sundays at dawn", filename: "ocean9.jpeg", imageURL: "")
-    let b11 = Background(name: "Sundays at dawn", filename: "ocean10.jpeg", imageURL: "")
-    let b12 = Background(name: "Sundays at dawn", filename: "ocean11.jpeg", imageURL: "")
-    let b13 = Background(name: "Sundays at dawn", filename: "ocean12.jpg", imageURL: "")
-    let b14 = Background(name: "Sundays at dawn", filename: "ocean13.jpg", imageURL: "")
+    let b1 = BackgroundImage(name: "Sundays at dawn", filename: "ocean0.jpg", imageURL: "")
+    let b2 = BackgroundImage(name: "Sundays at dawn", filename: "ocean1.jpg", imageURL: "")
+    let b3 = BackgroundImage(name: "Sundays at dawn", filename: "ocean2.jpeg", imageURL: "")
+    let b4 = BackgroundImage(name: "Sundays at dawn", filename: "ocean3.jpeg", imageURL: "")
+    let b5 = BackgroundImage(name: "Sundays at dawn", filename: "ocean4.jpeg", imageURL: "")
+    let b6 = BackgroundImage(name: "Sundays at dawn", filename: "ocean5.jpeg", imageURL: "")
+    let b7 = BackgroundImage(name: "Sundays at dawn", filename: "ocean6.jpeg", imageURL: "")
+    let b8 = BackgroundImage(name: "Sundays at dawn", filename: "ocean7.jpeg", imageURL: "")
+    let b9 = BackgroundImage(name: "Sundays at dawn", filename: "ocean8.jpeg", imageURL: "")
+    let b10 = BackgroundImage(name: "Sundays at dawn", filename: "ocean9.jpeg", imageURL: "")
+    let b11 = BackgroundImage(name: "Sundays at dawn", filename: "ocean10.jpeg", imageURL: "")
+    let b12 = BackgroundImage(name: "Sundays at dawn", filename: "ocean11.jpeg", imageURL: "")
+    let b13 = BackgroundImage(name: "Sundays at dawn", filename: "ocean12.jpg", imageURL: "")
+    let b14 = BackgroundImage(name: "Sundays at dawn", filename: "ocean13.jpg", imageURL: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()

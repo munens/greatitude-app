@@ -27,14 +27,14 @@ class ChooseImageVC: UIViewController {
     //var themes = [Theme]()
     
     
-    var themes = [Theme]()
-    var themesList = [Theme]()
+    var themes = [ThemeImage]()
+    var themesList = [ThemeImage]()
     
-    let t1 = Theme(filename: "ocean.jpg", name: "Ocean theme", imageURL: "")
-    let t2 = Theme(filename: "black_pattern.jpg", name: "Black Pattern theme", imageURL: "")
-    let t3 = Theme(filename: "rainbow_background.jpg", name: "Rainbow Background theme", imageURL: "")
-    let t4 = Theme(filename: "rainbow_background.jpg", name: "Rainbow Background theme", imageURL: "")
-    let t5 = Theme(filename: "blue_and_pink.jpg", name: "Blue and Pink theme", imageURL: "")
+    let t1 = ThemeImage(filename: "ocean.jpg", name: "Ocean theme", imageURL: "")
+    let t2 = ThemeImage(filename: "black_pattern.jpg", name: "Black Pattern theme", imageURL: "")
+    let t3 = ThemeImage(filename: "rainbow_background.jpg", name: "Rainbow Background theme", imageURL: "")
+    let t4 = ThemeImage(filename: "rainbow_background.jpg", name: "Rainbow Background theme", imageURL: "")
+    let t5 = ThemeImage(filename: "blue_and_pink.jpg", name: "Blue and Pink theme", imageURL: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +114,7 @@ class ChooseImageVC: UIViewController {
         
     }
     
-    func getThemeImageUrls(completionHandler: @escaping ([Theme]) -> ()){
+    func getThemeImageUrls(completionHandler: @escaping ([ThemeImage]) -> ()){
     
         for theme in themes {
             let downloadFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(theme.filename)")
@@ -144,7 +144,6 @@ class ChooseImageVC: UIViewController {
                 self.themesList.append(theme)
                 //let downloadOutput = task.result
                 completionHandler(self.themesList)
-                
                 return nil
             })
         }
