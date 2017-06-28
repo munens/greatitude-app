@@ -22,6 +22,9 @@ class ChooseImageVC: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     var images = [UIImageView]()
     
+    var themeTasks = [AWSTask<AnyObject>]()
+    var imageList = [AnyObject]()
+    var imageURLList = [URL]()
     var themes = ["Ocean theme", "Medieval theme", "Black Pattern theme", "Rainbow Background theme", "Blue and Pink theme"]
     
     override func viewDidLoad() {
@@ -29,92 +32,105 @@ class ChooseImageVC: UIViewController {
 
         // Do any additional setup after loading the view.
         editButton.isEnabled = false
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         var contentWidth: CGFloat = 0.0
         
-        let downloadFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("img0.jpg")
-        let downloadRequest = AWSS3TransferManagerDownloadRequest()
+        print("getting image list: \(imageList)" )
         
-        downloadRequest?.bucket = "natalie-app"
-        downloadRequest?.key = "img0.jpg"
-        downloadRequest?.downloadingFileURL = downloadFileURL
-        
-        
-        transferManager.download(downloadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
-                if let error = task.error as NSError? {
-                    if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
-            
-                        switch(code){
-                            case .cancelled, .paused:
-                                break
-                            default:
-                                print("Error downloading: \(String(describing: downloadRequest?.key)) Error: \(error)")
-                        }
-                    } else {
-                        print("Error downloading: \(String(describing: downloadRequest?.key)) Error: \(error)")
-                    }
-                    return nil
-                }
-            
-                print("Download complete for: \(String(describing: downloadRequest?.key))")
-                let downloadOutput = task.result
-                return nil
-        })
-    
-
-
-    
-    
-    
         let scrollWidth = scrollView.frame.size.width
-        for x in 0...4 {
+        
+        getImageTasks {urls in
             
-            let image = UIImage(named: "img\(x)")
-            let label = UILabel(frame: CGRect(x:0, y:240, width: 345, height: 30))
-            label.text = themes[x]
-            label.textAlignment = NSTextAlignment.center
+            for (index, url) in urls.enumerated() {
+                
+                let image = UIImage(contentsOfFile: url.path)
+                let label = UILabel(frame: CGRect(x:0, y:240, width: 345, height: 30))
+                label.text = self.themes[index]
+                label.textAlignment = NSTextAlignment.center
+                
+                let imageView = UIImageView(image: image)
+                
+                imageView.layer.shadowColor = UIColor.black.cgColor
+                imageView.layer.shadowOpacity = 1
+                imageView.layer.shadowOffset = CGSize.zero
+                imageView.layer.shadowRadius = 10
+                //imageView.layer.shadowPath = UIBezierPath(rect: imageView.bounds).cgPath
+                //imageView.layer.shouldRasterize = true
+                
+                imageView.addSubview(label)
+                
+                self.images.append(imageView)
+                
+                var newX: CGFloat = 0.0
+                newX = scrollWidth / 2 + scrollWidth * CGFloat(index)
+                
+                contentWidth += newX
+                
+                imageView.frame = CGRect(x: newX - 75, y: (self.scrollView.frame.size.height / 2) - 145, width: 345, height: 230)
+                
+                // give every image a UITapGestureRecognizer - allow a function to be called everytime as image is tapped.
+                let imageTapRecognizer = UITapGestureRecognizer(target: self, action:#selector( self.imageViewTapped(_:)))
+                imageTapRecognizer.delegate = self as? UIGestureRecognizerDelegate
+                imageTapRecognizer.numberOfTapsRequired = 1
+                imageTapRecognizer.isEnabled = true
+                imageTapRecognizer.cancelsTouchesInView = false
+                imageView.isUserInteractionEnabled = true
+                imageView.addGestureRecognizer(imageTapRecognizer)
+                
+                self.scrollView.addSubview(imageView)
+                //print("content Width 1: \(contentWidth)")
+            }
             
-            let imageView = UIImageView(image: image)
-            
-            imageView.layer.shadowColor = UIColor.black.cgColor
-            imageView.layer.shadowOpacity = 1
-            imageView.layer.shadowOffset = CGSize.zero
-            imageView.layer.shadowRadius = 10
-            //imageView.layer.shadowPath = UIBezierPath(rect: imageView.bounds).cgPath
-            //imageView.layer.shouldRasterize = true
-            
-            imageView.addSubview(label)
-            
-            images.append(imageView)
-            
-            var newX: CGFloat = 0.0
-            newX = scrollWidth / 2 + scrollWidth * CGFloat(x)
-            
-            contentWidth += newX
-            
-            imageView.frame = CGRect(x: newX - 75, y: (scrollView.frame.size.height / 2) - 145, width: 345, height: 230)
-            
-            // give every image a UITapGestureRecognizer - allow a function to be called everytime as image is tapped.
-            let imageTapRecognizer = UITapGestureRecognizer(target: self, action:#selector( imageViewTapped(_:)))
-            imageTapRecognizer.delegate = self as? UIGestureRecognizerDelegate
-            imageTapRecognizer.numberOfTapsRequired = 1
-            imageTapRecognizer.isEnabled = true
-            imageTapRecognizer.cancelsTouchesInView = false
-            imageView.isUserInteractionEnabled = true
-            imageView.addGestureRecognizer(imageTapRecognizer)
-            
-            scrollView.addSubview(imageView)
-            //print("content Width 1: \(contentWidth)")
+            self.scrollView.contentSize = CGSize(width: (contentWidth - 2500.0), height: 350)
         }
+        
         
         //print("content Width 2: \(contentWidth)")
         
         //scrollView.backgroundColor = UIColor.black
         //scrollView.clipsToBounds = false
         
-        scrollView.contentSize = CGSize(width: (contentWidth - 2500.0), height: 350)
+        
+    }
+    
+    func getImageTasks(completionHandler: @escaping ([URL]) -> ()){
+    
+        for x in 0...4 {
+            let downloadFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("img\(x).jpg")
+            let downloadRequest = AWSS3TransferManagerDownloadRequest()
+            downloadRequest?.bucket = "natalie-app"
+            downloadRequest?.key = "img\(x).jpg"
+            downloadRequest?.downloadingFileURL = downloadFileURL
+            
+            transferManager.download(downloadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
+                if let error = task.error as NSError? {
+                    if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
+                        
+                        switch(code){
+                        case .cancelled, .paused:
+                            break
+                        default:
+                            print("Error downloading: \(String(describing: downloadRequest?.key)) Error: \(error)")
+                        }
+                    } else {
+                        print("Error downloading: \(String(describing: downloadRequest?.key)) Error: \(error)")
+                    }
+                    return nil
+                }
+                
+                print("Download complete for: \(String(describing: downloadRequest?.key))")
+                self.imageURLList.append(downloadFileURL)
+                //let downloadOutput = task.result
+                if(self.imageURLList.count == 5){
+                    completionHandler(self.imageURLList)
+                }
+                
+                return nil
+            })
+        }
     }
     
     
