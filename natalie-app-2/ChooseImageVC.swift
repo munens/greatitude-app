@@ -8,6 +8,7 @@
 
 import UIKit
 import AWSS3
+import CoreData
 
 class ChooseImageVC: UIViewController {
 
@@ -25,14 +26,15 @@ class ChooseImageVC: UIViewController {
     var images = [UIImageView]()
     //var themes = [Theme]()
     
+    
     var themes = [Theme]()
     var themesList = [Theme]()
     
-    let t1 = Theme(filename: "ocean.jpg", name: "Ocean theme", url: "")
-    let t2 = Theme(filename: "black_pattern.jpg", name: "Black Pattern theme", url: "")
-    let t3 = Theme(filename: "rainbow_background.jpg", name: "Rainbow Background theme", url: "")
-    let t4 = Theme(filename: "rainbow_background.jpg", name: "Rainbow Background theme", url: "")
-    let t5 = Theme(filename: "blue_and_pink.jpg", name: "Blue and Pink theme", url: "")
+    let t1 = Theme(filename: "ocean.jpg", name: "Ocean theme", imageURL: "")
+    let t2 = Theme(filename: "black_pattern.jpg", name: "Black Pattern theme", imageURL: "")
+    let t3 = Theme(filename: "rainbow_background.jpg", name: "Rainbow Background theme", imageURL: "")
+    let t4 = Theme(filename: "rainbow_background.jpg", name: "Rainbow Background theme", imageURL: "")
+    let t5 = Theme(filename: "blue_and_pink.jpg", name: "Blue and Pink theme", imageURL: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,11 +60,11 @@ class ChooseImageVC: UIViewController {
         
         let scrollWidth = scrollView.frame.size.width
         
-        getImageTasks {themes in
+        getThemeImageUrls {themes in
             
             for (index, theme) in themes.enumerated() {
                 
-                let image = UIImage(contentsOfFile: theme.url)
+                let image = UIImage(contentsOfFile: theme.imageURL)
                 let label = UILabel(frame: CGRect(x:0, y:240, width: 345, height: 30))
                 label.text = theme.name
                 label.textAlignment = NSTextAlignment.center
@@ -112,7 +114,7 @@ class ChooseImageVC: UIViewController {
         
     }
     
-    func getImageTasks(completionHandler: @escaping ([Theme]) -> ()){
+    func getThemeImageUrls(completionHandler: @escaping ([Theme]) -> ()){
     
         for theme in themes {
             let downloadFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(theme.filename)")
@@ -126,10 +128,10 @@ class ChooseImageVC: UIViewController {
                     if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
                         
                         switch(code){
-                        case .cancelled, .paused:
-                            break
-                        default:
-                            print("Error downloading: \(String(describing: downloadRequest?.key)) Error: \(error)")
+                            case .cancelled, .paused:
+                                break
+                            default:
+                                print("Error downloading: \(String(describing: downloadRequest?.key)) Error: \(error)")
                         }
                     } else {
                         print("Error downloading: \(String(describing: downloadRequest?.key)) Error: \(error)")
@@ -138,12 +140,10 @@ class ChooseImageVC: UIViewController {
                 }
                 
                 print("Download complete for: \(String(describing: downloadRequest?.key))")
-                theme.url = downloadFileURL.path
+                theme.imageURL = downloadFileURL.path
                 self.themesList.append(theme)
                 //let downloadOutput = task.result
-                if(self.themesList.count == 5){
-                    completionHandler(self.themesList)
-                }
+                completionHandler(self.themesList)
                 
                 return nil
             })

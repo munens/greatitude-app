@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AWSS3
+import CoreData
 
 class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -17,16 +19,52 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     var selectedUser: User!
     var newPortfolioItem: PortfolioItem!
     
-    var backgroundImages = [BackgroundImage]()
+    var backgrounds = [Background]()
+    var backgroundList = [Background]()
+    
+    var transferManager = AWSS3TransferManager.default()
+    
+    
+    let b1 = Background(name: "Sundays at dawn", filename: "ocean0.jpg", imageURL: "")
+    let b2 = Background(name: "Sundays at dawn", filename: "ocean1.jpg", imageURL: "")
+    let b3 = Background(name: "Sundays at dawn", filename: "ocean2.jpeg", imageURL: "")
+    let b4 = Background(name: "Sundays at dawn", filename: "ocean3.jpeg", imageURL: "")
+    let b5 = Background(name: "Sundays at dawn", filename: "ocean4.jpeg", imageURL: "")
+    let b6 = Background(name: "Sundays at dawn", filename: "ocean5.jpeg", imageURL: "")
+    let b7 = Background(name: "Sundays at dawn", filename: "ocean6.jpeg", imageURL: "")
+    let b8 = Background(name: "Sundays at dawn", filename: "ocean7.jpeg", imageURL: "")
+    let b9 = Background(name: "Sundays at dawn", filename: "ocean8.jpeg", imageURL: "")
+    let b10 = Background(name: "Sundays at dawn", filename: "ocean9.jpeg", imageURL: "")
+    let b11 = Background(name: "Sundays at dawn", filename: "ocean10.jpeg", imageURL: "")
+    let b12 = Background(name: "Sundays at dawn", filename: "ocean11.jpeg", imageURL: "")
+    let b13 = Background(name: "Sundays at dawn", filename: "ocean12.jpg", imageURL: "")
+    let b14 = Background(name: "Sundays at dawn", filename: "ocean13.jpg", imageURL: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        backgrounds.append(b1)
+        backgrounds.append(b2)
+        backgrounds.append(b3)
+        backgrounds.append(b4)
+        backgrounds.append(b5)
+        backgrounds.append(b6)
+        backgrounds.append(b7)
+        backgrounds.append(b8)
+        backgrounds.append(b9)
+        backgrounds.append(b10)
+        backgrounds.append(b11)
+        backgrounds.append(b12)
+        backgrounds.append(b13)
+        backgrounds.append(b14)
 
         // Do any additional setup after loading the view.
         backgroundCollectionView.delegate = self
         backgroundCollectionView.dataSource = self
         
-        createImageBackgrounds()
+        getBackgroundImageUrls {data in
+            self.backgroundCollectionView.reloadData()
+        }
         
         //let attributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 9)]
         //navigationBar.topItem?.backBarButtonItem?.setTitleTextAttributes(attributes, for: UIControlState.normal)
@@ -37,11 +75,42 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     
-    func createImageBackgrounds(){
-        for x in 0...12 {
-            let backgroundImage = BackgroundImage(name: "ocean\(x)")
-            backgroundImages.append(backgroundImage)
+    func getBackgroundImageUrls(completionHandler: @escaping () -> ()){
+        
+        for background in backgrounds {
+            
+            let downloadFileUrl = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(background.filename)")
+            let downloadRequest = AWSS3TransferManagerDownloadRequest()
+            downloadRequest?.bucket = "natalie-app"
+            downloadRequest?.key = "\(background.filename)"
+            downloadRequest?.downloadingFileURL = downloadFileUrl
+            
+            transferManager.download(downloadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
+                if let error = task.error as NSError? {
+                    if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code){
+                        switch(code) {
+                            case .cancelled, .paused:
+                                break
+                            default:
+                                print("Error downloading: \(String(describing: downloadRequest?.key)) Error: \(error)")
+                        }
+                    } else {
+                        print("Error downloading: \(String(describing: downloadRequest?.key)) Error: \(error)")
+                    }
+                    return nil
+                }
+                
+                print("Download complete for: \(String(describing: downloadRequest?.key))")
+                background.imageURL = downloadFileUrl.path
+                self.backgroundList.append(background)
+                
+                completionHandler()
+                return nil
+            })
         }
+        
+        
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,8 +132,8 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BackgroundImageCell", for: indexPath) as? BackgroundImageCell {
             
-            let backgroundImage = backgroundImages[indexPath.row]
-            cell.configureCell(backgroundImage)
+            let background = backgroundList[indexPath.row]
+            cell.configureCell(background)
             
             return cell
         }
@@ -81,7 +150,7 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return backgroundImages.count
+        return backgroundList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
