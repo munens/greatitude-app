@@ -27,6 +27,7 @@
 		C5EA08941EF322650089FA88 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EA08931EF322650089FA88 /* KeychainWrapper.m */; };
 		C5F131691EBCF92D00624711 /* ImageQuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F131681EBCF92D00624711 /* ImageQuoteCell.swift */; };
 		C5FB4D0E1EBD2BD000096321 /* ImageQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */; };
+		C5FFBC1C1F03531F00CD1968 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FFBC1B1F03531F00CD1968 /* Theme.swift */; };
 		E0CB7F5419ADEBCC6086D042 /* Pods_natalie_app_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D90C6CD83E182A184F8A63 /* Pods_natalie_app_2.framework */; };
 		E8B6103D1E9E68F90019EBED /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6103C1E9E68F90019EBED /* LoginVC.swift */; };
 		E8B610401E9E6F180019EBED /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8B6103E1E9E6F180019EBED /* Model.xcdatamodeld */; };
@@ -87,6 +88,7 @@
 		C5EA08931EF322650089FA88 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		C5F131681EBCF92D00624711 /* ImageQuoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageQuoteCell.swift; sourceTree = "<group>"; };
 		C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageQuote.swift; sourceTree = "<group>"; };
+		C5FFBC1B1F03531F00CD1968 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		CC3F916E41D0E217415D5C39 /* Pods-natalie-app-2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natalie-app-2.release.xcconfig"; path = "Pods/Target Support Files/Pods-natalie-app-2/Pods-natalie-app-2.release.xcconfig"; sourceTree = "<group>"; };
 		E8B6103C1E9E68F90019EBED /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E8B6103F1E9E6F180019EBED /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */,
 				C5AD5DA71ECE884D00223064 /* BackgroundImage.swift */,
+				C5FFBC1B1F03531F00CD1968 /* Theme.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A0D1FA1ED638600053CDCD /* Portfolio+CoreDataProperties.swift in Sources */,
+				C5FFBC1C1F03531F00CD1968 /* Theme.swift in Sources */,
 				C5F131691EBCF92D00624711 /* ImageQuoteCell.swift in Sources */,
 				C5AD5DA21ECE61F400223064 /* ChooseBackgroundVC.swift in Sources */,
 				C5A0D1F71ED638600053CDCD /* PortfolioItem+CoreDataClass.swift in Sources */,

@@ -20,35 +20,51 @@ class ChooseImageVC: UIViewController {
     let transferManager = AWSS3TransferManager.default()
     
     @IBOutlet weak var scrollView: UIScrollView!
-    var images = [UIImageView]()
     
-    var themeTasks = [AWSTask<AnyObject>]()
-    var imageList = [AnyObject]()
-    var imageURLList = [URL]()
-    var themes = ["Ocean theme", "Medieval theme", "Black Pattern theme", "Rainbow Background theme", "Blue and Pink theme"]
+    
+    var images = [UIImageView]()
+    //var themes = [Theme]()
+    
+    var themes = [Theme]()
+    var themesList = [Theme]()
+    
+    let t1 = Theme(filename: "ocean.jpg", name: "Ocean theme", url: "")
+    let t2 = Theme(filename: "black_pattern.jpg", name: "Black Pattern theme", url: "")
+    let t3 = Theme(filename: "rainbow_background.jpg", name: "Rainbow Background theme", url: "")
+    let t4 = Theme(filename: "rainbow_background.jpg", name: "Rainbow Background theme", url: "")
+    let t5 = Theme(filename: "blue_and_pink.jpg", name: "Blue and Pink theme", url: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        editButton.isEnabled = false
         
+        
+        themes.append(t1)
+        themes.append(t2)
+        themes.append(t3)
+        themes.append(t4)
+        themes.append(t5)
+        
+        //themes.append(Theme.init(filename: "ocean.jpg", name: "Ocean theme", url: URL(string: "")!))
+        //themes.append()
+        // Do any additional setup after loading the view.
+        
+        editButton.isEnabled = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         var contentWidth: CGFloat = 0.0
         
-        print("getting image list: \(imageList)" )
+        //print("getting image list: \(imageList)" )
         
         let scrollWidth = scrollView.frame.size.width
         
-        getImageTasks {urls in
+        getImageTasks {themes in
             
-            for (index, url) in urls.enumerated() {
+            for (index, theme) in themes.enumerated() {
                 
-                let image = UIImage(contentsOfFile: url.path)
+                let image = UIImage(contentsOfFile: theme.url)
                 let label = UILabel(frame: CGRect(x:0, y:240, width: 345, height: 30))
-                label.text = self.themes[index]
+                label.text = theme.name
                 label.textAlignment = NSTextAlignment.center
                 
                 let imageView = UIImageView(image: image)
@@ -96,13 +112,13 @@ class ChooseImageVC: UIViewController {
         
     }
     
-    func getImageTasks(completionHandler: @escaping ([URL]) -> ()){
+    func getImageTasks(completionHandler: @escaping ([Theme]) -> ()){
     
-        for x in 0...4 {
-            let downloadFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("img\(x).jpg")
+        for theme in themes {
+            let downloadFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(theme.filename)")
             let downloadRequest = AWSS3TransferManagerDownloadRequest()
             downloadRequest?.bucket = "natalie-app"
-            downloadRequest?.key = "img\(x).jpg"
+            downloadRequest?.key = "\(theme.filename)"
             downloadRequest?.downloadingFileURL = downloadFileURL
             
             transferManager.download(downloadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
@@ -122,10 +138,11 @@ class ChooseImageVC: UIViewController {
                 }
                 
                 print("Download complete for: \(String(describing: downloadRequest?.key))")
-                self.imageURLList.append(downloadFileURL)
+                theme.url = downloadFileURL.path
+                self.themesList.append(theme)
                 //let downloadOutput = task.result
-                if(self.imageURLList.count == 5){
-                    completionHandler(self.imageURLList)
+                if(self.themesList.count == 5){
+                    completionHandler(self.themesList)
                 }
                 
                 return nil
