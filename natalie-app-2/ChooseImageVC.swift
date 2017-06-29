@@ -33,7 +33,7 @@ class ChooseImageVC: UIViewController {
     let t1 = ThemeImage(filename: "ocean.jpg", name: "Ocean theme", imageURL: "")
     let t2 = ThemeImage(filename: "black_pattern.jpg", name: "Black Pattern theme", imageURL: "")
     let t3 = ThemeImage(filename: "rainbow_background.jpg", name: "Rainbow Background theme", imageURL: "")
-    let t4 = ThemeImage(filename: "rainbow_background.jpg", name: "Rainbow Background theme", imageURL: "")
+    let t4 = ThemeImage(filename: "medeival.jpg", name: "Medeival theme", imageURL: "")
     let t5 = ThemeImage(filename: "blue_and_pink.jpg", name: "Blue and Pink theme", imageURL: "")
     
     override func viewDidLoad() {

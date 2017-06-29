@@ -14,10 +14,15 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var backgroundCollectionView: UICollectionView!
     
+    
+    @IBOutlet weak var editButton: UIButton!
+    
     @IBOutlet weak var navigationBar: UINavigationBar!
     
     var selectedUser: User!
     var newPortfolioItem: PortfolioItem!
+    
+    var selectedBackground: BackgroundImage!
     
     var backgrounds = [BackgroundImage]()
     var backgroundList = [BackgroundImage]()
@@ -42,6 +47,8 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        editButton.isEnabled = false
         
         backgrounds.append(b1)
         backgrounds.append(b2)
@@ -139,6 +146,46 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         }
         
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        let cells = collectionView.visibleCells
+        selectedBackground = nil
+        
+        for cell in cells {
+            let cellItems = cell.subviews[0]
+            let cellImage = cellItems.subviews[0]
+            let cellLabel = cellItems.subviews[1] as? UILabel
+            cellImage.layer.borderColor = nil
+            cellImage.layer.borderWidth = 0
+            
+            cellLabel?.textColor = UIColor.black
+            cellLabel?.shadowColor = nil
+            cellLabel?.shadowOffset = CGSize(width: 0.0, height: 0.0)
+            
+        }
+        
+        let cell = collectionView.cellForItem(at: indexPath)
+        let cellItems = cell?.subviews[0]
+        
+        let cellLabel = cellItems?.subviews[1] as? UILabel
+        let cellImage = cellItems?.subviews[0]
+        cellImage?.layer.borderColor = UIColor.blue.cgColor
+        cellImage?.layer.borderWidth = 3
+        
+        cellLabel?.shadowColor = UIColor.black
+        cellLabel?.shadowOffset = CGSize(width: 0.5, height: 0.0)
+        cellLabel?.textColor = UIColor.blue
+        
+        
+        editButton.isEnabled = true
+        selectedBackground = backgroundList[indexPath.row]
+    }
+    
+    @IBAction func editBtnPressed(_ sender: Any) {
+        let editPortfolioItemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
+        editPortfolioItemVC.selectedBackground = selectedBackground
+        self.present(editPortfolioItemVC, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

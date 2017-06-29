@@ -561,14 +561,31 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3W-74-L5l">
+                                <rect key="frame" x="249" y="28" width="110" height="20"/>
+                                <color key="backgroundColor" red="0.16415645179999999" green="0.37671419979999998" blue="0.77261686330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="5pN-PY-AnD"/>
+                                    <constraint firstAttribute="width" constant="110" id="eGO-oA-GEJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="edit &gt;">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="editBtnPressed:" destination="4Ls-ok-ngm" eventType="touchUpInside" id="W6F-KF-Nk6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ker-gj-tjg" firstAttribute="top" secondItem="6Bh-lo-S41" secondAttribute="bottom" id="3Uu-PX-HkS"/>
+                            <constraint firstItem="n3W-74-L5l" firstAttribute="trailing" secondItem="KUU-3H-nSG" secondAttribute="trailingMargin" id="3mw-1m-zbZ"/>
                             <constraint firstItem="Ker-gj-tjg" firstAttribute="top" secondItem="dAe-gn-X1j" secondAttribute="bottom" constant="20" id="De1-mG-OKS"/>
                             <constraint firstAttribute="trailing" secondItem="6Bh-lo-S41" secondAttribute="trailing" id="IP2-1u-JFa"/>
                             <constraint firstItem="dAe-gn-X1j" firstAttribute="trailing" secondItem="KUU-3H-nSG" secondAttribute="trailingMargin" id="J4a-NF-CLO"/>
                             <constraint firstItem="Ift-oN-BWO" firstAttribute="trailing" secondItem="KUU-3H-nSG" secondAttribute="trailingMargin" id="JLV-0J-vZ5"/>
+                            <constraint firstItem="n3W-74-L5l" firstAttribute="top" secondItem="1Jg-rJ-21u" secondAttribute="bottom" constant="8" id="KK2-30-UMp"/>
                             <constraint firstItem="Ift-oN-BWO" firstAttribute="top" secondItem="1Jg-rJ-21u" secondAttribute="bottom" constant="45" id="Mi6-RI-deS"/>
                             <constraint firstItem="kr3-Is-hxj" firstAttribute="leading" secondItem="KUU-3H-nSG" secondAttribute="leadingMargin" id="Ntr-wo-wgp"/>
                             <constraint firstItem="6Bh-lo-S41" firstAttribute="leading" secondItem="KUU-3H-nSG" secondAttribute="leading" id="TGJ-dq-bM7"/>
@@ -581,16 +598,17 @@
                     </view>
                     <connections>
                         <outlet property="backgroundCollectionView" destination="dAe-gn-X1j" id="yYg-Rv-Bps"/>
+                        <outlet property="editButton" destination="n3W-74-L5l" id="0dH-6o-CWU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CLk-ro-yFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4148" y="321.58920539730138"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Portfolio ItemVC-->
         <scene sceneID="9r4-Wi-fCR">
             <objects>
-                <viewController id="tDy-Pg-y5z" sceneMemberID="viewController">
+                <viewController id="tDy-Pg-y5z" customClass="EditPortfolioItemVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="flM-OT-t9q"/>
                         <viewControllerLayoutGuide type="bottom" id="PNc-GX-4je"/>
@@ -599,20 +617,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y97-i8-80G">
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y97-i8-80G">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="vK1-eJ-UN3"/>
                                 </items>
                             </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zx-Jd-Rsf">
+                                <rect key="frame" x="0.0" y="70" width="375" height="299"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Er6-3Z-0ki"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4zx-Jd-Rsf" firstAttribute="leading" secondItem="xfH-eZ-RDv" secondAttribute="leading" id="W9X-uF-kHR"/>
+                            <constraint firstItem="4zx-Jd-Rsf" firstAttribute="top" secondItem="Y97-i8-80G" secondAttribute="bottom" constant="25" id="fYA-18-Gag"/>
+                            <constraint firstAttribute="trailing" secondItem="4zx-Jd-Rsf" secondAttribute="trailing" id="yEi-Ie-k8K"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroundImage" destination="4zx-Jd-Rsf" id="9Ng-i1-OKm"/>
+                        <outlet property="navigationBar" destination="Y97-i8-80G" id="sjG-0e-WP7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqg-fW-OdL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5137" y="322"/>
+            <point key="canvasLocation" x="5136.8000000000002" y="321.58920539730138"/>
         </scene>
         <!--QuestionVC-->
         <scene sceneID="GXk-o7-ucf">

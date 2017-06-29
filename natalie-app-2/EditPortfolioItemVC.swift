@@ -9,11 +9,35 @@
 import UIKit
 
 class EditPortfolioItemVC: UIViewController {
+    
+    private var _selectedBackground: BackgroundImage!
+    private var _portfolioItem: PortfolioItem!
+    
+    var selectedBackground: BackgroundImage {
+        get {
+            return _selectedBackground
+        } set {
+           _selectedBackground = newValue
+        }
+    }
+    
+    var selectedPortfolioItem: PortfolioItem {
+        get {
+            return _portfolioItem
+        } set {
+            _portfolioItem = newValue
+        }
+    }
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var backgroundImage: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.title = "edit \(selectedBackground.name)"
+        backgroundImage.image = UIImage(contentsOfFile: selectedBackground.imageURL)
+        
     }
 
     override func didReceiveMemoryWarning() {
