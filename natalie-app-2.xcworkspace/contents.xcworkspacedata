@@ -2,16 +2,16 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/munenekaumbutho/OneDrive/iOS projects/natalie-app-2/Background+CoreDataProperties.swift">
+      location = "group:Background+CoreDataClass.swift">
    </FileRef>
    <FileRef
-      location = "group:/Users/munenekaumbutho/OneDrive/iOS projects/natalie-app-2/Theme+CoreDataClass.swift">
+      location = "group:Background+CoreDataProperties.swift">
    </FileRef>
    <FileRef
-      location = "group:/Users/munenekaumbutho/OneDrive/iOS projects/natalie-app-2/Theme+CoreDataProperties.swift">
+      location = "group:Theme+CoreDataClass.swift">
    </FileRef>
    <FileRef
-      location = "group:/Users/munenekaumbutho/OneDrive/iOS projects/natalie-app-2/Background+CoreDataClass.swift">
+      location = "group:Theme+CoreDataProperties.swift">
    </FileRef>
    <FileRef
       location = "group:natalie-app-2.xcodeproj">

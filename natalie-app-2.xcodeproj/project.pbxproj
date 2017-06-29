@@ -23,10 +23,10 @@
 		C5A0D2001ED672E20053CDCD /* EditPortfolioItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0D1FF1ED672E20053CDCD /* EditPortfolioItemVC.swift */; };
 		C5AA46F71F044F6D00F23F12 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA46F61F044F6D00F23F12 /* BackgroundImage.swift */; };
 		C5AA46F91F04508900F23F12 /* ThemeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA46F81F04508900F23F12 /* ThemeImage.swift */; };
-		C5AA46FB1F0452CC00F23F12 /* Theme+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA46FA1F0452CC00F23F12 /* Theme+CoreDataProperties.swift */; };
-		C5AA46FD1F0452DA00F23F12 /* Theme+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA46FC1F0452DA00F23F12 /* Theme+CoreDataClass.swift */; };
-		C5AA46FF1F0452F200F23F12 /* Background+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA46FE1F0452F200F23F12 /* Background+CoreDataProperties.swift */; };
-		C5AA47011F0452F700F23F12 /* Background+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA47001F0452F700F23F12 /* Background+CoreDataClass.swift */; };
+		C5AA47161F0479D800F23F12 /* Background+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA47121F0479D800F23F12 /* Background+CoreDataClass.swift */; };
+		C5AA47171F0479D800F23F12 /* Background+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA47131F0479D800F23F12 /* Background+CoreDataProperties.swift */; };
+		C5AA47181F0479D800F23F12 /* Theme+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA47141F0479D800F23F12 /* Theme+CoreDataClass.swift */; };
+		C5AA47191F0479D800F23F12 /* Theme+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA47151F0479D800F23F12 /* Theme+CoreDataProperties.swift */; };
 		C5AD5DA21ECE61F400223064 /* ChooseBackgroundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD5DA11ECE61F400223064 /* ChooseBackgroundVC.swift */; };
 		C5AD5DA61ECE80F300223064 /* BackgroundImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD5DA51ECE80F300223064 /* BackgroundImageCell.swift */; };
 		C5EA08941EF322650089FA88 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EA08931EF322650089FA88 /* KeychainWrapper.m */; };
@@ -86,10 +86,10 @@
 		C5A0D1FF1ED672E20053CDCD /* EditPortfolioItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPortfolioItemVC.swift; sourceTree = "<group>"; };
 		C5AA46F61F044F6D00F23F12 /* BackgroundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		C5AA46F81F04508900F23F12 /* ThemeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeImage.swift; sourceTree = "<group>"; };
-		C5AA46FA1F0452CC00F23F12 /* Theme+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Theme+CoreDataProperties.swift"; path = "../Theme+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C5AA46FC1F0452DA00F23F12 /* Theme+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Theme+CoreDataClass.swift"; path = "../Theme+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C5AA46FE1F0452F200F23F12 /* Background+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Background+CoreDataProperties.swift"; path = "../Background+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C5AA47001F0452F700F23F12 /* Background+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Background+CoreDataClass.swift"; path = "../Background+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C5AA47121F0479D800F23F12 /* Background+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Background+CoreDataClass.swift"; path = "../Background+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C5AA47131F0479D800F23F12 /* Background+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Background+CoreDataProperties.swift"; path = "../Background+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C5AA47141F0479D800F23F12 /* Theme+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Theme+CoreDataClass.swift"; path = "../Theme+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C5AA47151F0479D800F23F12 /* Theme+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Theme+CoreDataProperties.swift"; path = "../Theme+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C5AD5DA11ECE61F400223064 /* ChooseBackgroundVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseBackgroundVC.swift; sourceTree = "<group>"; };
 		C5AD5DA51ECE80F300223064 /* BackgroundImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundImageCell.swift; sourceTree = "<group>"; };
 		C5EA08911EF322640089FA88 /* natalie-app-2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "natalie-app-2-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -213,9 +213,9 @@
 		E8B610941E9E90600019EBED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C5AA47121F0479D800F23F12 /* Background+CoreDataClass.swift */,
+				C5AA47141F0479D800F23F12 /* Theme+CoreDataClass.swift */,
 				C5A0D1EF1ED638600053CDCD /* PortfolioItem+CoreDataClass.swift */,
-				C5AA47001F0452F700F23F12 /* Background+CoreDataClass.swift */,
-				C5AA46FC1F0452DA00F23F12 /* Theme+CoreDataClass.swift */,
 				C5A0D1F11ED638600053CDCD /* Portfolio+CoreDataClass.swift */,
 				C5A0D1F31ED638600053CDCD /* Image+CoreDataClass.swift */,
 				C5A0D1F51ED638600053CDCD /* User+CoreDataClass.swift */,
@@ -227,9 +227,9 @@
 		E8B610951E9E90740019EBED /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				C5AA46FA1F0452CC00F23F12 /* Theme+CoreDataProperties.swift */,
+				C5AA47151F0479D800F23F12 /* Theme+CoreDataProperties.swift */,
+				C5AA47131F0479D800F23F12 /* Background+CoreDataProperties.swift */,
 				C5A0D1F01ED638600053CDCD /* PortfolioItem+CoreDataProperties.swift */,
-				C5AA46FE1F0452F200F23F12 /* Background+CoreDataProperties.swift */,
 				C5A0D1F21ED638600053CDCD /* Portfolio+CoreDataProperties.swift */,
 				C5A0D1F41ED638600053CDCD /* Image+CoreDataProperties.swift */,
 				C5A0D1F61ED638600053CDCD /* User+CoreDataProperties.swift */,
@@ -598,13 +598,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A0D1FA1ED638600053CDCD /* Portfolio+CoreDataProperties.swift in Sources */,
-				C5AA46FF1F0452F200F23F12 /* Background+CoreDataProperties.swift in Sources */,
 				C5F131691EBCF92D00624711 /* ImageQuoteCell.swift in Sources */,
 				C5AD5DA21ECE61F400223064 /* ChooseBackgroundVC.swift in Sources */,
 				C5A0D1F71ED638600053CDCD /* PortfolioItem+CoreDataClass.swift in Sources */,
 				C5628FBF1ECBCFDD00A3555F /* QuestionVC.swift in Sources */,
 				E8B611141E9F2A520019EBED /* MainVC.swift in Sources */,
 				C5AA46F71F044F6D00F23F12 /* BackgroundImage.swift in Sources */,
+				C5AA47181F0479D800F23F12 /* Theme+CoreDataClass.swift in Sources */,
 				C5FB4D0E1EBD2BD000096321 /* ImageQuote.swift in Sources */,
 				E8DE92AB1E9D447C007FC971 /* WelcomeVC.swift in Sources */,
 				C5AA46F91F04508900F23F12 /* ThemeImage.swift in Sources */,
@@ -612,19 +612,19 @@
 				C5A0D1F81ED638600053CDCD /* PortfolioItem+CoreDataProperties.swift in Sources */,
 				C5A0D2001ED672E20053CDCD /* EditPortfolioItemVC.swift in Sources */,
 				C5A0D1FC1ED638600053CDCD /* Image+CoreDataProperties.swift in Sources */,
-				C5AA46FB1F0452CC00F23F12 /* Theme+CoreDataProperties.swift in Sources */,
 				E8DE92DB1E9D6639007FC971 /* SignUpVC.swift in Sources */,
 				C5A0D1F91ED638600053CDCD /* Portfolio+CoreDataClass.swift in Sources */,
-				C5AA46FD1F0452DA00F23F12 /* Theme+CoreDataClass.swift in Sources */,
 				C5EA08941EF322650089FA88 /* KeychainWrapper.m in Sources */,
+				C5AA47161F0479D800F23F12 /* Background+CoreDataClass.swift in Sources */,
 				E8B611181E9FA5230019EBED /* ChooseImageVC.swift in Sources */,
-				C5AA47011F0452F700F23F12 /* Background+CoreDataClass.swift in Sources */,
 				E8B610401E9E6F180019EBED /* Model.xcdatamodeld in Sources */,
 				C5A0D1FB1ED638600053CDCD /* Image+CoreDataClass.swift in Sources */,
 				C5A0D1FE1ED638600053CDCD /* User+CoreDataProperties.swift in Sources */,
 				E8B6103D1E9E68F90019EBED /* LoginVC.swift in Sources */,
 				E8DE92A91E9D447C007FC971 /* AppDelegate.swift in Sources */,
 				C5A0D1FD1ED638600053CDCD /* User+CoreDataClass.swift in Sources */,
+				C5AA47171F0479D800F23F12 /* Background+CoreDataProperties.swift in Sources */,
+				C5AA47191F0479D800F23F12 /* Theme+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

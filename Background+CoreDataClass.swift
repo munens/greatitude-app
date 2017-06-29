@@ -9,8 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Background)
+
 public class Background: NSManagedObject {
 
 }
- 

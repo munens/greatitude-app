@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Theme)
+
 public class Theme: NSManagedObject {
 
 }
