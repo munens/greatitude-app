@@ -12,6 +12,7 @@ class EditPortfolioItemVC: UIViewController {
     
     private var _selectedBackground: BackgroundImage!
     private var _portfolioItem: PortfolioItem!
+    private var _selectedUser: User!
     
     var selectedBackground: BackgroundImage {
         get {
@@ -28,6 +29,17 @@ class EditPortfolioItemVC: UIViewController {
             _portfolioItem = newValue
         }
     }
+    
+    var selectedUser: User {
+        get {
+            return _selectedUser
+        } set {
+            _selectedUser = newValue
+        }
+    }
+    
+    var imageQuoteLabel = UILabel()
+    
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var backgroundImage: UIImageView!
 
@@ -37,8 +49,11 @@ class EditPortfolioItemVC: UIViewController {
         // Do any additional setup after loading the view.
         self.title = "edit \(selectedBackground.name)"
         backgroundImage.image = UIImage(contentsOfFile: selectedBackground.imageURL)
+        createLabel()
         
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -56,8 +71,9 @@ class EditPortfolioItemVC: UIViewController {
     }
     */
     
-    func getPortfolioItems() {
-        
+    func createLabel(){
+        imageQuoteLabel.text = selectedPortfolioItem.quote
+        imageQuoteLabel.frame.set
     }
 
 }

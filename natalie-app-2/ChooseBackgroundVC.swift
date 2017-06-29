@@ -12,6 +12,25 @@ import CoreData
 
 class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    private var _user:User!
+    private var _portfolioItem: PortfolioItem!
+    
+    var selectedUser: User {
+        get {
+            return _user
+        } set {
+            _user = newValue
+        }
+    }
+    
+    var selectedPortfolioItem: PortfolioItem {
+        get {
+            return _portfolioItem
+        } set {
+            _portfolioItem = newValue
+        }
+    }
+    
     @IBOutlet weak var backgroundCollectionView: UICollectionView!
     
     
@@ -19,7 +38,6 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     
-    var selectedUser: User!
     var newPortfolioItem: PortfolioItem!
     
     var selectedBackground: BackgroundImage!
@@ -183,9 +201,12 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func editBtnPressed(_ sender: Any) {
-        let editPortfolioItemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
-        editPortfolioItemVC.selectedBackground = selectedBackground
+        let editPortfolioItemVC = self.storyboard?.instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
+        editPortfolioItemVC.selectedPortfolioItem = selectedPortfolioItem
+        editPortfolioItemVC.selected
+        editPortfolioItemVC.selectedBackground = selectedBackground!
         self.present(editPortfolioItemVC, animated: true, completion: nil)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

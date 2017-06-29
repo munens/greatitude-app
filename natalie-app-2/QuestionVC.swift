@@ -131,6 +131,11 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
             portfolioItem.user = selectedUser
             
             ad.saveContext()
+            
+            let chooseImageVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChooseImageVC") as! ChooseImageVC
+            chooseImageVC.selectedUser = selectedUser
+            chooseImageVC.selectedPortfolioItem = portfolioItem
+            self.present(chooseImageVC, animated: true, completion: nil)
         }
     }
 }

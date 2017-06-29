@@ -11,6 +11,25 @@ import AWSS3
 import CoreData
 
 class ChooseImageVC: UIViewController {
+    
+    private var _user:User!
+    private var _portfolioItem: PortfolioItem!
+    
+    var selectedUser: User {
+        get {
+            return _user
+        } set {
+            _user = newValue
+        }
+    }
+    
+    var selectedPortfolioItem: PortfolioItem {
+        get {
+            return _portfolioItem
+        } set {
+            _portfolioItem = newValue
+        }
+    }
 
     @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -18,10 +37,7 @@ class ChooseImageVC: UIViewController {
     
     @IBOutlet weak var editButton: UIBarButtonItem!
     
-    let transferManager = AWSS3TransferManager.default()
-    
     @IBOutlet weak var scrollView: UIScrollView!
-    
     
     var images = [UIImageView]()
     //var themes = [Theme]()
@@ -29,6 +45,8 @@ class ChooseImageVC: UIViewController {
     
     var themes = [ThemeImage]()
     var themesList = [ThemeImage]()
+    
+    let transferManager = AWSS3TransferManager.default()
     
     let t1 = ThemeImage(filename: "ocean.jpg", name: "Ocean theme", imageURL: "")
     let t2 = ThemeImage(filename: "black_pattern.jpg", name: "Black Pattern theme", imageURL: "")
@@ -149,6 +167,12 @@ class ChooseImageVC: UIViewController {
         }
     }
     
+    @IBAction func nextBtnTapped(_ sender: Any) {
+        let chooseBackgroundVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChooseBackgroundVC") as! ChooseBackgroundVC
+        chooseBackgroundVC.selectedUser = selectedUser
+        chooseBackgroundVC.selectedPortfolioItem = selectedPortfolioItem
+        self.present(chooseBackgroundVC, animated: true, completion: nil)
+    }
     
     
     func imageViewTapped(_ sender: UITapGestureRecognizer){

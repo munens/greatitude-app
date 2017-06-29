@@ -409,7 +409,7 @@
         <!--Choose ImageVC-->
         <scene sceneID="Gx0-xQ-JPm">
             <objects>
-                <viewController id="DcQ-VV-0DF" customClass="ChooseImageVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseImageVC" id="DcQ-VV-0DF" customClass="ChooseImageVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SKh-vP-HPM"/>
                         <viewControllerLayoutGuide type="bottom" id="7Vm-bE-fKb"/>
@@ -442,7 +442,7 @@
                                         <barButtonItem key="rightBarButtonItem" title="Next" id="c8k-D7-VS8">
                                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <segue destination="4Ls-ok-ngm" kind="show" id="gyz-Hf-EOq"/>
+                                                <action selector="nextBtnTapped:" destination="DcQ-VV-0DF" id="KbD-6J-tp2"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -608,7 +608,7 @@
         <!--Edit Portfolio ItemVC-->
         <scene sceneID="9r4-Wi-fCR">
             <objects>
-                <viewController id="tDy-Pg-y5z" customClass="EditPortfolioItemVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditPortfolioItemVC" id="tDy-Pg-y5z" customClass="EditPortfolioItemVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="flM-OT-t9q"/>
                         <viewControllerLayoutGuide type="bottom" id="PNc-GX-4je"/>
@@ -721,7 +721,6 @@
                                         </state>
                                         <connections>
                                             <action selector="nextBtnPressed:" destination="oOB-jy-mNu" eventType="touchUpInside" id="G9S-0i-jJO"/>
-                                            <segue destination="DcQ-VV-0DF" kind="showDetail" identifier="ChooseImageVC" id="ZEy-Ro-UVk"/>
                                         </connections>
                                     </button>
                                 </subviews>
