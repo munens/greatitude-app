@@ -49,10 +49,41 @@ class EditPortfolioItemVC: UIViewController {
         // Do any additional setup after loading the view.
         self.title = "edit \(selectedBackground.name)"
         backgroundImage.image = UIImage(contentsOfFile: selectedBackground.imageURL)
-        createLabel()
+        
+        imageQuoteLabel.frame = CGRect(x: 75, y: backgroundImage.frame.size.height/4, width: backgroundImage.frame.size.width/2, height: 75)
+        imageQuoteLabel.textAlignment = .center
+        imageQuoteLabel.text = selectedPortfolioItem.quote!
+        imageQuoteLabel.textColor = UIColor.white
+        let labelGesture = UIPanGestureRecognizer(target: self, action: #selector(self.userDragLabel(gesture:)))
+        imageQuoteLabel.addGestureRecognizer(labelGesture)
+        imageQuoteLabel.isUserInteractionEnabled = true
+        self.view.addSubview(imageQuoteLabel)
         
     }
     
+    func userDragLabel(gesture: UIPanGestureRecognizer){
+        let translation = gesture.translation(in: self.view)
+        let newLoc = CGPoint(x: gesture.view!.center.x, y: gesture.view!.center.y)
+        
+        switch gesture.state {
+            case .changed:
+                if insideDraggableArea(point: newLoc) {
+                    gesture.view?.center = CGPoint(x: gesture.view!.center.x + translation.x, y: gesture.view!.center.y + translation.y)
+                    gesture.setTranslation(CGPoint.zero, in: self.view)
+                }
+            case .ended:
+                
+            default:
+                break
+        }
+
+    }
+    
+    func insideDraggableArea(point: CGPoint) -> Bool {
+        let backgroundImageFrame = self.backgroundImage.frame
+        return point.x > 50 && point.x < backgroundImageFrame.width - 50
+               && point.y > backgroundImageFrame.minY + 50 && point.y < backgroundImageFrame.maxY - 50
+    }
     
 
     override func didReceiveMemoryWarning() {
@@ -71,12 +102,6 @@ class EditPortfolioItemVC: UIViewController {
     }
     */
     
-    func createLabel(){
-        imageQuoteLabel.frame = CGRect(x: 75, y: backgroundImage.frame.size.height/4, width: backgroundImage.frame.size.width/2, height: 75)
-        imageQuoteLabel.textAlignment = .center
-        imageQuoteLabel.text = selectedPortfolioItem.quote!
-        imageQuoteLabel.textColor = UIColor.white
-        self.view.addSubview(imageQuoteLabel)
-    }
+    
 
 }
