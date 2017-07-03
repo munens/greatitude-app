@@ -203,7 +203,7 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     @IBAction func editBtnPressed(_ sender: Any) {
         let editPortfolioItemVC = self.storyboard?.instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
         editPortfolioItemVC.selectedPortfolioItem = selectedPortfolioItem
-        editPortfolioItemVC.selected
+        editPortfolioItemVC.selectedUser = selectedUser
         editPortfolioItemVC.selectedBackground = selectedBackground!
         self.present(editPortfolioItemVC, animated: true, completion: nil)
         

@@ -72,8 +72,11 @@ class EditPortfolioItemVC: UIViewController {
     */
     
     func createLabel(){
-        imageQuoteLabel.text = selectedPortfolioItem.quote
-        imageQuoteLabel.frame.set
+        imageQuoteLabel.frame = CGRect(x: 75, y: backgroundImage.frame.size.height/4, width: backgroundImage.frame.size.width/2, height: 75)
+        imageQuoteLabel.textAlignment = .center
+        imageQuoteLabel.text = selectedPortfolioItem.quote!
+        imageQuoteLabel.textColor = UIColor.white
+        self.view.addSubview(imageQuoteLabel)
     }
 
 }

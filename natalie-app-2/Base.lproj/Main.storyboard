@@ -477,7 +477,7 @@
         <!--Choose BackgroundVC-->
         <scene sceneID="Fgl-pN-Ydp">
             <objects>
-                <viewController id="4Ls-ok-ngm" customClass="ChooseBackgroundVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseBackgroundVC" id="4Ls-ok-ngm" customClass="ChooseBackgroundVC" customModule="natalie_app_2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Jg-rJ-21u"/>
                         <viewControllerLayoutGuide type="bottom" id="Ker-gj-tjg"/>
