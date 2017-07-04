@@ -42,7 +42,8 @@ class EditPortfolioItemVC: UIViewController {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var backgroundImage: UIImageView!
-
+    @IBOutlet weak var segment: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,7 +59,6 @@ class EditPortfolioItemVC: UIViewController {
         imageQuoteLabel.addGestureRecognizer(labelGesture)
         imageQuoteLabel.isUserInteractionEnabled = true
         self.view.addSubview(imageQuoteLabel)
-        
     }
     
     func userDragLabel(gesture: UIPanGestureRecognizer){
@@ -103,11 +103,10 @@ class EditPortfolioItemVC: UIViewController {
         } else if(point.x > backgroundImageFrame.width) {
             return CGPoint(x: point.x - 1, y: point.y)
         } else if(point.y < backgroundImageFrame.minY){
-            return CGPoint(x: point.x, y: point.y + 1)
+            return CGPoint(x: point.x, y: point.y + 5)
         } else {
             return CGPoint(x: point.x, y: point.y - 1)
         }
-
     }
     
 
