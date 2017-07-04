@@ -68,8 +68,10 @@ class EditPortfolioItemVC: UIViewController {
             switch gesture.state {
                 case .changed:
                     if insideDraggableArea(point: newLoc) {
-                        gesture.view?.center = CGPoint(x: gestureView.center.x + translation.x, y: gestureView.center.y + translation.y)
-                        gesture.setTranslation(CGPoint.zero, in: self.view)
+                        gestureView.center = CGPoint(x: gestureView.center.x + translation.x, y: gestureView.center.y + translation.y)
+                        gesture.setTranslation(.zero, in: self.view)
+                    } else {
+                        gestureView.center = newGestureCoords(point: newLoc)
                     }
                 case .ended:
                     saveLabelPostion(point: gestureView.center)
@@ -83,12 +85,29 @@ class EditPortfolioItemVC: UIViewController {
     func saveLabelPostion(point: CGPoint){
         selectedPortfolioItem.x_position = Double(point.x)
         selectedPortfolioItem.y_position = Double(point.y)
+        //print(selectedPortfolioItem)
+        ad.saveContext()
     }
     
     func insideDraggableArea(point: CGPoint) -> Bool {
         let backgroundImageFrame = self.backgroundImage.frame
-        return point.x > 50 && point.x < backgroundImageFrame.width - 50
-               && point.y > backgroundImageFrame.minY + 50 && point.y < backgroundImageFrame.maxY - 50
+        return point.x >= 0 && point.x <= backgroundImageFrame.width
+               && point.y >= backgroundImageFrame.minY && point.y <=  backgroundImageFrame.maxY
+    }
+    
+    func newGestureCoords(point: CGPoint) -> CGPoint {
+        let backgroundImageFrame = self.backgroundImage.frame
+        
+        if point.x < 0 {
+            return CGPoint(x: point.x + 1, y: point.y)
+        } else if(point.x > backgroundImageFrame.width) {
+            return CGPoint(x: point.x - 1, y: point.y)
+        } else if(point.y < backgroundImageFrame.minY){
+            return CGPoint(x: point.x, y: point.y + 1)
+        } else {
+            return CGPoint(x: point.x, y: point.y - 1)
+        }
+
     }
     
 
