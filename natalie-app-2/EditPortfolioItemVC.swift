@@ -37,31 +37,66 @@ class EditPortfolioItemVC: UIViewController {
             _selectedUser = newValue
         }
     }
-    
+    var quoteText = UITextView()
     var imageQuoteLabel = UILabel()
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var segment: UISegmentedControl!
+    @IBOutlet weak var fontSizeStepper: UIStepper!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(selectedPortfolioItem)
+        fontSizeStepper.wraps = true
+        fontSizeStepper.autorepeat = true
+        fontSizeStepper.maximumValue = 64
+        
         // Do any additional setup after loading the view.
         self.title = "edit \(selectedBackground.name)"
         backgroundImage.image = UIImage(contentsOfFile: selectedBackground.imageURL)
         
-        imageQuoteLabel.frame = CGRect(x: 75, y: backgroundImage.frame.size.height/4, width: backgroundImage.frame.size.width/2, height: 75)
-        imageQuoteLabel.textAlignment = .center
-        imageQuoteLabel.text = selectedPortfolioItem.quote!
-        imageQuoteLabel.textColor = UIColor.white
-        let labelGesture = UIPanGestureRecognizer(target: self, action: #selector(self.userDragLabel(gesture:)))
-        imageQuoteLabel.addGestureRecognizer(labelGesture)
-        imageQuoteLabel.isUserInteractionEnabled = true
-        self.view.addSubview(imageQuoteLabel)
+        quoteText.frame = CGRect(x: 75, y: backgroundImage.frame.size.height/4, width: backgroundImage.frame.size.width/2, height: 75)
+        quoteText.textAlignment = .center
+        //quoteText.lineBreakMode = .byClipping
+        //imageQuoteLabel.adjustsFontSizeToFitWidth = true
+        quoteText.backgroundColor = UIColor.clear
+        quoteText.text = selectedPortfolioItem.quote!
+        fontSizeStepper.minimumValue = Double((quoteText.font?.pointSize)!)
+        
+        adjustTextViewConstraints(textView: quoteText)
+        
+        quoteText.textColor = UIColor.white
+        let labelGesture = UIPanGestureRecognizer(target: self, action: #selector(self.userDragText(gesture:)))
+        quoteText.addGestureRecognizer(labelGesture)
+        quoteText.isUserInteractionEnabled = true
+        self.view.addSubview(quoteText)
     }
     
-    func userDragLabel(gesture: UIPanGestureRecognizer){
+    func adjustTextViewConstraints(textView: UITextView) {
+        let currentWidth = textView.frame.size.width
+        textView.sizeThatFits(CGSize(width: currentWidth, height: CGFloat.greatestFiniteMagnitude))
+        
+        let newSize = textView.sizeThatFits(CGSize(width: currentWidth, height: CGFloat.greatestFiniteMagnitude))
+        
+        var newFrame = textView.frame
+        
+        newFrame.size = CGSize(width: max(newSize.width, currentWidth), height: newSize.height)
+        textView.frame = newFrame
+        
+        
+        //let contentSize = textView.sizeThatFits(quoteText.bounds.size)
+        //var quoteTextFrame = textView.frame
+        //quoteTextFrame.size.height = contentSize.height
+        //quoteTextFrame.size.width = contentSize.width
+        //quoteText.frame = quoteTextFrame
+        
+        //let aspectRatioTextViewConstraint = NSLayoutConstraint(item: quoteText, attribute: .width, relatedBy: .equal, toItem: textView, attribute: .width, multiplier: (textView.font?.pointSize)!, constant: 1)
+        //textView.addConstraint(aspectRatioTextViewConstraint)
+    }
+    
+    func userDragText(gesture: UIPanGestureRecognizer){
         let translation = gesture.translation(in: self.view)
         let newLoc = CGPoint(x: gesture.view!.center.x, y: gesture.view!.center.y)
         if let gestureView = gesture.view {
@@ -109,6 +144,16 @@ class EditPortfolioItemVC: UIViewController {
         }
     }
     
+    @IBAction func fontSizeStepperChanged(_ sender: UIStepper) {
+        //let currentFontSize = imageQuoteLabel.font.pointSize
+//        if sender.value == 1.0 {
+        print(sender.value)
+            quoteText.font = imageQuoteLabel.font.withSize(CGFloat(sender.value))
+        adjustTextViewConstraints(textView: quoteText)
+//        } else {
+//            imageQuoteLabel.font = imageQuoteLabel.font.withSize(currentFontSize - 1.0)
+//        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
