@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Background" representedClassName=".Background" syncable="YES">
+    <entity name="Background" representedClassName="Background" syncable="YES" codeGenerationType="class">
         <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="portfolioItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="background" inverseEntity="PortfolioItem" syncable="YES"/>
     </entity>
-    <entity name="Image" representedClassName=".Image" syncable="YES">
+    <entity name="Image" representedClassName="Image" syncable="YES" codeGenerationType="class">
         <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="portfolioItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="image" inverseEntity="PortfolioItem" syncable="YES"/>
     </entity>
-    <entity name="Portfolio" representedClassName="Portfolio" syncable="YES">
+    <entity name="Portfolio" representedClassName="Portfolio" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="portfolioItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="portfolio" inverseEntity="PortfolioItem" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="portfolio" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="PortfolioItem" representedClassName="PortfolioItem" syncable="YES">
+    <entity name="PortfolioItem" representedClassName="PortfolioItem" syncable="YES" codeGenerationType="class">
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="font_familly" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="font_size" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="quote" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x_position" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="y_position" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="background" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Background" inverseName="portfolioItem" inverseEntity="Background" syncable="YES"/>
         <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="portfolioItem" inverseEntity="Image" syncable="YES"/>
         <relationship name="portfolio" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Portfolio" inverseName="portfolioItem" inverseEntity="Portfolio" syncable="YES"/>
         <relationship name="theme" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Theme" inverseName="portfolioItem" inverseEntity="Theme" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="portfolioItem" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Theme" representedClassName=".Theme" syncable="YES">
+    <entity name="Theme" representedClassName="Theme" syncable="YES" codeGenerationType="class">
         <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="portfolioItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="theme" inverseEntity="PortfolioItem" syncable="YES"/>
     </entity>
-    <entity name="User" representedClassName=".User" syncable="YES">
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
@@ -40,11 +44,11 @@
         <relationship name="portfolioItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="user" inverseEntity="PortfolioItem" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Background" positionX="25" positionY="-369" width="128" height="103"/>
-        <element name="Image" positionX="-83" positionY="252" width="128" height="73"/>
-        <element name="Portfolio" positionX="-155" positionY="-378" width="128" height="88"/>
-        <element name="PortfolioItem" positionX="-92" positionY="27" width="128" height="148"/>
-        <element name="Theme" positionX="27" positionY="-243" width="128" height="103"/>
+        <element name="Background" positionX="25" positionY="-369" width="128" height="105"/>
+        <element name="Image" positionX="-83" positionY="252" width="128" height="75"/>
+        <element name="Portfolio" positionX="-155" positionY="-378" width="128" height="90"/>
+        <element name="PortfolioItem" positionX="-92" positionY="27" width="128" height="210"/>
+        <element name="Theme" positionX="27" positionY="-243" width="128" height="105"/>
         <element name="User" positionX="-560" positionY="-297" width="128" height="150"/>
     </elements>
 </model>

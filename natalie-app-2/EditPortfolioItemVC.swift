@@ -64,19 +64,25 @@ class EditPortfolioItemVC: UIViewController {
     func userDragLabel(gesture: UIPanGestureRecognizer){
         let translation = gesture.translation(in: self.view)
         let newLoc = CGPoint(x: gesture.view!.center.x, y: gesture.view!.center.y)
-        
-        switch gesture.state {
-            case .changed:
-                if insideDraggableArea(point: newLoc) {
-                    gesture.view?.center = CGPoint(x: gesture.view!.center.x + translation.x, y: gesture.view!.center.y + translation.y)
-                    gesture.setTranslation(CGPoint.zero, in: self.view)
-                }
-            case .ended:
-                
-            default:
-                break
+        if let gestureView = gesture.view {
+            switch gesture.state {
+                case .changed:
+                    if insideDraggableArea(point: newLoc) {
+                        gesture.view?.center = CGPoint(x: gestureView.center.x + translation.x, y: gestureView.center.y + translation.y)
+                        gesture.setTranslation(CGPoint.zero, in: self.view)
+                    }
+                case .ended:
+                    saveLabelPostion(point: gestureView.center)
+                default:
+                    break
+            }
         }
 
+    }
+    
+    func saveLabelPostion(point: CGPoint){
+        selectedPortfolioItem.x_position = Double(point.x)
+        selectedPortfolioItem.y_position = Double(point.y)
     }
     
     func insideDraggableArea(point: CGPoint) -> Bool {

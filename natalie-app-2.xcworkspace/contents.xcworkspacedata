@@ -2,18 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Background+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Background+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Theme+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Theme+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:natalie-app-2.xcodeproj">
    </FileRef>
    <FileRef
