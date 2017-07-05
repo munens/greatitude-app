@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditPortfolioItemVC: UIViewController, UITextViewDelegate {
+class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     private var _selectedBackground: BackgroundImage!
     private var _portfolioItem: PortfolioItem!
@@ -37,6 +37,10 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate {
             _selectedUser = newValue
         }
     }
+    
+    let fonts = UIFont.familyNames
+    let colors = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
+    
     var quoteText = UITextView()
     var imageQuoteLabel = UILabel()
     
@@ -44,6 +48,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate {
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var fontSizeStepper: UIStepper!
+    @IBOutlet weak var storePicker: UIPickerView!
 
     
     override func viewDidLoad() {
@@ -56,6 +61,14 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate {
         fontSizeStepper.autorepeat = true
         fontSizeStepper.maximumValue = 36
         
+        storePicker.delegate = self
+        storePicker.dataSource = self
+        
+        storePicker.layer.borderWidth = 1
+        storePicker.layer.borderColor = UIColor.init(red: 0.0, green: 122/255, blue: 255/255, alpha: 1.0).cgColor
+        storePicker.layer.cornerRadius = 4
+        //storePicker.layer.backgroundColor = UIColor.init(red: 9.0, green: 22.0, blue: 45.0, alpha: 1).cgColor
+        
         self.title = "edit \(selectedBackground.name)"
         backgroundImage.image = UIImage(contentsOfFile: selectedBackground.imageURL)
         
@@ -67,7 +80,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate {
         backgroundImage.isUserInteractionEnabled = true
         backgroundImage.addGestureRecognizer(imageTapRecognizer)
         
-        quoteText.frame = CGRect(x: 75, y: backgroundImage.frame.size.height/4, width: backgroundImage.frame.size.width/2, height: 75)
+        quoteText.frame = CGRect(x: 0, y: backgroundImage.frame.size.height/2, width: backgroundImage.frame.size.width, height: 75)
         quoteText.textAlignment = .center
         //quoteText.lineBreakMode = .byClipping
         //imageQuoteLabel.adjustsFontSizeToFitWidth = true
@@ -103,6 +116,30 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         print("textViewDidEndEditing")
         
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let font = fonts[row]
+        return font
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return fonts.count
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let attributedString: NSAttributedString
+        attributedString = NSAttributedString(string: fonts[row], attributes: [NSForegroundColorAttributeName: UIColor.init(red: 0.0, green: 122/255, blue: 255/255, alpha: 1.0)])
+        return attributedString
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        changeTextViewStyle()
+        quoteText.font = UIFont(name: fonts[row], size: (quoteText.font?.pointSize)!)
     }
     
     func imageViewTapped(_ sender: UITapGestureRecognizer){
@@ -184,7 +221,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate {
         quoteText.font = quoteText.font?.withSize(CGFloat(sender.value))
         adjustTextViewWidth(textView: quoteText)
         saveFontSize(size: sender.value)
-        unchangeTextViewStyle()
+        changeTextViewStyle()
         //quoteText.resignFirstResponder()
     }
     

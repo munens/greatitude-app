@@ -665,27 +665,47 @@
                                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qt4-rd-17C">
+                                            <pickerView clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qt4-rd-17C">
                                                 <rect key="frame" x="145.5" y="0.0" width="163" height="63.5"/>
-                                                <color key="backgroundColor" red="1" green="0.99998784070000002" blue="0.99999201299999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <color key="tintColor" red="1" green="0.200470081350829" blue="0.35430043069983774" alpha="0.2403146404" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" red="0.03625991043" green="0.085395302490000005" blue="0.17658656510000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="63" id="VNS-dS-MBg"/>
                                                     <constraint firstAttribute="width" constant="163" id="y4G-mf-DoA"/>
                                                 </constraints>
                                             </pickerView>
                                         </subviews>
+                                        <color key="backgroundColor" red="0.03625991043" green="0.085395302490000005" blue="0.17658656510000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="font-color" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAH-0A-GVV">
-                                        <rect key="frame" x="25" y="192" width="123" height="24.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
-                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="ipN-9T-hhf">
+                                        <rect key="frame" x="55" y="192.5" width="312" height="52"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="font-color" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAH-0A-GVV">
+                                                <rect key="frame" x="0.0" y="0.0" width="92" height="24.5"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hgc-mb-PAu">
+                                                <rect key="frame" x="109" y="0.0" width="203" height="52"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="color-spoke" translatesAutoresizingMaskIntoConstraints="NO" id="tND-r1-fHN">
+                                                        <rect key="frame" x="0.0" y="0.0" width="203" height="17"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="203" id="i8N-sL-65I"/>
+                                                            <constraint firstAttribute="height" constant="17" id="w0V-d7-aC8"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YcA-PV-eys">
+                                                        <rect key="frame" x="-2" y="22" width="207" height="31"/>
+                                                    </slider>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.036259910430394747" green="0.08539530248803559" blue="0.17658656507664983" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="AAH-0A-GVV" secondAttribute="trailing" constant="227" id="7ME-vt-OgJ"/>
                                     <constraint firstItem="3vS-JA-I8r" firstAttribute="leading" secondItem="pew-08-3Gb" secondAttribute="leading" constant="8" id="EMa-vN-PqA"/>
                                     <constraint firstAttribute="trailing" secondItem="UYH-zV-IkN" secondAttribute="trailing" constant="53" id="Mpp-HX-2s3"/>
                                     <constraint firstAttribute="height" constant="290" id="PdM-az-n27"/>
@@ -694,10 +714,11 @@
                                     <constraint firstAttribute="trailing" secondItem="3vS-JA-I8r" secondAttribute="trailing" constant="8" id="TcS-Ay-QeT"/>
                                     <constraint firstItem="UYH-zV-IkN" firstAttribute="top" secondItem="3vS-JA-I8r" secondAttribute="bottom" constant="20" id="V8n-rk-bF5"/>
                                     <constraint firstItem="mOL-ys-rzx" firstAttribute="top" secondItem="UYH-zV-IkN" secondAttribute="bottom" constant="22" id="Vpm-gu-nel"/>
-                                    <constraint firstItem="AAH-0A-GVV" firstAttribute="leading" secondItem="pew-08-3Gb" secondAttribute="leading" constant="25" id="cHT-SW-26J"/>
+                                    <constraint firstAttribute="trailing" secondItem="ipN-9T-hhf" secondAttribute="trailing" constant="8" id="noX-kA-zyZ"/>
                                     <constraint firstAttribute="width" constant="375" id="pH4-bb-4wN"/>
+                                    <constraint firstItem="ipN-9T-hhf" firstAttribute="leading" secondItem="pew-08-3Gb" secondAttribute="leading" constant="55" id="ta4-U1-nRh"/>
                                     <constraint firstItem="UYH-zV-IkN" firstAttribute="leading" secondItem="pew-08-3Gb" secondAttribute="leading" constant="44" id="tcu-ca-ESc"/>
-                                    <constraint firstItem="AAH-0A-GVV" firstAttribute="top" secondItem="mOL-ys-rzx" secondAttribute="bottom" constant="21.5" id="vI1-Wt-odf"/>
+                                    <constraint firstItem="ipN-9T-hhf" firstAttribute="top" secondItem="mOL-ys-rzx" secondAttribute="bottom" constant="22" id="wew-ke-xgb"/>
                                     <constraint firstItem="mOL-ys-rzx" firstAttribute="leading" secondItem="pew-08-3Gb" secondAttribute="leading" constant="44" id="xk2-oH-Gtx"/>
                                 </constraints>
                             </view>
@@ -717,6 +738,7 @@
                         <outlet property="fontSizeStepper" destination="Lmm-SR-wR0" id="riy-nu-R6U"/>
                         <outlet property="navigationBar" destination="Y97-i8-80G" id="sjG-0e-WP7"/>
                         <outlet property="segment" destination="3vS-JA-I8r" id="lzK-eJ-oVS"/>
+                        <outlet property="storePicker" destination="Qt4-rd-17C" id="nvQ-8E-jZM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqg-fW-OdL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -973,6 +995,7 @@
         <image name="4" width="1600" height="1600"/>
         <image name="Welcome.png" width="305" height="105"/>
         <image name="abstract-1851065_1920" width="1920" height="1277"/>
+        <image name="color-spoke" width="700" height="50"/>
         <image name="original" width="500" height="377"/>
         <image name="pexels-photo-186645" width="5004" height="3084"/>
         <image name="photo_41997_20151004" width="2490" height="1625"/>
