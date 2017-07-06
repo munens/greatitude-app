@@ -17,7 +17,8 @@
     </entity>
     <entity name="PortfolioItem" representedClassName="PortfolioItem" syncable="YES" codeGenerationType="class">
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="font_familly" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="font_color" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="font_family" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="font_size" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="quote" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="x_position" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -47,7 +48,7 @@
         <element name="Background" positionX="25" positionY="-369" width="128" height="105"/>
         <element name="Image" positionX="-83" positionY="252" width="128" height="75"/>
         <element name="Portfolio" positionX="-155" positionY="-378" width="128" height="90"/>
-        <element name="PortfolioItem" positionX="-92" positionY="27" width="128" height="210"/>
+        <element name="PortfolioItem" positionX="-92" positionY="27" width="128" height="225"/>
         <element name="Theme" positionX="27" positionY="-243" width="128" height="105"/>
         <element name="User" positionX="-560" positionY="-297" width="128" height="150"/>
     </elements>

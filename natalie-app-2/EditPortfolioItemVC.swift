@@ -48,9 +48,9 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var fontSizeStepper: UIStepper!
-    @IBOutlet weak var storePicker: UIPickerView!
+    @IBOutlet weak var fontPicker: UIPickerView!
+    @IBOutlet weak var colorSlider: UISlider!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,13 +61,8 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         fontSizeStepper.autorepeat = true
         fontSizeStepper.maximumValue = 36
         
-        storePicker.delegate = self
-        storePicker.dataSource = self
-        
-        storePicker.layer.borderWidth = 1
-        storePicker.layer.borderColor = UIColor.init(red: 0.0, green: 122/255, blue: 255/255, alpha: 1.0).cgColor
-        storePicker.layer.cornerRadius = 4
-        //storePicker.layer.backgroundColor = UIColor.init(red: 9.0, green: 22.0, blue: 45.0, alpha: 1).cgColor
+        fontPicker.delegate = self
+        fontPicker.dataSource = self
         
         self.title = "edit \(selectedBackground.name)"
         backgroundImage.image = UIImage(contentsOfFile: selectedBackground.imageURL)
@@ -103,18 +98,15 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        print("textViewDidBeginEditting")
         changeTextViewStyle()
         
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        print("textViewDidChange")
         saveQuote(text: textView.text)
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        print("textViewDidEndEditing")
         
     }
     
@@ -145,7 +137,6 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     func imageViewTapped(_ sender: UITapGestureRecognizer){
         print("imageViewTapped")
         unchangeTextViewStyle()
-
     }
     
     func adjustTextViewWidth(textView: UITextView) {
@@ -183,17 +174,21 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     func changeTextViewStyle() {
         let range = NSRange(location: 0, length: quoteText.text.characters.count)
         let attributedText = NSMutableAttributedString(string: quoteText.text)
-        attributedText.addAttributes([NSBackgroundColorAttributeName: UIColor.black, NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name:(quoteText.font?.familyName)!, size: (quoteText.font?.pointSize)!)!], range: range)
+        let text = NSMutableParagraphStyle()
+        text.alignment = .center
+        attributedText.addAttributes([NSBackgroundColorAttributeName: UIColor.black, NSForegroundColorAttributeName: quoteText.textColor!, NSFontAttributeName: UIFont(name:(quoteText.font?.familyName)!, size: (quoteText.font?.pointSize)!)!, NSParagraphStyleAttributeName: text ], range: range)
         quoteText.attributedText = attributedText
-        quoteText.tintColor = .white
+        //quoteText.tintColor = .white
     }
     
     func unchangeTextViewStyle() {
         let range = NSRange(location: 0, length: quoteText.text.characters.count)
         let attributedText = NSMutableAttributedString(string: quoteText.text)
-        attributedText.addAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name:(quoteText.font?.familyName)!, size: (quoteText.font?.pointSize)!)! ], range: range)
+        let text = NSMutableParagraphStyle()
+        text.alignment = .center
+        attributedText.addAttributes([NSForegroundColorAttributeName: quoteText.textColor!, NSFontAttributeName: UIFont(name:(quoteText.font?.familyName)!, size: (quoteText.font?.pointSize)!)!, NSParagraphStyleAttributeName: text ], range: range)
         quoteText.attributedText = attributedText
-        quoteText.tintColor = .white
+        //quoteText.tintColor = .white
         quoteText.resignFirstResponder()
     }
     
@@ -205,7 +200,6 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     func newGestureCoords(point: CGPoint) -> CGPoint {
         let backgroundImageFrame = self.backgroundImage.frame
-        
         if point.x < 0 {
             return CGPoint(x: point.x + 1, y: point.y)
         } else if(point.x > backgroundImageFrame.width) {
@@ -217,17 +211,40 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         }
     }
     
+    @IBAction func colorSliderChanged(_ sender: UISlider) {
+        let newColor = uiColorFromHex(rgbValue: colors[Int(sender.value)])
+        quoteText.textColor = newColor
+        saveFontColor(colorInt: colors[Int(sender.value)])
+    }
+    
+    func uiColorFromHex(rgbValue: Int) -> UIColor {
+        let red =   CGFloat((rgbValue & 0xFF0000) >> 16) / 0xFF
+        let green = CGFloat((rgbValue & 0x00FF00) >> 8) / 0xFF
+        let blue =  CGFloat(rgbValue & 0x0000FF) / 0xFF
+        let alpha = CGFloat(1.0)
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
+    
     @IBAction func fontSizeStepperChanged(_ sender: UIStepper) {
         quoteText.font = quoteText.font?.withSize(CGFloat(sender.value))
         adjustTextViewWidth(textView: quoteText)
         saveFontSize(size: sender.value)
-        changeTextViewStyle()
-        //quoteText.resignFirstResponder()
+        //changeTextViewStyle()
     }
     
     func saveLabelPostion(point: CGPoint){
         selectedPortfolioItem.x_position = Double(point.x)
         selectedPortfolioItem.y_position = Double(point.y)
+        ad.saveContext()
+    }
+    
+    func saveFontFamily(font: UIFont){
+        selectedPortfolioItem.font_family = font.familyName
+        ad.saveContext()
+    }
+    
+    func saveFontColor(colorInt: Int){
+        selectedPortfolioItem.font_color = Int64(colorInt)
         ad.saveContext()
     }
     

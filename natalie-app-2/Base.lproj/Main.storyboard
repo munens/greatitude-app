@@ -657,20 +657,20 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="mOL-ys-rzx">
-                                        <rect key="frame" x="44" y="107" width="308.5" height="63.5"/>
+                                        <rect key="frame" x="44" y="107" width="308.5" height="80"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="font-familly " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WZ-by-62m">
-                                                <rect key="frame" x="0.0" y="19.5" width="110.5" height="24.5"/>
+                                                <rect key="frame" x="0.0" y="28" width="110.5" height="24.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qt4-rd-17C">
-                                                <rect key="frame" x="145.5" y="0.0" width="163" height="63.5"/>
+                                                <rect key="frame" x="145.5" y="0.0" width="163" height="80"/>
                                                 <color key="backgroundColor" red="0.03625991043" green="0.085395302490000005" blue="0.17658656510000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="63" id="VNS-dS-MBg"/>
+                                                    <constraint firstAttribute="height" constant="80" id="VNS-dS-MBg"/>
                                                     <constraint firstAttribute="width" constant="163" id="y4G-mf-DoA"/>
                                                 </constraints>
                                             </pickerView>
@@ -678,7 +678,7 @@
                                         <color key="backgroundColor" red="0.03625991043" green="0.085395302490000005" blue="0.17658656510000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="ipN-9T-hhf">
-                                        <rect key="frame" x="55" y="192.5" width="312" height="52"/>
+                                        <rect key="frame" x="55" y="209" width="312" height="52"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="font-color" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAH-0A-GVV">
                                                 <rect key="frame" x="0.0" y="0.0" width="92" height="24.5"/>
@@ -696,8 +696,11 @@
                                                             <constraint firstAttribute="height" constant="17" id="w0V-d7-aC8"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YcA-PV-eys">
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="13.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="YcA-PV-eys">
                                                         <rect key="frame" x="-2" y="22" width="207" height="31"/>
+                                                        <connections>
+                                                            <action selector="colorSliderChanged:" destination="tDy-Pg-y5z" eventType="valueChanged" id="Egg-nR-Vh4"/>
+                                                        </connections>
                                                     </slider>
                                                 </subviews>
                                             </stackView>
@@ -735,10 +738,11 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImage" destination="4zx-Jd-Rsf" id="9Ng-i1-OKm"/>
+                        <outlet property="colorSlider" destination="YcA-PV-eys" id="10L-Kj-dd4"/>
+                        <outlet property="fontPicker" destination="Qt4-rd-17C" id="kEc-iV-XsQ"/>
                         <outlet property="fontSizeStepper" destination="Lmm-SR-wR0" id="riy-nu-R6U"/>
                         <outlet property="navigationBar" destination="Y97-i8-80G" id="sjG-0e-WP7"/>
                         <outlet property="segment" destination="3vS-JA-I8r" id="lzK-eJ-oVS"/>
-                        <outlet property="storePicker" destination="Qt4-rd-17C" id="nvQ-8E-jZM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqg-fW-OdL" userLabel="First Responder" sceneMemberID="firstResponder"/>
