@@ -42,6 +42,8 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     var selectedBackground: BackgroundImage!
     
+    var selectedImage = Image(context: context)
+    
     var backgrounds = [BackgroundImage]()
     var backgroundList = [BackgroundImage]()
     
@@ -200,6 +202,10 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func editBtnPressed(_ sender: Any) {
+        
+        selectedPortfolioItem.image = selectedImage
+        ad.saveContext()
+        
         let editPortfolioItemVC = self.storyboard?.instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
         editPortfolioItemVC.selectedPortfolioItem = selectedPortfolioItem
         editPortfolioItemVC.selectedUser = selectedUser
@@ -209,6 +215,14 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! BackgroundImageCell
+        let cellImage = cell.backgroundImageView.image
+        let img = UIImageJPEGRepresentation(cellImage!, 1)
+        let thumbnail = UIImageJPEGRepresentation(cellImage!, 0.1)
+        
+        selectedImage.img = img! as NSData
+        selectedImage.thumbnail = thumbnail! as NSData
         
     }
     

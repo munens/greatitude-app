@@ -40,7 +40,8 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     let fonts = UIFont.familyNames
     let colors = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
-    let filters = CIFilter.filterNames(inCategory: "CICategoryBlur") + CIFilter.filterNames(inCategory: "CICategoryColorAdjustment")
+    //let filters = CIFilter.filterNames(inCategory: "CICategoryBlur") + CIFilter.filterNames(inCategory: "CICategoryColorAdjustment")
+    let filters = CIFilter.filterNames(inCategory: "CICategoryColorAdjustment")
     //CIFilter.filterNames(inCategories: ["CICategoryBlur", "CICategoryColorAdjustment"])
     
     var quoteText = UITextView()
@@ -72,7 +73,10 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         filterCollectionView.dataSource = self
         
         self.title = "edit \(selectedBackground.name)"
-        backgroundImage.image = UIImage(contentsOfFile: selectedBackground.imageURL)
+        
+        let imageData = selectedPortfolioItem.image?.img
+        backgroundImage.image = UIImage(data: imageData! as Data)
+        //backgroundImage.image = UIImage(contentsOfFile: selectedBackground.imageURL)
         
         let imageTapRecognizer = UITapGestureRecognizer(target: self, action:#selector(self.imageViewTapped(_:)))
         imageTapRecognizer.delegate = self as? UIGestureRecognizerDelegate
@@ -121,8 +125,10 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as? FilterCell {
-            
-            let filteredImage = addFilterToImage(image: backgroundImage.image!, filter: filters[indexPath.row])
+            let thumbnail = selectedPortfolioItem.image?.thumbnail
+            let thumbnailImage = UIImage(data: (thumbnail!) as Data)
+            let filteredImage = addFilterToImage(image: thumbnailImage! , filter: filters[indexPath.row])
+            //let filteredImage = addFilterToImage(image: backgroundImage.image!, filter: filters[indexPath.row])
             
             //cell.configureCell(filterImage: backgroundImage.image!)
             cell.configureCell(filterImage: filteredImage)
@@ -149,8 +155,16 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! FilterCell
-        backgroundImage.image = cell.filterImageView.image
+        let currentFilter = filters[indexPath.row]
+        saveFilter(filter: currentFilter)
+        //let filteredImage = addFilterToImage(image: backgroundImage.image!, filter: currentFilter)
+        let imageData = selectedPortfolioItem.image?.img
+        let filteredImage = addFilterToImage(image: UIImage(data: imageData! as Data)!, filter: currentFilter)
+        
+        backgroundImage.image = filteredImage
+        
+        //let cell = collectionView.cellForItem(at: indexPath) as! FilterCell
+        //backgroundImage.image = cell.filterImageView.image
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -162,7 +176,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 60.0, height: 60.0)
+        return CGSize(width: 65.0, height: 65.0)
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -317,6 +331,11 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         adjustTextViewWidth(textView: quoteText)
         saveFontSize(size: sender.value)
         //changeTextViewStyle()
+    }
+    
+    func saveFilter(filter: String){
+        selectedPortfolioItem.filter_type = filter
+        ad.saveContext()
     }
     
     func saveLabelPostion(point: CGPoint){
