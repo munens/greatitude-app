@@ -167,29 +167,28 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-        let cells = collectionView.visibleCells
+        let cells = collectionView.visibleCells as! [BackgroundImageCell]
         selectedBackground = nil
         
         for cell in cells {
-            let cellItems = cell.subviews[0]
-            let cellImage = cellItems.subviews[0]
-            let cellLabel = cellItems.subviews[1] as? UILabel
-            cellImage.layer.borderColor = nil
-            cellImage.layer.borderWidth = 0
+            let cellImageView = cell.backgroundImageView
+            let cellLabel = cell.backgroundImageLabel
+            
+            cellImageView?.layer.borderColor = nil
+            cellImageView?.layer.borderWidth = 0
             
             cellLabel?.textColor = UIColor.black
             cellLabel?.shadowColor = nil
             cellLabel?.shadowOffset = CGSize(width: 0.0, height: 0.0)
-            
         }
         
-        let cell = collectionView.cellForItem(at: indexPath)
-        let cellItems = cell?.subviews[0]
+        let cell = collectionView.cellForItem(at: indexPath) as! BackgroundImageCell
         
-        let cellLabel = cellItems?.subviews[1] as? UILabel
-        let cellImage = cellItems?.subviews[0]
-        cellImage?.layer.borderColor = UIColor.blue.cgColor
-        cellImage?.layer.borderWidth = 3
+        let cellImageView = cell.backgroundImageView
+        let cellLabel = cell.backgroundImageLabel
+    
+        cellImageView?.layer.borderColor = UIColor.blue.cgColor
+        cellImageView?.layer.borderWidth = 3
         
         cellLabel?.shadowColor = UIColor.black
         cellLabel?.shadowOffset = CGSize(width: 0.5, height: 0.0)

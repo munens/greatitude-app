@@ -728,10 +728,6 @@
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PwE-6v-CYk">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="ZIu-M4-opG"/>
-                                                                <constraint firstAttribute="height" constant="60" id="ZVf-uL-CV8"/>
-                                                            </constraints>
                                                         </imageView>
                                                     </subviews>
                                                 </view>

@@ -40,7 +40,8 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     let fonts = UIFont.familyNames
     let colors = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
-    let filters = CIFilter.filterNames(inCategories: ["CICategoryBlur", "CICategoryColorAdjustment", "CICategoryColorEffect"])
+    let filters = CIFilter.filterNames(inCategory: "CICategoryBlur") + CIFilter.filterNames(inCategory: "CICategoryColorAdjustment")
+    //CIFilter.filterNames(inCategories: ["CICategoryBlur", "CICategoryColorAdjustment"])
     
     var quoteText = UITextView()
     var imageQuoteLabel = UILabel()
@@ -55,8 +56,6 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let selectedSegment = segment.selectedSegmentIndex
         
         // Do any additional setup after loading the view.
         
@@ -122,15 +121,36 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as? FilterCell {
-            //let coreImage = CIImage(image: backgroundImage.image!)
-            cell.configureCell(filterImage: backgroundImage.image!)
+            
+            let filteredImage = addFilterToImage(image: backgroundImage.image!, filter: filters[indexPath.row])
+            
+            //cell.configureCell(filterImage: backgroundImage.image!)
+            cell.configureCell(filterImage: filteredImage)
+            return cell
         }
         
         return UICollectionViewCell()
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         
+        let cells = collectionView.visibleCells as! [FilterCell]
+        
+        for cell in cells {
+            let filterCell = cell.filterImageView
+            filterCell?.layer.borderWidth = 0
+            filterCell?.layer.borderColor = nil
+        }
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! FilterCell
+        let cellImageView = cell.filterImageView
+        cellImageView?.layer.borderColor = UIColor.blue.cgColor
+        cellImageView?.layer.borderWidth = 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! FilterCell
+        backgroundImage.image = cell.filterImageView.image
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -170,7 +190,6 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     }
     
     func imageViewTapped(_ sender: UITapGestureRecognizer){
-        print("imageViewTapped")
         unchangeTextViewStyle()
     }
     
@@ -204,6 +223,24 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
             }
         }
 
+    }
+    
+    func addFilterToImage(image: UIImage, filter: String) -> UIImage {
+        let ciContext = CIContext(options: nil)
+        let coreImage = CIImage(image: image)
+        let filter = CIFilter(name: filter)
+        
+        // set all filters values as default
+        filter!.setDefaults()
+        
+        // give our filter an image and also a key: KCInputImageKey is a key fo a CIImage object used an an input image.
+        filter!.setValue(coreImage, forKey: kCIInputImageKey)
+        
+        // return the value related to the kCIInputImageKey that has just been set above.
+        let filteredImageData = filter!.value(forKey: kCIOutputImageKey) as! CIImage
+        let filteredImageRef = ciContext.createCGImage(filteredImageData, from: filteredImageData.extent)
+        
+        return UIImage(cgImage: filteredImageRef!)
     }
     
     func changeTextViewStyle() {
