@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     private var _selectedBackground: BackgroundImage!
     private var _portfolioItem: PortfolioItem!
@@ -50,11 +50,25 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     @IBOutlet weak var fontSizeStepper: UIStepper!
     @IBOutlet weak var fontPicker: UIPickerView!
     @IBOutlet weak var colorSlider: UISlider!
+    @IBOutlet weak var filterCollectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let selectedSegment = segment.selectedSegmentIndex
+        
         // Do any additional setup after loading the view.
+        if selectedSegment == 0 {
+            fontPicker.isHidden = true
+            fontSizeStepper.isHidden = true
+            colorSlider.isHidden = true
+        } else {
+            filterCollectionView.isHidden = true
+            fontPicker.isHidden = false
+            fontSizeStepper.isHidden = false
+            colorSlider.isHidden = false
+        }
+        
         quoteText.delegate = self
         
         fontSizeStepper.wraps = true
@@ -63,6 +77,9 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         
         fontPicker.delegate = self
         fontPicker.dataSource = self
+        
+        filterCollectionView.delegate = self
+        filterCollectionView.dataSource = self
         
         self.title = "edit \(selectedBackground.name)"
         backgroundImage.image = UIImage(contentsOfFile: selectedBackground.imageURL)
@@ -108,6 +125,26 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     func textViewDidEndEditing(_ textView: UITextView) {
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 60.0, height: 60.0)
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -223,6 +260,17 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         let blue =  CGFloat(rgbValue & 0x0000FF) / 0xFF
         let alpha = CGFloat(1.0)
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
+    @IBAction func segmentTapped(_ sender: Any) {
+        let selectedSegment = segment.selectedSegmentIndex
+        selectedSegment == 0 ? selectedSegment == 1 : selectedSegment == 0
+        
+        if selectedSegment == 0 {
+            
+        } else {
+            
+        }
+        
     }
     
     @IBAction func fontSizeStepperChanged(_ sender: UIStepper) {
