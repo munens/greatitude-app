@@ -40,6 +40,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     let fonts = UIFont.familyNames
     let colors = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
+    let filters = CIFilter.filterNames(inCategories: ["CICategoryBlur", "CICategoryColorAdjustment", "CICategoryColorEffect"])
     
     var quoteText = UITextView()
     var imageQuoteLabel = UILabel()
@@ -58,16 +59,6 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         let selectedSegment = segment.selectedSegmentIndex
         
         // Do any additional setup after loading the view.
-        if selectedSegment == 0 {
-            fontPicker.isHidden = true
-            fontSizeStepper.isHidden = true
-            colorSlider.isHidden = true
-        } else {
-            filterCollectionView.isHidden = true
-            fontPicker.isHidden = false
-            fontSizeStepper.isHidden = false
-            colorSlider.isHidden = false
-        }
         
         quoteText.delegate = self
         
@@ -107,6 +98,8 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         quoteText.addGestureRecognizer(labelGesture)
         quoteText.isUserInteractionEnabled = true
         self.view.addSubview(quoteText)
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -128,6 +121,11 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as? FilterCell {
+            //let coreImage = CIImage(image: backgroundImage.image!)
+            cell.configureCell(filterImage: backgroundImage.image!)
+        }
+        
         return UICollectionViewCell()
     }
     
@@ -140,7 +138,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return filters.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -261,14 +259,18 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         let alpha = CGFloat(1.0)
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
+    
     @IBAction func segmentTapped(_ sender: Any) {
-        let selectedSegment = segment.selectedSegmentIndex
-        selectedSegment == 0 ? selectedSegment == 1 : selectedSegment == 0
-        
-        if selectedSegment == 0 {
-            
+        if segment.selectedSegmentIndex == 0 {
+            filterCollectionView.isHidden = false
+            fontSizeStepper.isHidden = true
+            fontPicker.isHidden = true
+            colorSlider.isHidden = true
         } else {
-            
+            filterCollectionView.isHidden = true
+            fontSizeStepper.isHidden = false
+            fontPicker.isHidden = false
+            colorSlider.isHidden = false
         }
         
     }
