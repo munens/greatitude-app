@@ -218,8 +218,8 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         
         let cell = collectionView.cellForItem(at: indexPath) as! BackgroundImageCell
         let cellImage = cell.backgroundImageView.image
-        let img = UIImageJPEGRepresentation(cellImage!, 1)
-        let thumbnail = UIImageJPEGRepresentation(cellImage!, 0.1)
+        let img = UIImageJPEGRepresentation(cellImage!, 1.0)
+        let thumbnail = UIImageJPEGRepresentation(cellImage!, 0.0)
         
         selectedImage.img = img! as NSData
         selectedImage.thumbnail = thumbnail! as NSData

@@ -41,8 +41,21 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     let fonts = UIFont.familyNames
     let colors = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
     //let filters = CIFilter.filterNames(inCategory: "CICategoryBlur") + CIFilter.filterNames(inCategory: "CICategoryColorAdjustment")
-    let filters = CIFilter.filterNames(inCategory: "CICategoryColorAdjustment")
-    //CIFilter.filterNames(inCategories: ["CICategoryBlur", "CICategoryColorAdjustment"])
+    //let filters = CIFilter.filterNames(inCategory: "CICategoryColorAdjustment")
+    let filters = [
+        "CIPhotoEffectChrome",
+        "CIPhotoEffectFade",
+        "CIPhotoEffectInstant",
+        "CIPhotoEffectNoir",
+        "CIPhotoEffectProcess",
+        "CIPhotoEffectTonal",
+        "CIPhotoEffectTransfer",
+        "CISepiaTone",
+        "CIGaussianBlur",
+        "CICMYKHalftone",
+        "CICrystallize"
+    ]
+    let ciContext = CIContext(options: nil)
     
     var quoteText = UITextView()
     var imageQuoteLabel = UILabel()
@@ -54,6 +67,9 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     @IBOutlet weak var fontPicker: UIPickerView!
     @IBOutlet weak var colorSlider: UISlider!
     @IBOutlet weak var filterCollectionView: UICollectionView!
+    @IBOutlet weak var fontSizeStackView: UIStackView!
+    @IBOutlet weak var fontFamilyStackView: UIStackView!
+    @IBOutlet weak var colorSliderStackView: UIStackView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +88,14 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         filterCollectionView.delegate = self
         filterCollectionView.dataSource = self
         
-        self.title = "edit \(selectedBackground.name)"
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        //layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        filterCollectionView.collectionViewLayout = layout
+        
+        navigationBar.topItem.title = "edit \(selectedBackground.name)"
         
         let imageData = selectedPortfolioItem.image?.img
         backgroundImage.image = UIImage(data: imageData! as Data)
@@ -102,7 +125,9 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         quoteText.isUserInteractionEnabled = true
         self.view.addSubview(quoteText)
         
-        
+        fontSizeStackView.isHidden = true
+        fontFamilyStackView.isHidden = true
+        colorSliderStackView.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -240,7 +265,6 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     }
     
     func addFilterToImage(image: UIImage, filter: String) -> UIImage {
-        let ciContext = CIContext(options: nil)
         let coreImage = CIImage(image: image)
         let filter = CIFilter(name: filter)
         
@@ -297,6 +321,15 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         }
     }
     
+    @IBAction func discardBtnPressed(_ sender: Any) {
+        
+    }
+    
+    @IBAction func saveBtnPressed(_ sender: Any) {
+        
+    }
+    
+    
     @IBAction func colorSliderChanged(_ sender: UISlider) {
         let newColor = uiColorFromHex(rgbValue: colors[Int(sender.value)])
         quoteText.textColor = newColor
@@ -314,14 +347,14 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     @IBAction func segmentTapped(_ sender: Any) {
         if segment.selectedSegmentIndex == 0 {
             filterCollectionView.isHidden = false
-            fontSizeStepper.isHidden = true
-            fontPicker.isHidden = true
-            colorSlider.isHidden = true
+            fontSizeStackView.isHidden = true
+            fontFamilyStackView.isHidden = true
+            colorSliderStackView.isHidden = true
         } else {
             filterCollectionView.isHidden = true
-            fontSizeStepper.isHidden = false
-            fontPicker.isHidden = false
-            colorSlider.isHidden = false
+            fontSizeStackView.isHidden = false
+            fontFamilyStackView.isHidden = false
+            colorSliderStackView.isHidden = false
         }
         
     }

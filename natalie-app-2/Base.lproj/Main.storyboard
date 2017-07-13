@@ -617,14 +617,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y97-i8-80G">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="vK1-eJ-UN3"/>
-                                </items>
-                            </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zx-Jd-Rsf">
-                                <rect key="frame" x="0.0" y="70" width="375" height="299"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4zx-Jd-Rsf">
+                                <rect key="frame" x="0.0" y="69" width="375" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="Er6-3Z-0ki"/>
                                 </constraints>
@@ -711,7 +705,7 @@
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UDl-RU-VIR">
                                         <rect key="frame" x="8" y="44" width="359" height="238"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gt0-HX-z7D">
                                             <size key="itemSize" width="65" height="65"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -727,15 +721,15 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PwE-6v-CYk">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                                         </imageView>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
                                                     <constraint firstItem="PwE-6v-CYk" firstAttribute="top" secondItem="WuG-UK-PWp" secondAttribute="top" id="0EY-XJ-bjL"/>
-                                                    <constraint firstAttribute="trailing" secondItem="PwE-6v-CYk" secondAttribute="trailing" constant="5" id="R0b-NX-gZa"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PwE-6v-CYk" secondAttribute="trailing" id="Fv1-mz-nni"/>
                                                     <constraint firstItem="PwE-6v-CYk" firstAttribute="leading" secondItem="WuG-UK-PWp" secondAttribute="leading" id="cSz-SO-zWF"/>
-                                                    <constraint firstAttribute="bottom" secondItem="PwE-6v-CYk" secondAttribute="bottom" constant="5" id="vvr-1I-aVK"/>
+                                                    <constraint firstAttribute="bottom" secondItem="PwE-6v-CYk" secondAttribute="bottom" id="qf6-JS-y1J"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="filterImageView" destination="PwE-6v-CYk" id="p42-fX-9Bw"/>
@@ -766,13 +760,36 @@
                                     <constraint firstItem="mOL-ys-rzx" firstAttribute="leading" secondItem="pew-08-3Gb" secondAttribute="leading" constant="44" id="xk2-oH-Gtx"/>
                                 </constraints>
                             </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y97-i8-80G">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="KLV-M6-Lws"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="vK1-eJ-UN3">
+                                        <barButtonItem key="leftBarButtonItem" title="Discard" id="dNw-XT-Dag">
+                                            <connections>
+                                                <action selector="discardBtnPressed:" destination="tDy-Pg-y5z" id="Zbq-pO-ga4"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="b3Y-Wx-xcO">
+                                            <connections>
+                                                <action selector="saveBtnPressed:" destination="tDy-Pg-y5z" id="Nnw-6R-6wv"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="4zx-Jd-Rsf" firstAttribute="top" secondItem="Y97-i8-80G" secondAttribute="bottom" constant="5" id="0Ex-mi-iRj"/>
+                            <constraint firstItem="Y97-i8-80G" firstAttribute="leading" secondItem="xfH-eZ-RDv" secondAttribute="leading" id="6ta-cb-rEd"/>
                             <constraint firstItem="pew-08-3Gb" firstAttribute="leading" secondItem="xfH-eZ-RDv" secondAttribute="leading" id="8uV-bI-eJS"/>
+                            <constraint firstItem="Y97-i8-80G" firstAttribute="top" secondItem="flM-OT-t9q" secondAttribute="bottom" id="H7m-qW-B61"/>
                             <constraint firstItem="4zx-Jd-Rsf" firstAttribute="leading" secondItem="xfH-eZ-RDv" secondAttribute="leading" id="W9X-uF-kHR"/>
                             <constraint firstAttribute="trailing" secondItem="pew-08-3Gb" secondAttribute="trailing" id="eRK-LP-1zQ"/>
-                            <constraint firstItem="4zx-Jd-Rsf" firstAttribute="top" secondItem="Y97-i8-80G" secondAttribute="bottom" constant="25" id="fYA-18-Gag"/>
+                            <constraint firstAttribute="trailing" secondItem="Y97-i8-80G" secondAttribute="trailing" id="hjA-xR-HXN"/>
                             <constraint firstItem="PNc-GX-4je" firstAttribute="top" secondItem="pew-08-3Gb" secondAttribute="bottom" id="uYq-sU-h4c"/>
                             <constraint firstAttribute="trailing" secondItem="4zx-Jd-Rsf" secondAttribute="trailing" id="yEi-Ie-k8K"/>
                         </constraints>
@@ -780,8 +797,11 @@
                     <connections>
                         <outlet property="backgroundImage" destination="4zx-Jd-Rsf" id="9Ng-i1-OKm"/>
                         <outlet property="colorSlider" destination="YcA-PV-eys" id="10L-Kj-dd4"/>
+                        <outlet property="colorSliderStackView" destination="ipN-9T-hhf" id="sAN-ER-0uS"/>
                         <outlet property="filterCollectionView" destination="UDl-RU-VIR" id="4Sl-Ok-OH9"/>
+                        <outlet property="fontFamilyStackView" destination="mOL-ys-rzx" id="FEt-gI-dQ6"/>
                         <outlet property="fontPicker" destination="Qt4-rd-17C" id="kEc-iV-XsQ"/>
+                        <outlet property="fontSizeStackView" destination="UYH-zV-IkN" id="iFx-EE-2Pb"/>
                         <outlet property="fontSizeStepper" destination="Lmm-SR-wR0" id="riy-nu-R6U"/>
                         <outlet property="navigationBar" destination="Y97-i8-80G" id="sjG-0e-WP7"/>
                         <outlet property="segment" destination="3vS-JA-I8r" id="lzK-eJ-oVS"/>
