@@ -10,6 +10,7 @@
 		3424147DA2219AB5C178BE71 /* Pods_natalie_app_2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E75CD80181D04DB59C55CD /* Pods_natalie_app_2Tests.framework */; };
 		86C4681EA3A354B0732737CD /* Pods_natalie_app_2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7658D75CD64A7B62E02DD2B /* Pods_natalie_app_2UITests.framework */; };
 		C539B1EC1EAC53A4006C3233 /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = C539B1EB1EAC53A4006C3233 /* Welcome.png */; };
+		C55472691F1EC6E80017C66E /* testVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55472681F1EC6E80017C66E /* testVC.swift */; };
 		C5628FBF1ECBCFDD00A3555F /* QuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */; };
 		C586AE631EEF23D30084671B /* FBSDKLoginKit in Frameworks */ = {isa = PBXBuildFile; fileRef = C586AE621EEF23D30084671B /* FBSDKLoginKit */; };
 		C58DE6B21F0B151800A90D28 /* ChooseBackgroundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD5DA11ECE61F400223064 /* ChooseBackgroundVC.swift */; };
@@ -70,6 +71,7 @@
 		91D90C6CD83E182A184F8A63 /* Pods_natalie_app_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_natalie_app_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49BCB2CA448B48755E1AE70 /* Pods-natalie-app-2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natalie-app-2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-natalie-app-2/Pods-natalie-app-2.debug.xcconfig"; sourceTree = "<group>"; };
 		C539B1EB1EAC53A4006C3233 /* Welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Welcome.png; sourceTree = "<group>"; };
+		C55472681F1EC6E80017C66E /* testVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testVC.swift; sourceTree = "<group>"; };
 		C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionVC.swift; sourceTree = "<group>"; };
 		C586AE621EEF23D30084671B /* FBSDKLoginKit */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = FBSDKLoginKit; sourceTree = "<group>"; };
 		C597F4001F16738C006F4944 /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */,
 				C5AD5DA11ECE61F400223064 /* ChooseBackgroundVC.swift */,
 				C5A0D1FF1ED672E20053CDCD /* EditPortfolioItemVC.swift */,
+				C55472681F1EC6E80017C66E /* testVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 			files = (
 				C5F131691EBCF92D00624711 /* ImageQuoteCell.swift in Sources */,
 				C5628FBF1ECBCFDD00A3555F /* QuestionVC.swift in Sources */,
+				C55472691F1EC6E80017C66E /* testVC.swift in Sources */,
 				C597F4011F16738C006F4944 /* FilterCell.swift in Sources */,
 				E8B611141E9F2A520019EBED /* MainVC.swift in Sources */,
 				C5AA46F71F044F6D00F23F12 /* BackgroundImage.swift in Sources */,

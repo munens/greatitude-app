@@ -95,7 +95,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         //layout.scrollDirection = UICollectionViewScrollDirection.horizontal
         filterCollectionView.collectionViewLayout = layout
         
-        navigationBar.topItem.title = "edit \(selectedBackground.name)"
+        navigationBar.topItem?.title = "edit \(selectedBackground.name)"
         
         let imageData = selectedPortfolioItem.image?.img
         backgroundImage.image = UIImage(data: imageData! as Data)
@@ -326,6 +326,15 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
+        UIGraphicsBeginImageContextWithOptions(backgroundImage.frame.size, true, 0.0)
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let resultingImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainVC
+        mainVC.selectedUser = selectedUser
+        present(mainVC, animated: true, completion: nil)
+        
         
     }
     
