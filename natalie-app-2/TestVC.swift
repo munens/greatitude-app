@@ -8,7 +8,7 @@
 
 import UIKit
 
-class testVC: UIViewController {
+class TestVC: UIViewController {
     
     private var _selectedImage: UIImage!
     @IBOutlet weak var newImage: UIImageView!
@@ -33,6 +33,9 @@ class testVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func backBtnPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

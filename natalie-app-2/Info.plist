@@ -4,6 +4,8 @@
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Access to photos is required for using your own background</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Access to camers is necessary for creating your own background</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
 	<key>CFBundleDevelopmentRegion</key>

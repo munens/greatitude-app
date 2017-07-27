@@ -62,6 +62,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var fontSizeStepper: UIStepper!
     @IBOutlet weak var fontPicker: UIPickerView!
@@ -326,15 +327,20 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
-        UIGraphicsBeginImageContextWithOptions(backgroundImage.frame.size, true, 0.0)
-        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        UIGraphicsBeginImageContextWithOptions(backgroundView.bounds.size, true, 0.0)
+        backgroundView.subviews[0].layer.render(in: UIGraphicsGetCurrentContext()!)
         let resultingImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainVC
-        mainVC.selectedUser = selectedUser
-        present(mainVC, animated: true, completion: nil)
+//        let finalImage = UIImageJPEGRepresentation(resultingImage!, 1.0)
+//        let finalThumbnail = UIImageJPEGRepresentation(resultingImage!, 0.3)
+//        selectedPortfolioItem.image?.img = finalImage! as NSData
+//        selectedPortfolioItem.image?.thumbnail = finalThumbnail! as NSData
         
+        let testVC = self.storyboard?.instantiateViewController(withIdentifier: "TestVC") as! TestVC
+        testVC.selectedImage = resultingImage!
+        
+        present(testVC, animated: true, completion: nil)
         
     }
     

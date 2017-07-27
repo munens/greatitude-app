@@ -30,6 +30,9 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
     @IBOutlet weak var nxtBtn: UIButton!
     
     var imagePickerController: UIImagePickerController!
+    
+    var portfolioItem = PortfolioItem(context: context)
+    var selectedImage = Image(context: context)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,12 +100,44 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
         }
     }
     
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
-           
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            let img = UIImageJPEGRepresentation(image, 1.0)
+            let thumbnail = UIImageJPEGRepresentation(image, 0.0)
+            
+            
+            selectedImage.img = img! as NSData
+            selectedImage.thumbnail = thumbnail! as NSData
+            
+            if let quote = questionTextView.text {
+                portfolioItem.quote = quote
+            }
+            
+            portfolioItem.user = selectedUser
+            portfolioItem.image = selectedImage
+            
+            ad.saveContext()
+            imagePickerController.dismiss(animated: true, completion: nil)
         }
+        
         imagePickerController.dismiss(animated: true, completion: nil)
+        
+        let selectedBackground = BackgroundImage(name: "Sundays at Dawn", filename: "", imageURL: "")
+        
+        let editPortfolioEditVC = self.storyboard?.instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
+        editPortfolioEditVC.selectedUser = selectedUser
+        editPortfolioEditVC.selectedBackground = selectedBackground
+        editPortfolioEditVC.selectedPortfolioItem = portfolioItem
+        self.present(editPortfolioEditVC, animated: true, completion: nil)
     }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -116,7 +151,12 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
     
     
     @IBAction func selectPicBtnPressed(_ sender: Any) {
-        present(imagePickerController, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
+            imagePickerController.allowsEditing = false
+            present(imagePickerController, animated: true, completion: nil)
+        }
+        
     }
     
     @IBAction func nextBtnPressed(_ sender: Any) {
