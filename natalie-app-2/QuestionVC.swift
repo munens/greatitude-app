@@ -108,6 +108,23 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
             let img = UIImageJPEGRepresentation(image, 1.0)
             let thumbnail = UIImageJPEGRepresentation(image, 0.0)
             
+            selectedImage.img = img! as NSData
+            selectedImage.thumbnail = thumbnail! as NSData
+            
+            if let quote = questionTextView.text {
+                portfolioItem.quote = quote
+            }
+            
+            portfolioItem.user = selectedUser
+            portfolioItem.image = selectedImage
+            
+            ad.saveContext()
+            imagePickerController.dismiss(animated: true, completion: nil)
+            
+        } else if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            
+            let img = UIImageJPEGRepresentation(image, 1.0)
+            let thumbnail = UIImageJPEGRepresentation(image, 0.0)
             
             selectedImage.img = img! as NSData
             selectedImage.thumbnail = thumbnail! as NSData
@@ -148,14 +165,26 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
         // Pass the selected object to the new view controller.
     }
     */
-    
-    
+
     @IBAction func selectPicBtnPressed(_ sender: Any) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
-            imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
-            imagePickerController.allowsEditing = false
-            present(imagePickerController, animated: true, completion: nil)
-        }
+        
+        let alertController = UIAlertController(title: "Select a photo", message: "Would you like to use the camera or choose and image from your gallery?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        
+        alertController.addAction(UIAlertAction(title: "Use camera", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction) in
+            
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+                self.imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
+                self.imagePickerController.allowsEditing = false
+                self.present(self.imagePickerController, animated: true, completion: nil)
+            }
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Use gallery", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction) in
+            self.present(self.imagePickerController, animated: true, completion: nil)
+        }))
+        
+        present(alertController, animated: true, completion: nil)
         
     }
     
