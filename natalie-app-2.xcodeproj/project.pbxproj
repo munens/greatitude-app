@@ -28,8 +28,7 @@
 		C5AA46F91F04508900F23F12 /* ThemeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA46F81F04508900F23F12 /* ThemeImage.swift */; };
 		C5AD5DA61ECE80F300223064 /* BackgroundImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD5DA51ECE80F300223064 /* BackgroundImageCell.swift */; };
 		C5EA08941EF322650089FA88 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EA08931EF322650089FA88 /* KeychainWrapper.m */; };
-		C5F131691EBCF92D00624711 /* ImageQuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F131681EBCF92D00624711 /* ImageQuoteCell.swift */; };
-		C5FB4D0E1EBD2BD000096321 /* ImageQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */; };
+		C5F131691EBCF92D00624711 /* PortfolioItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F131681EBCF92D00624711 /* PortfolioItemCell.swift */; };
 		E0CB7F5419ADEBCC6086D042 /* Pods_natalie_app_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D90C6CD83E182A184F8A63 /* Pods_natalie_app_2.framework */; };
 		E8B6103D1E9E68F90019EBED /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6103C1E9E68F90019EBED /* LoginVC.swift */; };
 		E8B610401E9E6F180019EBED /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8B6103E1E9E6F180019EBED /* Model.xcdatamodeld */; };
@@ -83,8 +82,7 @@
 		C5EA08911EF322640089FA88 /* natalie-app-2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "natalie-app-2-Bridging-Header.h"; sourceTree = "<group>"; };
 		C5EA08921EF322650089FA88 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
 		C5EA08931EF322650089FA88 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
-		C5F131681EBCF92D00624711 /* ImageQuoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageQuoteCell.swift; sourceTree = "<group>"; };
-		C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageQuote.swift; sourceTree = "<group>"; };
+		C5F131681EBCF92D00624711 /* PortfolioItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortfolioItemCell.swift; sourceTree = "<group>"; };
 		CC3F916E41D0E217415D5C39 /* Pods-natalie-app-2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natalie-app-2.release.xcconfig"; path = "Pods/Target Support Files/Pods-natalie-app-2/Pods-natalie-app-2.release.xcconfig"; sourceTree = "<group>"; };
 		E8B6103C1E9E68F90019EBED /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E8B6103F1E9E6F180019EBED /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -182,7 +180,7 @@
 		C5F131671EBCF90E00624711 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C5F131681EBCF92D00624711 /* ImageQuoteCell.swift */,
+				C5F131681EBCF92D00624711 /* PortfolioItemCell.swift */,
 				C5AD5DA51ECE80F300223064 /* BackgroundImageCell.swift */,
 				C597F4001F16738C006F4944 /* FilterCell.swift */,
 			);
@@ -192,7 +190,6 @@
 		C5FB4D0C1EBD2BA500096321 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C5FB4D0D1EBD2BD000096321 /* ImageQuote.swift */,
 				C5AA46F61F044F6D00F23F12 /* BackgroundImage.swift */,
 				C5AA46F81F04508900F23F12 /* ThemeImage.swift */,
 			);
@@ -576,13 +573,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5F131691EBCF92D00624711 /* ImageQuoteCell.swift in Sources */,
+				C5F131691EBCF92D00624711 /* PortfolioItemCell.swift in Sources */,
 				C5628FBF1ECBCFDD00A3555F /* QuestionVC.swift in Sources */,
 				C55472691F1EC6E80017C66E /* TestVC.swift in Sources */,
 				C597F4011F16738C006F4944 /* FilterCell.swift in Sources */,
 				E8B611141E9F2A520019EBED /* MainVC.swift in Sources */,
 				C5AA46F71F044F6D00F23F12 /* BackgroundImage.swift in Sources */,
-				C5FB4D0E1EBD2BD000096321 /* ImageQuote.swift in Sources */,
 				E8DE92AB1E9D447C007FC971 /* WelcomeVC.swift in Sources */,
 				C5AA46F91F04508900F23F12 /* ThemeImage.swift in Sources */,
 				C5AD5DA61ECE80F300223064 /* BackgroundImageCell.swift in Sources */,

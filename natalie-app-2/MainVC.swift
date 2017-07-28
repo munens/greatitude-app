@@ -16,6 +16,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     private var _user:User!
     @IBOutlet weak var tableView: UITableView!
     
+    var portfolioItems: [PortfolioItem] = []
     
     var selectedUser: User {
         get {
@@ -31,7 +32,9 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
-
+        
+        portfolioItems = selectedUser.portfolioItem!.sortedArray(using: [NSSortDescriptor(key: "created_at", ascending: true)]) as! [PortfolioItem]
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,12 +66,14 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        /*
         let tableViewCell = tableView.cellForRow(at: indexPath)
         tableViewCell?.layer.borderWidth = 4
         tableViewCell?.layer.borderColor = UIColor.blue.cgColor
         
-        let cell = tableViewCell as! ImageQuoteCell
+        let cell = tableViewCell as! PortfolioItemCell
         cell.quoteImageOverlay.isHidden = false
+        */
     }
     /*
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
@@ -87,8 +92,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create a dequeue reuseable cell here to return.
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageQuoteCell", for: indexPath) as? ImageQuoteCell {
-            cell.configureCell()
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "PortfolioItemCell", for: indexPath) as? PortfolioItemCell {
+            cell.configureCell(portfolioItem: portfolioItems[indexPath.row])
             return cell
         }
         
@@ -96,7 +101,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return portfolioItems.count
     }
     
     @IBAction func viewBtnPressed(_ sender: UIButton) {

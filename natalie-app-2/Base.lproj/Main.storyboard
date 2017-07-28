@@ -239,7 +239,7 @@
         <!--MainVC-->
         <scene sceneID="eL8-Su-14d">
             <objects>
-                <viewController id="KSr-ho-2PN" customClass="MainVC" customModule="natalie_app_2" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" id="KSr-ho-2PN" customClass="MainVC" customModule="natalie_app_2" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kn0-JU-rfo"/>
                         <viewControllerLayoutGuide type="bottom" id="e2U-wD-YlD"/>
@@ -267,7 +267,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="0.1994060359479452" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageQuoteCell" rowHeight="300" id="Fpw-hH-EJj" customClass="ImageQuoteCell" customModule="natalie_app_2" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PortfolioItemCell" rowHeight="300" id="Fpw-hH-EJj" customClass="PortfolioItemCell" customModule="natalie_app_2" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fpw-hH-EJj" id="n2H-1D-cFt">
@@ -359,9 +359,9 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.2403146404" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <outlet property="editBtn" destination="UBe-rd-krd" id="Tcj-Nw-bLU"/>
-                                            <outlet property="imageQuoteName" destination="vVe-vB-kkt" id="F3s-bg-cK8"/>
-                                            <outlet property="quoteImageOverlay" destination="lCD-jF-aLh" id="WiC-7l-NJJ"/>
-                                            <outlet property="quoteImageView" destination="GqR-FF-q1w" id="clf-no-qwx"/>
+                                            <outlet property="portfolioItemQuote" destination="vVe-vB-kkt" id="pfx-YP-Y74"/>
+                                            <outlet property="portfolioItemView" destination="GqR-FF-q1w" id="SwQ-Gl-cxM"/>
+                                            <outlet property="portfolioItemViewOverlay" destination="lCD-jF-aLh" id="Y1l-Fq-ynR"/>
                                             <outlet property="shareBtn" destination="nd9-ZX-uR6" id="aXF-ZX-vck"/>
                                             <outlet property="viewBtn" destination="dBB-bV-Bhf" id="epa-us-G5O"/>
                                         </connections>
@@ -404,7 +404,7 @@
                 </button>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HME-U1-6YA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4113" y="-395"/>
+            <point key="canvasLocation" x="5137" y="-395"/>
         </scene>
         <!--TestVC-->
         <scene sceneID="49B-rx-Q44">
@@ -453,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CWq-QP-Bax" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5138.3999999999996" y="-382.75862068965517"/>
+            <point key="canvasLocation" x="6100" y="-49"/>
         </scene>
         <!--Choose ImageVC-->
         <scene sceneID="Gx0-xQ-JPm">
@@ -959,7 +959,7 @@
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="selectPicBtnPressed:" destination="oOB-jy-mNu" eventType="touchUpInside" id="PwJ-H7-Ici"/>
+                                    <action selector="viewPortfolioBtnPressed:" destination="oOB-jy-mNu" eventType="touchUpInside" id="ojB-Of-y8o"/>
                                 </connections>
                             </button>
                         </subviews>

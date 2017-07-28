@@ -165,6 +165,12 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func viewPortfolioBtnPressed(_ sender: Any) {
+        let mainVC = storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainVC
+        mainVC.selectedUser = selectedUser
+        present(mainVC, animated: true, completion: nil)
+        
+    }
 
     @IBAction func selectPicBtnPressed(_ sender: Any) {
         

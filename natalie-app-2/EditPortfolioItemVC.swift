@@ -349,10 +349,10 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         selectedPortfolioItem.image?.img = finalImage! as NSData
         selectedPortfolioItem.image?.thumbnail = finalThumbnail! as NSData
         
-        let testVC = self.storyboard?.instantiateViewController(withIdentifier: "TestVC") as! TestVC
-        testVC.selectedImage = resultingImage!
+        let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainVC
+        mainVC.selectedUser = selectedUser
         
-        present(testVC, animated: true, completion: nil)
+        present(mainVC, animated: true, completion: nil)
         
     }
     
