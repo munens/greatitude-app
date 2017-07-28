@@ -16,14 +16,14 @@ class PortfolioItemCell: UITableViewCell {
     @IBOutlet weak var portfolioItemView: UIImageView!
     @IBOutlet weak var portfolioItemViewOverlay: UIView!
     @IBOutlet weak var portfolioItemQuote: UILabel!
+    
+    var currentPortfolioItem: PortfolioItem!
  
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         portfolioItemViewOverlay.isHidden = true
     }
-    
-    
     
     /*
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,13 +35,15 @@ class PortfolioItemCell: UITableViewCell {
     
     func configureCell(portfolioItem: PortfolioItem){
         
-        if let portfolioItemImage = UIImage(data: (portfolioItem.image?.img as Data?)!) {
-            portfolioItemView.image = portfolioItemImage
+        currentPortfolioItem = portfolioItem
+        
+        if let portfolioItemImage = portfolioItem.image?.img as Data? {
+            portfolioItemView.image = UIImage(data: portfolioItemImage)
         } else {
             portfolioItemView.image = UIImage(named: "original")
         }
         
-        //portfolioItemQuote.text = portfolioItem.quote
+        portfolioItemQuote.text = portfolioItem.quote
         
     }
 

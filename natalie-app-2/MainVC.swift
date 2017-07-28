@@ -26,6 +26,10 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    var selectedPortfolioItem: PortfolioItem!
+    
+    let cellSpacing: CGFloat = 5
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,7 +58,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     */
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return portfolioItems.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -66,14 +70,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        /*
-        let tableViewCell = tableView.cellForRow(at: indexPath)
-        tableViewCell?.layer.borderWidth = 4
-        tableViewCell?.layer.borderColor = UIColor.blue.cgColor
         
-        let cell = tableViewCell as! PortfolioItemCell
-        cell.quoteImageOverlay.isHidden = false
-        */
+        let portfolioItemCell = tableView.cellForRow(at: indexPath) as! PortfolioItemCell
+        selectedPortfolioItem = portfolioItemCell.currentPortfolioItem
+        
+        portfolioItemCell.portfolioItemViewOverlay.isHidden = false
     }
     /*
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
@@ -82,18 +83,28 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }*/
     
     override func viewWillAppear(_ animated: Bool) {
-        if let index = self.tableView.indexPathForSelectedRow {
+        /*if let index = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: index, animated: true)
             //imageQuoteCell = index as? ImageQuoteCell
         
             
-        }
+        }*/
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return cellSpacing
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create a dequeue reuseable cell here to return.
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PortfolioItemCell", for: indexPath) as? PortfolioItemCell {
-            cell.configureCell(portfolioItem: portfolioItems[indexPath.row])
+            cell.configureCell(portfolioItem: portfolioItems[indexPath.section])
             return cell
         }
         
@@ -101,14 +112,20 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return portfolioItems.count
+        return 1
     }
     
     @IBAction func viewBtnPressed(_ sender: UIButton) {
         
     }
     @IBAction func editBtnPressed(_ sender: UIButton) {
+        let editPortfolioItemVC = storyboard?.instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
+        editPortfolioItemVC.selectedUser = selectedUser
+        editPortfolioItemVC.selectedPortfolioItem = selectedPortfolioItem
         
+        // need to remove selcted background property from editPortfolioItemVC
+        editPortfolioItemVC.selectedBackground = nil
+        present(editPortfolioItemVC, animated: true, completion: nil)
     }
     @IBAction func shareBtnPressed(_ sender: UIButton) {
         

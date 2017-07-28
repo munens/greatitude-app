@@ -344,10 +344,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         // clean up the environtment in which the bitmap image context was created.
         UIGraphicsEndImageContext()
         
-        let finalImage = UIImageJPEGRepresentation(resultingImage!, 1.0)
-        let finalThumbnail = UIImageJPEGRepresentation(resultingImage!, 0.3)
-        selectedPortfolioItem.image?.img = finalImage! as NSData
-        selectedPortfolioItem.image?.thumbnail = finalThumbnail! as NSData
+        saveFinalImage(resultingImage: resultingImage!)
         
         let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainVC
         mainVC.selectedUser = selectedUser
@@ -421,6 +418,14 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     func saveFontSize(size: Double){
         selectedPortfolioItem.font_size = Int64(size)
+        ad.saveContext()
+    }
+    
+    func saveFinalImage(resultingImage: UIImage){
+        let finalImage = UIImageJPEGRepresentation(resultingImage, 1.0)
+        let finalThumbnail = UIImageJPEGRepresentation(resultingImage, 0.3)
+        selectedPortfolioItem.image?.img = finalImage! as NSData
+        selectedPortfolioItem.image?.thumbnail = finalThumbnail! as NSData
         ad.saveContext()
     }
 
