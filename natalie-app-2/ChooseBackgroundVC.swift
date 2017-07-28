@@ -128,16 +128,51 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
                 }
                 
                 print("Download complete for: \(String(describing: downloadRequest?.key))")
-                background.imageURL = downloadFileUrl.path
+                background.imageURL = self.resizeImageAndSaveOnDisk(image: UIImage(named: "\(downloadFileUrl.path)")!, targetSize: CGSize(width: 500.0, height: 500.0), fileName: background.filename).path
+                
                 self.backgroundList.append(background)
                 
                 completionHandler()
                 return nil
             })
         }
+    }
+    
+    func resizeImageAndSaveOnDisk(image: UIImage, targetSize: CGSize, fileName: String) -> URL {
+        let size = image.size
         
+        let widthRatio = targetSize.width / image.size.width
+        let heightRatio = targetSize.height / image.size.height
         
-       
+        // find image oriantation and form rectangle from it:
+        var newSize: CGSize
+        if(widthRatio > heightRatio){
+            newSize = CGSize(width: size.width*heightRatio, height: size.height*heightRatio)
+        } else {
+            newSize = CGSize(width: size.width*widthRatio, height: size.height*widthRatio)
+        }
+        // create a new rect from the result:
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        let newJpegImage = UIImageJPEGRepresentation(newImage!, 1.0)
+    
+        let newFileName = fileName.components(separatedBy: ".")[0].appending("_small.jpeg")
+        
+        let imageURL = getDocumentsFromDirectory().appendingPathComponent(newFileName)
+        
+        try? newJpegImage?.write(to: imageURL)
+        
+        return imageURL
+    }
+    
+    func getDocumentsFromDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = paths[0]
+        return documentDirectory
     }
 
     override func didReceiveMemoryWarning() {

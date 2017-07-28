@@ -257,6 +257,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
                         gestureView.center = newGestureCoords(point: newLoc)
                     }
                 case .ended:
+                    quoteText.center = gestureView.center
                     saveLabelPostion(point: gestureView.center)
                 default:
                     break
@@ -323,12 +324,23 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     }
     
     @IBAction func discardBtnPressed(_ sender: Any) {
-        
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
-        UIGraphicsBeginImageContextWithOptions(backgroundView.bounds.size, true, 0.0)
-        backgroundView.subviews[0].layer.render(in: UIGraphicsGetCurrentContext()!)
+        let textRect = self.backgroundImage.convert(quoteText.bounds, from: quoteText)
+        UIGraphicsBeginImageContextWithOptions(backgroundImage.bounds.size, true, 0.0)
+        //self.view.subviews[1].layer.render(in: UIGraphicsGetCurrentContext()!)
+        //backgroundImage.layer.render(in: UIGraphicsGetCurrentContext()!)
+        
+        backgroundImage.image?.draw(in: backgroundImage.bounds)
+        //let rect = CGRect(x: quoteText.frame.origin.x, y: quoteText.frame.origin.y, width: quoteText.frame.size.width, height: quoteText.frame.size.height)
+        
+        quoteText.attributedText.draw(in: textRect)
+        
+        //savableQuoteText.layer.render(in:  UIGraphicsGetCurrentContext()!)
+ //       quoteText.layer.render(in: UIGraphicsGetCurrentContext()!)
+        
         let resultingImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

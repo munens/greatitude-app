@@ -671,9 +671,9 @@
                                 <color key="backgroundColor" red="0.86014239013497595" green="0.86014239013497595" blue="0.86014239013497595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4zx-Jd-Rsf">
-                                <rect key="frame" x="0.0" y="69" width="375" height="300"/>
+                                <rect key="frame" x="0.0" y="69" width="375" height="308"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="Er6-3Z-0ki"/>
+                                    <constraint firstAttribute="height" constant="308" id="Er6-3Z-0ki"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pew-08-3Gb">
