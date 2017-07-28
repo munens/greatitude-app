@@ -328,14 +328,20 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
-        // save backgroundImage as a CGRect
+        // Turn a UIImage i.e. backgroundImage to a CGRect
         let textRect = self.backgroundImage.convert(quoteText.bounds, from: quoteText)
+        
+        // Create a bitmap context for a graphic; also with options
         UIGraphicsBeginImageContextWithOptions(backgroundImage.bounds.size, true, 0.0)
         
+        // .draw, draws the entire image in the current image context specified by:- UIGraphicsBeginImageContextWithOptions
         backgroundImage.image?.draw(in: backgroundImage.bounds)
         quoteText.attributedText.draw(in: textRect)
         
+        // return the image that has been created by the current bitmap image context:
         let resultingImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        // clean up the environtment in which the bitmap image context was created.
         UIGraphicsEndImageContext()
         
         let finalImage = UIImageJPEGRepresentation(resultingImage!, 1.0)
