@@ -328,26 +328,20 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
+        // save backgroundImage as a CGRect
         let textRect = self.backgroundImage.convert(quoteText.bounds, from: quoteText)
         UIGraphicsBeginImageContextWithOptions(backgroundImage.bounds.size, true, 0.0)
-        //self.view.subviews[1].layer.render(in: UIGraphicsGetCurrentContext()!)
-        //backgroundImage.layer.render(in: UIGraphicsGetCurrentContext()!)
         
         backgroundImage.image?.draw(in: backgroundImage.bounds)
-        //let rect = CGRect(x: quoteText.frame.origin.x, y: quoteText.frame.origin.y, width: quoteText.frame.size.width, height: quoteText.frame.size.height)
-        
         quoteText.attributedText.draw(in: textRect)
-        
-        //savableQuoteText.layer.render(in:  UIGraphicsGetCurrentContext()!)
- //       quoteText.layer.render(in: UIGraphicsGetCurrentContext()!)
         
         let resultingImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-//        let finalImage = UIImageJPEGRepresentation(resultingImage!, 1.0)
-//        let finalThumbnail = UIImageJPEGRepresentation(resultingImage!, 0.3)
-//        selectedPortfolioItem.image?.img = finalImage! as NSData
-//        selectedPortfolioItem.image?.thumbnail = finalThumbnail! as NSData
+        let finalImage = UIImageJPEGRepresentation(resultingImage!, 1.0)
+        let finalThumbnail = UIImageJPEGRepresentation(resultingImage!, 0.3)
+        selectedPortfolioItem.image?.img = finalImage! as NSData
+        selectedPortfolioItem.image?.thumbnail = finalThumbnail! as NSData
         
         let testVC = self.storyboard?.instantiateViewController(withIdentifier: "TestVC") as! TestVC
         testVC.selectedImage = resultingImage!
