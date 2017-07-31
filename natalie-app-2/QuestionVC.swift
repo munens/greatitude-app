@@ -128,6 +128,7 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
             
             selectedImage.img = img! as NSData
             selectedImage.thumbnail = thumbnail! as NSData
+            selectedImage.name = ""
             
             if let quote = questionTextView.text {
                 portfolioItem.quote = quote
@@ -142,11 +143,8 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
         
         imagePickerController.dismiss(animated: true, completion: nil)
         
-        let selectedBackground = BackgroundImage(name: "Sundays at Dawn", filename: "", imageURL: "")
-        
         let editPortfolioEditVC = self.storyboard?.instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
         editPortfolioEditVC.selectedUser = selectedUser
-        editPortfolioEditVC.selectedBackground = selectedBackground
         editPortfolioEditVC.selectedPortfolioItem = portfolioItem
         self.present(editPortfolioEditVC, animated: true, completion: nil)
     }

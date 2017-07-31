@@ -10,17 +10,8 @@ import UIKit
 
 class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    private var _selectedBackground: BackgroundImage!
     private var _portfolioItem: PortfolioItem!
     private var _selectedUser: User!
-    
-    var selectedBackground: BackgroundImage {
-        get {
-            return _selectedBackground
-        } set {
-           _selectedBackground = newValue
-        }
-    }
     
     var selectedPortfolioItem: PortfolioItem {
         get {
@@ -96,11 +87,10 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         //layout.scrollDirection = UICollectionViewScrollDirection.horizontal
         filterCollectionView.collectionViewLayout = layout
         
-        navigationBar.topItem?.title = "edit \(selectedBackground.name)"
+        //navigationBar.topItem?.title = "edit \(selectedBackground.name)"
         
         let imageData = selectedPortfolioItem.image?.img
         backgroundImage.image = UIImage(data: imageData! as Data)
-        //backgroundImage.image = UIImage(contentsOfFile: selectedBackground.imageURL)
         
         let imageTapRecognizer = UITapGestureRecognizer(target: self, action:#selector(self.imageViewTapped(_:)))
         imageTapRecognizer.delegate = self as? UIGestureRecognizerDelegate

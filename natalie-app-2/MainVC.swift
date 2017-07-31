@@ -15,6 +15,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var _user:User!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noItemsStackView: UIStackView!
+
     
     var portfolioItems: [PortfolioItem] = []
     
@@ -36,8 +38,16 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor.clear
+        
+        noItemsStackView.isHidden = true
         
         portfolioItems = selectedUser.portfolioItem!.sortedArray(using: [NSSortDescriptor(key: "created_at", ascending: true)]) as! [PortfolioItem]
+        
+        if portfolioItems.count == 0 {
+            tableView.isHidden = true
+            noItemsStackView.isHidden = false
+        }
         
     }
 
@@ -46,6 +56,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func backBtnPressed(_ sender: Any) {
+        let questionVC = storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+        questionVC.selectedUser = selectedUser
+        present(questionVC, animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
@@ -122,9 +137,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let editPortfolioItemVC = storyboard?.instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
         editPortfolioItemVC.selectedUser = selectedUser
         editPortfolioItemVC.selectedPortfolioItem = selectedPortfolioItem
-        
-        // need to remove selcted background property from editPortfolioItemVC
-        editPortfolioItemVC.selectedBackground = nil
+       
         present(editPortfolioItemVC, animated: true, completion: nil)
     }
     @IBAction func shareBtnPressed(_ sender: UIButton) {

@@ -251,9 +251,12 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syP-Q9-4vk">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Saved Photos" id="WjS-9r-yiW">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="KNu-3a-pRW"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fLr-ut-dbH"/>
+                                    <navigationItem title="Portfolio" id="WjS-9r-yiW">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="KNu-3a-pRW">
+                                            <connections>
+                                                <action selector="backBtnPressed:" destination="KSr-ho-2PN" id="nrC-Ez-zMC"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -263,6 +266,34 @@
                                     <constraint firstAttribute="height" constant="603" id="agJ-oK-rI8"/>
                                 </constraints>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="JRd-ab-SJf">
+                                <rect key="frame" x="41" y="114" width="293" height="130"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="There is nothing in your portfolio yet. " textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ISW-3H-Ib7">
+                                        <rect key="frame" x="0.0" y="0.0" width="293" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="8Ga-OS-Hzy"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Please click 'Back' to start creating one :)." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wce-2T-1kA">
+                                        <rect key="frame" x="0.0" y="35" width="293" height="95"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="7jg-u4-VYx"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="XLB-nr-Cwa"/>
+                                </constraints>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lnw-9M-dWX">
                                 <rect key="frame" x="16" y="80" width="343" height="571"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -374,18 +405,22 @@
                         <constraints>
                             <constraint firstItem="Lnw-9M-dWX" firstAttribute="top" secondItem="syP-Q9-4vk" secondAttribute="bottom" constant="16" id="0lZ-YH-CbY"/>
                             <constraint firstAttribute="trailing" secondItem="syP-Q9-4vk" secondAttribute="trailing" id="2NN-g0-3fM"/>
+                            <constraint firstItem="JRd-ab-SJf" firstAttribute="leading" secondItem="6Xh-2w-b08" secondAttribute="leadingMargin" constant="25" id="9gl-bH-pR8"/>
                             <constraint firstItem="syP-Q9-4vk" firstAttribute="leading" secondItem="6Xh-2w-b08" secondAttribute="leading" id="AU7-o5-nZt"/>
                             <constraint firstItem="Lnw-9M-dWX" firstAttribute="leading" secondItem="6Xh-2w-b08" secondAttribute="leading" constant="16" id="GL2-mi-IHj"/>
                             <constraint firstAttribute="trailing" secondItem="2GN-hD-t05" secondAttribute="trailing" id="Ip8-FI-882"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JRd-ab-SJf" secondAttribute="trailing" constant="25" id="OzC-i6-LU2"/>
                             <constraint firstAttribute="trailing" secondItem="Lnw-9M-dWX" secondAttribute="trailing" constant="16" id="QtE-pP-wN9"/>
                             <constraint firstItem="2GN-hD-t05" firstAttribute="top" secondItem="syP-Q9-4vk" secondAttribute="bottom" id="dbW-Sn-TX4"/>
                             <constraint firstItem="e2U-wD-YlD" firstAttribute="top" secondItem="Lnw-9M-dWX" secondAttribute="bottom" constant="16" id="gId-qN-aVn"/>
+                            <constraint firstItem="JRd-ab-SJf" firstAttribute="top" secondItem="syP-Q9-4vk" secondAttribute="bottom" constant="50" id="hAx-oe-RZg"/>
                             <constraint firstItem="syP-Q9-4vk" firstAttribute="top" secondItem="kn0-JU-rfo" secondAttribute="bottom" id="k8z-1w-Rrd"/>
                             <constraint firstItem="2GN-hD-t05" firstAttribute="leading" secondItem="6Xh-2w-b08" secondAttribute="leading" id="prq-zW-i1n"/>
                             <constraint firstItem="e2U-wD-YlD" firstAttribute="top" secondItem="2GN-hD-t05" secondAttribute="bottom" id="xZc-ME-qbw"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="noItemsStackView" destination="JRd-ab-SJf" id="N88-iz-h2P"/>
                         <outlet property="tableView" destination="Lnw-9M-dWX" id="JJu-E2-aYM"/>
                     </connections>
                 </viewController>

@@ -244,7 +244,7 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         let editPortfolioItemVC = self.storyboard?.instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
         editPortfolioItemVC.selectedPortfolioItem = selectedPortfolioItem
         editPortfolioItemVC.selectedUser = selectedUser
-        editPortfolioItemVC.selectedBackground = selectedBackground!
+        
         self.present(editPortfolioItemVC, animated: true, completion: nil)
         
     }
@@ -258,6 +258,7 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         
         selectedImage.img = img! as NSData
         selectedImage.thumbnail = thumbnail! as NSData
+        selectedImage.name = cell.background.name 
         
     }
     
