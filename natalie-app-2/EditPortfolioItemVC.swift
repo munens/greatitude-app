@@ -31,8 +31,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     let fonts = UIFont.familyNames
     let colors = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
-    //let filters = CIFilter.filterNames(inCategory: "CICategoryBlur") + CIFilter.filterNames(inCategory: "CICategoryColorAdjustment")
-    //let filters = CIFilter.filterNames(inCategory: "CICategoryColorAdjustment")
+
     let filters = [
         "CIPhotoEffectChrome",
         "CIPhotoEffectFade",
@@ -42,9 +41,21 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         "CIPhotoEffectTonal",
         "CIPhotoEffectTransfer",
         "CISepiaTone",
-        "CIGaussianBlur",
         "CICMYKHalftone",
-        "CICrystallize"
+        "CICrystallize",
+        "CIColorInvert",
+        "CIColorMonochrome",
+        "CIColorPosterize",
+        "CIMaskToAlpha",
+        "CIPhotoEffectTonal",
+        "CIPhotoEffectMono",
+        "CIPhotoEffectInstant",
+        //"CIVignette",
+        //"CIVignetteEffect",
+        //"CIAdditionCompositing",
+        "CIBumpDistortionLinear",
+        "CIComicEffect",
+        "CIEdges"
     ]
     let ciContext = CIContext(options: nil)
     
@@ -90,7 +101,8 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         //navigationBar.topItem?.title = "edit \(selectedBackground.name)"
         
         let imageData = selectedPortfolioItem.image?.img
-        backgroundImage.image = UIImage(data: imageData! as Data)
+        let image = UIImage(data: imageData! as Data)
+        backgroundImage.image = image
         
         let imageTapRecognizer = UITapGestureRecognizer(target: self, action:#selector(self.imageViewTapped(_:)))
         imageTapRecognizer.delegate = self as? UIGestureRecognizerDelegate
@@ -106,11 +118,15 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         //imageQuoteLabel.adjustsFontSizeToFitWidth = true
         quoteText.backgroundColor = UIColor.clear
         quoteText.text = selectedPortfolioItem.quote!
+        
+        print(selectedPortfolioItem)
+        
+        applyPortFolioItemProperties(image: image!)
+        
         fontSizeStepper.minimumValue = Double((quoteText.font?.pointSize)!)
         
         adjustTextViewWidth(textView: quoteText)
         
-        quoteText.textColor = UIColor.white
         let labelGesture = UIPanGestureRecognizer(target: self, action: #selector(self.userDragText(gesture:)))
         quoteText.addGestureRecognizer(labelGesture)
         quoteText.isUserInteractionEnabled = true
@@ -124,6 +140,38 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func applyPortFolioItemProperties(image: UIImage) {
+        if let portfolioFilterType = selectedPortfolioItem.filter_type {
+            backgroundImage.image = addFilterToImage(image: image, filter: portfolioFilterType)
+        }
+        
+        if let portfolioFontFamily = selectedPortfolioItem.font_family {
+            quoteText.font = UIFont(name: portfolioFontFamily, size: (quoteText.font?.pointSize)!)
+            fontPicker.selectRow(fonts.index(of: portfolioFontFamily)!, inComponent: 0, animated: true)
+        }
+        
+        if selectedPortfolioItem.x_position != 0 && selectedPortfolioItem.y_position != 0 {
+            quoteText.center = CGPoint(x: selectedPortfolioItem.x_position, y: selectedPortfolioItem.y_position)
+        }
+        
+        if selectedPortfolioItem.font_size != 0 {
+            quoteText.font = UIFont(name: (quoteText.font?.familyName)!, size: CGFloat(selectedPortfolioItem.font_size))
+        }
+        
+        if selectedPortfolioItem.font_color != 0 {
+            let colorFromHex = uiColorFromHex(rgbValue: Int(selectedPortfolioItem.font_color))
+            quoteText.textColor = colorFromHex
+            
+            let colorDecimal = strtoul(colorFromHex.hexString.replacingOccurrences(of: "#", with: "0x"), nil, 16)
+            let colorIndex = colors.index(of: Int(colorDecimal))
+            colorSlider.setValue(Float(colorIndex!), animated: true)
+        } else {
+            quoteText.textColor = UIColor.white
+        }
+        
+        
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -216,7 +264,9 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         changeTextViewStyle()
-        quoteText.font = UIFont(name: fonts[row], size: (quoteText.font?.pointSize)!)
+        let font = UIFont(name: fonts[row], size: (quoteText.font?.pointSize)!)
+        quoteText.font = font
+        saveFontFamily(font: font!)
     }
     
     func imageViewTapped(_ sender: UITapGestureRecognizer){
@@ -313,8 +363,11 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         }
     }
     
-    @IBAction func discardBtnPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func themeBtnPressed(_ sender: Any) {
+        let chooseImageVC = storyboard?.instantiateViewController(withIdentifier: "ChooseImageVC") as! ChooseImageVC
+        chooseImageVC.selectedUser = selectedUser
+        chooseImageVC.selectedPortfolioItem = selectedPortfolioItem
+        present(chooseImageVC, animated: true, completion: nil)
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
@@ -413,9 +466,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     func saveFinalImage(resultingImage: UIImage){
         let finalImage = UIImageJPEGRepresentation(resultingImage, 1.0)
-        let finalThumbnail = UIImageJPEGRepresentation(resultingImage, 0.3)
-        selectedPortfolioItem.image?.img = finalImage! as NSData
-        selectedPortfolioItem.image?.thumbnail = finalThumbnail! as NSData
+        selectedPortfolioItem.image?.final = finalImage! as NSData
         ad.saveContext()
     }
 
@@ -431,4 +482,16 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     
 
+}
+
+extension UIColor {
+    var hexString: String {
+        let components = self.cgColor.components
+        
+        let red = Float((components?[0])!)
+        let green = Float((components?[1])!)
+        let blue = Float((components?[2])!)
+        
+        return String(format: "#%02lX%02lX%02lX", lroundf(red * 255), lroundf(green * 255), lroundf(blue * 255))
+    }
 }

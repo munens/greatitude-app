@@ -37,7 +37,7 @@ class PortfolioItemCell: UITableViewCell {
         
         currentPortfolioItem = portfolioItem
         
-        if let portfolioItemImage = portfolioItem.image?.img as Data? {
+        if let portfolioItemImage = portfolioItem.image?.final as Data? {
             portfolioItemView.image = UIImage(data: portfolioItemImage)
         } else {
             portfolioItemView.image = UIImage(named: "original")

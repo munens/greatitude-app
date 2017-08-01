@@ -7,6 +7,7 @@
         <relationship name="portfolioItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="background" inverseEntity="PortfolioItem" syncable="YES"/>
     </entity>
     <entity name="Image" representedClassName="Image" syncable="YES" codeGenerationType="class">
+        <attribute name="final" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="img" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -50,7 +51,7 @@
     </entity>
     <elements>
         <element name="Background" positionX="25" positionY="-369" width="128" height="105"/>
-        <element name="Image" positionX="-83" positionY="252" width="128" height="120"/>
+        <element name="Image" positionX="-83" positionY="252" width="128" height="135"/>
         <element name="Portfolio" positionX="-155" positionY="-378" width="128" height="90"/>
         <element name="PortfolioItem" positionX="-92" positionY="27" width="128" height="240"/>
         <element name="Theme" positionX="27" positionY="-243" width="128" height="105"/>

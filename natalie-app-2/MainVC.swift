@@ -30,7 +30,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var selectedPortfolioItem: PortfolioItem!
     
-    let cellSpacing: CGFloat = 5
+    let cellSpacing: CGFloat = 12
     
     override func viewDidLoad() {
         super.viewDidLoad()
