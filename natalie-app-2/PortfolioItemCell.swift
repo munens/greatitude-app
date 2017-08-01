@@ -14,15 +14,12 @@ class PortfolioItemCell: UITableViewCell {
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var portfolioItemView: UIImageView!
-    @IBOutlet weak var portfolioItemViewOverlay: UIView!
-    @IBOutlet weak var portfolioItemQuote: UILabel!
     
     var currentPortfolioItem: PortfolioItem!
  
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        portfolioItemViewOverlay.isHidden = true
     }
     
     /*
@@ -37,13 +34,13 @@ class PortfolioItemCell: UITableViewCell {
         
         currentPortfolioItem = portfolioItem
         
-        if let portfolioItemImage = portfolioItem.image?.final as Data? {
+        if let portfolioItemFinalImage = portfolioItem.image?.final as Data? {
+            portfolioItemView.image = UIImage(data: portfolioItemFinalImage)
+        } else if let portfolioItemImage = portfolioItem.image?.img as Data? {
             portfolioItemView.image = UIImage(data: portfolioItemImage)
         } else {
             portfolioItemView.image = UIImage(named: "original")
         }
-        
-        portfolioItemQuote.text = portfolioItem.quote
         
     }
 

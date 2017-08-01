@@ -16,6 +16,9 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     private var _user:User!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noItemsStackView: UIStackView!
+    @IBOutlet weak var optionsView: UIView!
+    @IBOutlet weak var backgroundView: UIImageView!
+    @IBOutlet weak var editBtn: UIButton!
 
     
     var portfolioItems: [PortfolioItem] = []
@@ -40,7 +43,12 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = self
         tableView.backgroundColor = UIColor.clear
         
+        editBtn.layer.borderWidth = 1
+        editBtn.layer.borderColor = UIColor.init(red: 0.0, green: 122/255, blue: 255/255, alpha: 1.0).cgColor
+        editBtn.layer.cornerRadius = 3
+        
         noItemsStackView.isHidden = true
+        optionsView.isHidden = true
         
         portfolioItems = selectedUser.portfolioItem!.sortedArray(using: [NSSortDescriptor(key: "created_at", ascending: true)]) as! [PortfolioItem]
         
@@ -49,6 +57,23 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             noItemsStackView.isHidden = false
         }
         
+        backgroundView.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.backgroundTapped))
+        backgroundView.addGestureRecognizer(tapRecognizer)
+        
+    }
+    
+    func backgroundTapped() {
+        let portfolioItemCells = tableView.visibleCells
+        
+        for cell in portfolioItemCells {
+            cell.layer.borderWidth = 0
+            cell.layer.borderColor = nil
+        }
+        
+        UIView.transition(with: optionsView, duration: 0.5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: { _ in
+            self.optionsView.isHidden = true
+        }, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,7 +102,13 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        displayOptionsView()
+    }
+    
+    func displayOptionsView(){
+        UIView.transition(with: optionsView, duration: 0.5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: { _ in
+            self.optionsView.isHidden = false
+        }, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
@@ -87,9 +118,18 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         
         let portfolioItemCell = tableView.cellForRow(at: indexPath) as! PortfolioItemCell
-        selectedPortfolioItem = portfolioItemCell.currentPortfolioItem
         
-        portfolioItemCell.portfolioItemViewOverlay.isHidden = false
+        let portfolioItemCells = tableView.visibleCells
+        
+        for cell in portfolioItemCells {
+            cell.layer.borderWidth = 0
+            cell.layer.borderColor = nil
+        }
+        
+        portfolioItemCell.layer.borderWidth = 4
+        portfolioItemCell.layer.borderColor = UIColor.blue.cgColor
+        selectedPortfolioItem = portfolioItemCell.currentPortfolioItem
+     
     }
     /*
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {

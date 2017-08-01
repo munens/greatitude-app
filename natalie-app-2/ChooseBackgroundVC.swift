@@ -32,10 +32,7 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBOutlet weak var backgroundCollectionView: UICollectionView!
-    
-    
-    @IBOutlet weak var editButton: UIButton!
-    
+
     @IBOutlet weak var navigationBar: UINavigationBar!
     
     var newPortfolioItem: PortfolioItem!
@@ -68,8 +65,6 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        editButton.isEnabled = false
-        
         backgrounds.append(b1)
         backgrounds.append(b2)
         backgrounds.append(b3)
@@ -98,9 +93,6 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     
-    func backButtonPressed() {
-        
-    }
     
     func getBackgroundImageUrls(completionHandler: @escaping () -> ()){
         
@@ -180,6 +172,12 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func backBtnPressed(_ sender: Any) {
+        let chooseImageVC = storyboard?.instantiateViewController(withIdentifier: "ChooseImageVC") as! ChooseImageVC
+        chooseImageVC.selectedUser = selectedUser
+        chooseImageVC.selectedPortfolioItem = selectedPortfolioItem
+        present(chooseImageVC, animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
@@ -231,22 +229,9 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         cellLabel?.shadowOffset = CGSize(width: 0.5, height: 0.0)
         cellLabel?.textColor = UIColor.blue
         
-        
-        editButton.isEnabled = true
         selectedBackground = backgroundList[indexPath.row]
-    }
-    
-    @IBAction func editBtnPressed(_ sender: Any) {
-        
         selectedPortfolioItem.image = selectedImage
         ad.saveContext()
-        
-        let editPortfolioItemVC = self.storyboard?.instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
-        editPortfolioItemVC.selectedPortfolioItem = selectedPortfolioItem
-        editPortfolioItemVC.selectedUser = selectedUser
-        
-        self.present(editPortfolioItemVC, animated: true, completion: nil)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -260,6 +245,11 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         selectedImage.thumbnail = thumbnail! as NSData
         selectedImage.name = cell.background.name 
         
+        let editPortfolioItemVC = self.storyboard?.instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
+        editPortfolioItemVC.selectedPortfolioItem = selectedPortfolioItem
+        editPortfolioItemVC.selectedUser = selectedUser
+        
+        self.present(editPortfolioItemVC, animated: true, completion: nil)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

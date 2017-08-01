@@ -356,18 +356,18 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
             return CGPoint(x: point.x + 1, y: point.y)
         } else if(point.x > backgroundImageFrame.width) {
             return CGPoint(x: point.x - 1, y: point.y)
-        } else if(point.y < backgroundImageFrame.minY){
+        } else if(point.y < (backgroundImageFrame.minY - 5)){
             return CGPoint(x: point.x, y: point.y + 5)
         } else {
             return CGPoint(x: point.x, y: point.y - 1)
         }
     }
     
-    @IBAction func themeBtnPressed(_ sender: Any) {
-        let chooseImageVC = storyboard?.instantiateViewController(withIdentifier: "ChooseImageVC") as! ChooseImageVC
-        chooseImageVC.selectedUser = selectedUser
-        chooseImageVC.selectedPortfolioItem = selectedPortfolioItem
-        present(chooseImageVC, animated: true, completion: nil)
+    @IBAction func backgroundBtnPressed(_ sender: Any) {
+        let chooseBackgroundVC = storyboard?.instantiateViewController(withIdentifier: "ChooseBackgroundVC") as! ChooseBackgroundVC
+        chooseBackgroundVC.selectedUser = selectedUser
+        chooseBackgroundVC.selectedPortfolioItem = selectedPortfolioItem
+        present(chooseBackgroundVC, animated: true, completion: nil)
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {

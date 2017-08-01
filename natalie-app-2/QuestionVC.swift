@@ -60,7 +60,7 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
         
         questionTextView.delegate = self
         questionTextView.alpha = 0.0
-        questionTextView.text = "I am thankful for.."
+        questionTextView.text = "I am grateful for.."
         questionTextView.textColor = .lightGray
         questionTextView.layer.cornerRadius = 3
         
@@ -75,7 +75,6 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        //print(selectedUser!)
         greetingLabel.text = "Hi, \(selectedUser.firstname!).."
         
         self.greetingLabel.fadeOut(1.0, delay: 1.0, completion: {(finished: Bool) -> Void in
@@ -86,7 +85,7 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if questionTextView.text == "I am thankful for.." {
+        if questionTextView.text == "I am grateful for.." {
             questionTextView.text = ""
             questionTextView.textColor = .black
         }
@@ -95,13 +94,15 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if questionTextView.text == "" {
-            questionTextView.text = "I am thankful for.."
+            questionTextView.text = "I am grateful for.."
             questionTextView.textColor = .lightGray
         }
     }
     
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+         portfolioItem.created_at = NSDate()
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
@@ -195,7 +196,7 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
     @IBAction func nextBtnPressed(_ sender: Any) {
         if (questionTextView.text != nil && questionTextView.text != "") {
             
-            let portfolioItem = PortfolioItem(context: context)
+            portfolioItem.created_at = NSDate()
             
             if let quote = questionTextView.text {
                 portfolioItem.quote = quote
