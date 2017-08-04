@@ -9,7 +9,8 @@
 import UIKit
 import CoreData
 import LocalAuthentication
-
+import FBSDKShareKit
+import FacebookShare
 
 class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -19,6 +20,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var optionsView: UIView!
     @IBOutlet weak var backgroundView: UIImageView!
     @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var deleteBtn: UIButton!
 
     
     var portfolioItems: [PortfolioItem] = []
@@ -170,9 +173,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
-    @IBAction func viewBtnPressed(_ sender: UIButton) {
-        
-    }
+    
+    
     @IBAction func editBtnPressed(_ sender: UIButton) {
         let editPortfolioItemVC = storyboard?.instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
         editPortfolioItemVC.selectedUser = selectedUser
@@ -180,8 +182,24 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
        
         present(editPortfolioItemVC, animated: true, completion: nil)
     }
+    
     @IBAction func shareBtnPressed(_ sender: UIButton) {
-        
+        if let image = selectedPortfolioItem.image?.final {
+            let photo: FBSDKSharePhoto = FBSDKSharePhoto()
+            let content: FBSDKSharePhotoContent = FBSDKSharePhotoContent()
+            photo.image = UIImage(data: image as Data)
+            photo.isUserGenerated = true
+            content.photos = [photo]
+    
+            //content.contentURL = NSURL(string: "http://developers.facebook.com")! as URL
+            FBSDKShareDialog.show(from: self, with: content, delegate: nil)
+            
+        }
     }
+    
+    
+    @IBAction func deleteBtnPressed(_ sender: Any) {
+    }
+    
 
 }

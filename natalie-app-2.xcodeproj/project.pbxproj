@@ -11,6 +11,7 @@
 		86C4681EA3A354B0732737CD /* Pods_natalie_app_2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7658D75CD64A7B62E02DD2B /* Pods_natalie_app_2UITests.framework */; };
 		C539B1EC1EAC53A4006C3233 /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = C539B1EB1EAC53A4006C3233 /* Welcome.png */; };
 		C55472691F1EC6E80017C66E /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55472681F1EC6E80017C66E /* TestVC.swift */; };
+		C557928E1F34F84600BFA82F /* FBSDKShareKit in Frameworks */ = {isa = PBXBuildFile; fileRef = C557928D1F34F84600BFA82F /* FBSDKShareKit */; };
 		C5628FBF1ECBCFDD00A3555F /* QuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */; };
 		C586AE631EEF23D30084671B /* FBSDKLoginKit in Frameworks */ = {isa = PBXBuildFile; fileRef = C586AE621EEF23D30084671B /* FBSDKLoginKit */; };
 		C58DE6B21F0B151800A90D28 /* ChooseBackgroundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD5DA11ECE61F400223064 /* ChooseBackgroundVC.swift */; };
@@ -71,6 +72,7 @@
 		A49BCB2CA448B48755E1AE70 /* Pods-natalie-app-2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natalie-app-2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-natalie-app-2/Pods-natalie-app-2.debug.xcconfig"; sourceTree = "<group>"; };
 		C539B1EB1EAC53A4006C3233 /* Welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Welcome.png; sourceTree = "<group>"; };
 		C55472681F1EC6E80017C66E /* TestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
+		C557928D1F34F84600BFA82F /* FBSDKShareKit */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = FBSDKShareKit; sourceTree = "<group>"; };
 		C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionVC.swift; sourceTree = "<group>"; };
 		C586AE621EEF23D30084671B /* FBSDKLoginKit */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = FBSDKLoginKit; sourceTree = "<group>"; };
 		C597F4001F16738C006F4944 /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			files = (
 				C586AE631EEF23D30084671B /* FBSDKLoginKit in Frameworks */,
 				E0CB7F5419ADEBCC6086D042 /* Pods_natalie_app_2.framework in Frameworks */,
+				C557928E1F34F84600BFA82F /* FBSDKShareKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +165,7 @@
 		C586AE611EEF23910084671B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C557928D1F34F84600BFA82F /* FBSDKShareKit */,
 				C586AE621EEF23D30084671B /* FBSDKLoginKit */,
 			);
 			name = Frameworks;

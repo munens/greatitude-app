@@ -334,26 +334,51 @@
                                         <color key="textColor" red="0.16415645179999999" green="0.37671419979999998" blue="0.77261686330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="highlightedColor" red="0.16415645179999999" green="0.37671419979999998" blue="0.77261686330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmK-mW-zgx">
-                                        <rect key="frame" x="126" y="44" width="122" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="122" id="wfa-8C-hAq"/>
-                                        </constraints>
-                                        <state key="normal" title="edit"/>
-                                        <connections>
-                                            <action selector="editBtnPressed:" destination="KSr-ho-2PN" eventType="touchUpInside" id="cdX-Sw-Gi2"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="OA3-pp-Toj">
+                                        <rect key="frame" x="25" y="48" width="325" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vak-sx-0ZH">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="90" id="zGr-9j-FUZ"/>
+                                                </constraints>
+                                                <state key="normal" title="share"/>
+                                                <connections>
+                                                    <action selector="shareBtnPressed:" destination="KSr-ho-2PN" eventType="touchUpInside" id="3CM-Bb-aXc"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmK-mW-zgx">
+                                                <rect key="frame" x="115" y="0.0" width="90" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="90" id="wfa-8C-hAq"/>
+                                                </constraints>
+                                                <state key="normal" title="edit"/>
+                                                <connections>
+                                                    <action selector="editBtnPressed:" destination="KSr-ho-2PN" eventType="touchUpInside" id="cdX-Sw-Gi2"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdZ-hd-qBE">
+                                                <rect key="frame" x="230" y="0.0" width="95" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="90" id="jp5-69-U4B"/>
+                                                </constraints>
+                                                <state key="normal" title="delete"/>
+                                                <connections>
+                                                    <action selector="deleteBtnPressed:" destination="KSr-ho-2PN" eventType="touchUpInside" id="JFm-cf-Ihx"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.03625991043" green="0.085395302490000005" blue="0.17658656510000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstItem="lmK-mW-zgx" firstAttribute="leading" secondItem="nIF-JY-ROC" secondAttribute="leading" constant="126" id="2xK-MY-Hh0"/>
-                                    <constraint firstAttribute="trailing" secondItem="lmK-mW-zgx" secondAttribute="trailing" constant="127" id="ABb-dE-O1v"/>
+                                    <constraint firstItem="OA3-pp-Toj" firstAttribute="leading" secondItem="nIF-JY-ROC" secondAttribute="leading" constant="25" id="A9r-Wg-VVj"/>
                                     <constraint firstAttribute="trailing" secondItem="OPx-Ac-0cC" secondAttribute="trailing" constant="22" id="Cxk-V4-Tj3"/>
                                     <constraint firstAttribute="height" constant="100" id="GAl-K8-B03"/>
                                     <constraint firstItem="OPx-Ac-0cC" firstAttribute="leading" secondItem="nIF-JY-ROC" secondAttribute="leading" constant="22" id="Ig4-kJ-1zu"/>
+                                    <constraint firstAttribute="trailing" secondItem="OA3-pp-Toj" secondAttribute="trailing" constant="25" id="c8O-hy-lN5"/>
+                                    <constraint firstItem="OA3-pp-Toj" firstAttribute="top" secondItem="OPx-Ac-0cC" secondAttribute="bottom" constant="18" id="nFc-u9-M6F"/>
                                     <constraint firstItem="OPx-Ac-0cC" firstAttribute="top" secondItem="nIF-JY-ROC" secondAttribute="top" constant="10" id="orn-JK-PcE"/>
-                                    <constraint firstItem="lmK-mW-zgx" firstAttribute="top" secondItem="OPx-Ac-0cC" secondAttribute="bottom" constant="14" id="vdR-zy-U7F"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -380,9 +405,11 @@
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="2GN-hD-t05" id="e78-3a-pRY"/>
+                        <outlet property="deleteBtn" destination="mdZ-hd-qBE" id="zNo-5R-Zuj"/>
                         <outlet property="editBtn" destination="lmK-mW-zgx" id="2fW-eZ-xbx"/>
                         <outlet property="noItemsStackView" destination="JRd-ab-SJf" id="N88-iz-h2P"/>
                         <outlet property="optionsView" destination="nIF-JY-ROC" id="Lvj-yQ-cOO"/>
+                        <outlet property="shareBtn" destination="Vak-sx-0ZH" id="DNd-rS-FT9"/>
                         <outlet property="tableView" destination="Lnw-9M-dWX" id="JJu-E2-aYM"/>
                     </connections>
                 </viewController>
