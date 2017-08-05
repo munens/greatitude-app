@@ -22,7 +22,9 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var deleteBtn: UIButton!
-
+    @IBOutlet weak var portfolioItemActionStackView: UIStackView!
+    
+    var facebookBtn = FBSDKShareButton()
     
     var portfolioItems: [PortfolioItem] = []
     
@@ -49,6 +51,14 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         editBtn.layer.borderWidth = 1
         editBtn.layer.borderColor = UIColor.init(red: 0.0, green: 122/255, blue: 255/255, alpha: 1.0).cgColor
         editBtn.layer.cornerRadius = 3
+        
+        
+        let edit = portfolioItemActionStackView.subviews[0]
+        facebookBtn.center = edit.center
+        facebookBtn.layer.frame = edit.frame
+        //portfolioItemActionStackView.removeArrangedSubview(edit)
+        //portfolioItemActionStackView.addArrangedSubview(facebookBtn)
+        
         
         noItemsStackView.isHidden = true
         optionsView.isHidden = true
@@ -173,7 +183,39 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
-    
+    func saveSharePostInfo() {
+        let url: NSURL = NSURL(string: "http://www.livetalent.ca/api/natapp.php")!
+        var request = URLRequest(url: url as URL)
+        
+        request.httpMethod = "POST"
+        
+        let postParams = "email="+selectedUser.email!
+        request.httpBody = postParams.data(using: String.Encoding.utf8)
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+        
+            if error != nil {
+                print(error!)
+                return;
+            }
+            
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                if let json = jsonResponse {
+                    print(json)
+                }
+                
+            } catch {
+                print(error)
+            }
+            
+        })
+        
+        task.resume()
+        
+    }
     
     @IBAction func editBtnPressed(_ sender: UIButton) {
         let editPortfolioItemVC = storyboard?.instantiateViewController(withIdentifier: "EditPortfolioItemVC") as! EditPortfolioItemVC
@@ -190,15 +232,22 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             photo.image = UIImage(data: image as Data)
             photo.isUserGenerated = true
             content.photos = [photo]
-    
+            
+            // adding content for facebook share button:
+            facebookBtn.shareContent = content
+            
+            
             //content.contentURL = NSURL(string: "http://developers.facebook.com")! as URL
             FBSDKShareDialog.show(from: self, with: content, delegate: nil)
+            
+            saveSharePostInfo()
             
         }
     }
     
     
     @IBAction func deleteBtnPressed(_ sender: Any) {
+        
     }
     
 

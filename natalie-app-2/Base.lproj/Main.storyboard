@@ -409,6 +409,7 @@
                         <outlet property="editBtn" destination="lmK-mW-zgx" id="2fW-eZ-xbx"/>
                         <outlet property="noItemsStackView" destination="JRd-ab-SJf" id="N88-iz-h2P"/>
                         <outlet property="optionsView" destination="nIF-JY-ROC" id="Lvj-yQ-cOO"/>
+                        <outlet property="portfolioItemActionStackView" destination="OA3-pp-Toj" id="o7c-n7-bDa"/>
                         <outlet property="shareBtn" destination="Vak-sx-0ZH" id="DNd-rS-FT9"/>
                         <outlet property="tableView" destination="Lnw-9M-dWX" id="JJu-E2-aYM"/>
                     </connections>

@@ -67,5 +67,19 @@
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>livetalent.ca</key>
+			<dict/>
+			<key>Includes Sub Domains</key>
+			<true/>
+			<key>Third Party Exception Requires Forward Secrecy</key>
+			<false/>
+		</dict>
+	</dict>
 </dict>
 </plist>
