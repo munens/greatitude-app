@@ -343,9 +343,6 @@
                                                     <constraint firstAttribute="width" constant="90" id="zGr-9j-FUZ"/>
                                                 </constraints>
                                                 <state key="normal" title="share"/>
-                                                <connections>
-                                                    <action selector="shareBtnPressed:" destination="KSr-ho-2PN" eventType="touchUpInside" id="3CM-Bb-aXc"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmK-mW-zgx">
                                                 <rect key="frame" x="115" y="0.0" width="90" height="30"/>
@@ -363,9 +360,6 @@
                                                     <constraint firstAttribute="width" constant="90" id="jp5-69-U4B"/>
                                                 </constraints>
                                                 <state key="normal" title="delete"/>
-                                                <connections>
-                                                    <action selector="deleteBtnPressed:" destination="KSr-ho-2PN" eventType="touchUpInside" id="JFm-cf-Ihx"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -405,12 +399,9 @@
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="2GN-hD-t05" id="e78-3a-pRY"/>
-                        <outlet property="deleteBtn" destination="mdZ-hd-qBE" id="zNo-5R-Zuj"/>
                         <outlet property="editBtn" destination="lmK-mW-zgx" id="2fW-eZ-xbx"/>
                         <outlet property="noItemsStackView" destination="JRd-ab-SJf" id="N88-iz-h2P"/>
                         <outlet property="optionsView" destination="nIF-JY-ROC" id="Lvj-yQ-cOO"/>
-                        <outlet property="portfolioItemActionStackView" destination="OA3-pp-Toj" id="o7c-n7-bDa"/>
-                        <outlet property="shareBtn" destination="Vak-sx-0ZH" id="DNd-rS-FT9"/>
                         <outlet property="tableView" destination="Lnw-9M-dWX" id="JJu-E2-aYM"/>
                     </connections>
                 </viewController>

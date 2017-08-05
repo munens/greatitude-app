@@ -53,6 +53,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         editBtn.layer.cornerRadius = 3
         
         
+        
         let edit = portfolioItemActionStackView.subviews[0]
         facebookBtn.center = edit.center
         facebookBtn.layer.frame = edit.frame
@@ -212,9 +213,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             
         })
-        
         task.resume()
-        
     }
     
     @IBAction func editBtnPressed(_ sender: UIButton) {
