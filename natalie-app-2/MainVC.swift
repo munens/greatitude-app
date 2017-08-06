@@ -272,7 +272,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
     @IBAction func deleteBtnPressed(_ sender: Any) {
         let alertController = UIAlertController(title: "Delete this image:", message: "Are you sure you would like to delete this image from your portfolio?", preferredStyle: UIAlertControllerStyle.alert)
         
-        
         alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction) in
             context.delete(self.selectedPortfolioItem)
             ad.saveContext()
