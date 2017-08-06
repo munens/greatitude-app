@@ -12,7 +12,7 @@ import LocalAuthentication
 import FBSDKShareKit
 import FacebookShare
 
-class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSDKSharingDelegate {
     
     private var _user:User!
     @IBOutlet weak var tableView: UITableView!
@@ -52,6 +52,13 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         editBtn.layer.borderColor = UIColor.init(red: 0.0, green: 122/255, blue: 255/255, alpha: 1.0).cgColor
         editBtn.layer.cornerRadius = 3
         
+        shareBtn.layer.borderWidth = 1
+        shareBtn.layer.borderColor = UIColor.init(red: 0.0, green: 122/255, blue: 255/255, alpha: 1.0).cgColor
+        shareBtn.layer.cornerRadius = 3
+        
+        deleteBtn.layer.borderWidth = 1
+        deleteBtn.layer.borderColor = UIColor.init(red: 0.0, green: 122/255, blue: 255/255, alpha: 1.0).cgColor
+        deleteBtn.layer.cornerRadius = 3
         
         
         let edit = portfolioItemActionStackView.subviews[0]
@@ -60,11 +67,10 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         //portfolioItemActionStackView.removeArrangedSubview(edit)
         //portfolioItemActionStackView.addArrangedSubview(facebookBtn)
         
-        
         noItemsStackView.isHidden = true
         optionsView.isHidden = true
         
-        portfolioItems = selectedUser.portfolioItem!.sortedArray(using: [NSSortDescriptor(key: "created_at", ascending: true)]) as! [PortfolioItem]
+        portfolioItems = selectedUser.portfolioItem!.sortedArray(using: [NSSortDescriptor(key: "created_at", ascending: false)]) as! [PortfolioItem]
         
         if portfolioItems.count == 0 {
             tableView.isHidden = true
@@ -225,28 +231,61 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func shareBtnPressed(_ sender: UIButton) {
+        
         if let image = selectedPortfolioItem.image?.final {
             let photo: FBSDKSharePhoto = FBSDKSharePhoto()
-            let content: FBSDKSharePhotoContent = FBSDKSharePhotoContent()
             photo.image = UIImage(data: image as Data)
+            photo.caption = selectedPortfolioItem.quote
             photo.isUserGenerated = true
+            let content: FBSDKSharePhotoContent = FBSDKSharePhotoContent()
             content.photos = [photo]
             
-            // adding content for facebook share button:
-            facebookBtn.shareContent = content
+            let shareDialog: FBSDKShareDialog = FBSDKShareDialog()
+            shareDialog.shareContent = content
+            shareDialog.delegate = self
+            shareDialog.fromViewController = self
+            shareDialog.mode = .automatic
             
-            
-            //content.contentURL = NSURL(string: "http://developers.facebook.com")! as URL
-            FBSDKShareDialog.show(from: self, with: content, delegate: nil)
-            
-            saveSharePostInfo()
-            
+            print(shareDialog.canShow())
+            if !shareDialog.canShow() {
+                shareDialog.mode = .feedBrowser
+            }
+            shareDialog.show()
         }
+ 
     }
     
+    func sharer(_ sharer: FBSDKSharing!, didCompleteWithResults results: [AnyHashable : Any]!) {
+        saveSharePostInfo()
+        print(results)
+    }
+    
+    func sharer(_ sharer: FBSDKSharing!, didFailWithError error: Error!) {
+        print("sharer NSError")
+        //print(error.description)
+    }
+    
+    func sharerDidCancel(_ sharer: FBSDKSharing!) {
+        print("sharerDidCancel")
+    }
     
     @IBAction func deleteBtnPressed(_ sender: Any) {
+        let alertController = UIAlertController(title: "Delete this image:", message: "Are you sure you would like to delete this image from your portfolio?", preferredStyle: UIAlertControllerStyle.alert)
         
+        
+        alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction) in
+            context.delete(self.selectedPortfolioItem)
+            ad.saveContext()
+            
+            self.tableView.reloadData()
+            self.optionsView.isHidden = true
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction) in
+            alertController.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alertController, animated: true, completion: nil)
     }
     
 
