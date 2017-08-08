@@ -100,7 +100,14 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
         
         if (controller.fetchedObjects?.count)! > 0 {
             portfolioItems = controller.fetchedObjects!
+            
+            for item in portfolioItems {
+                if item.user != selectedUser {
+                    print("no: , \(item)")
+                }
+            }
         }
+        
         
         
         //portfolioItems = (selectedUser.portfolioItem!.sortedArray(using: [NSSortDescriptor(key: "created_at", ascending: false)]) as! [PortfolioItem] as! NSFetchedResultsControllerDelegate) as! [PortfolioItem]
@@ -317,14 +324,15 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
             shareDialog.shareContent = content
             shareDialog.delegate = self
             shareDialog.fromViewController = self
-            //shareDialog.mode = .automatic
-            shareDialog.mode = .native
+            shareDialog.mode = .automatic
+            //shareDialog.mode = .native
             
             print(shareDialog.canShow())
             if !shareDialog.canShow() {
-                shareDialog.mode = .feedBrowser
+                openFacebookAppStore()
             }
             shareDialog.show()
+ 
         }
  
     }
@@ -335,12 +343,23 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
     }
     
     func sharer(_ sharer: FBSDKSharing!, didFailWithError error: Error!) {
-        print("sharer NSError \(error!.localizedDescription)")
+        print("sharer NSError \(error)")
         //print(error.description)
+        openFacebookAppStore()
     }
     
     func sharerDidCancel(_ sharer: FBSDKSharing!) {
         print("sharerDidCancel")
+    }
+    
+    func openFacebookAppStore() {
+        if let url = URL(string: "itms-apps://itunes.apple.com/us/developer/facebook-inc/id284882218"), UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
     
     @IBAction func deleteBtnPressed(_ sender: Any) {
