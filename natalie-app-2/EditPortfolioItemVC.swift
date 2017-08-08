@@ -328,7 +328,8 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         let attributedText = NSMutableAttributedString(string: quoteText.text)
         let text = NSMutableParagraphStyle()
         text.alignment = .center
-        attributedText.addAttributes([NSBackgroundColorAttributeName: UIColor.black, NSForegroundColorAttributeName: quoteText.textColor!, NSFontAttributeName: UIFont(name:(quoteText.font?.familyName)!, size: (quoteText.font?.pointSize)!)!, NSParagraphStyleAttributeName: text ], range: range)
+        attributedText.addAttributes([NSBackgroundColorAttributeName: UIColor.black, NSForegroundColorAttributeName: quoteText.textColor == UIColor.black ? UIColor.white : quoteText.textColor!, NSFontAttributeName: UIFont(name:(quoteText.font?.familyName)!, size: (quoteText.font?.pointSize)!)!, NSParagraphStyleAttributeName: text ], range: range)
+        
         quoteText.attributedText = attributedText
         //quoteText.tintColor = .white
     }
@@ -346,10 +347,9 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     func insideDraggableArea(point: CGPoint) -> Bool {
         let backgroundImageFrame = self.backgroundImage.frame
-        print("\(point), minY: \(backgroundImageFrame.minY), maxY: \(backgroundImageFrame.maxY)")
-        
+        //print("x: \(point.x), y: \(point.y), minY: \(backgroundImageFrame.minY + 70), maxY: \(backgroundImageFrame.maxY + 30)")
         return point.x >= 0 && point.x <= backgroundImageFrame.width
-               && point.y >= backgroundImageFrame.minY - 40 && point.y <=  backgroundImageFrame.maxY - 60
+               && point.y >= backgroundImageFrame.minY + 70 && point.y <=  backgroundImageFrame.maxY + 50
     }
     
     func newGestureCoords(point: CGPoint) -> CGPoint {
@@ -358,10 +358,12 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
             return CGPoint(x: point.x + 1, y: point.y)
         } else if(point.x > backgroundImageFrame.width) {
             return CGPoint(x: point.x - 1, y: point.y)
-        } else if(point.y < (backgroundImageFrame.minY - 5)){
-            return CGPoint(x: point.x, y: point.y + 5)
-        } else {
+        } else if(point.y > (backgroundImageFrame.minY + 70)){
             return CGPoint(x: point.x, y: point.y - 1)
+        } else if(point.y <  (backgroundImageFrame.maxY + 50)){
+            return CGPoint(x: point.x, y: point.y + 1)
+        } else {
+            return point
         }
     }
     
