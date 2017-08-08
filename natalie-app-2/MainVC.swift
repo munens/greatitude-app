@@ -12,7 +12,7 @@ import LocalAuthentication
 import FBSDKShareKit
 import FacebookShare
 
-class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSDKSharingDelegate {
+class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSDKSharingDelegate, NSFetchedResultsControllerDelegate {
     
     private var _user:User!
     @IBOutlet weak var tableView: UITableView!
@@ -25,6 +25,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
     @IBOutlet weak var portfolioItemActionStackView: UIStackView!
     
     var facebookBtn = FBSDKShareButton()
+    
+    var controller: NSFetchedResultsController<PortfolioItem>!
     
     var portfolioItems: [PortfolioItem] = []
     
@@ -70,17 +72,45 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
         noItemsStackView.isHidden = true
         optionsView.isHidden = true
         
-        portfolioItems = selectedUser.portfolioItem!.sortedArray(using: [NSSortDescriptor(key: "created_at", ascending: false)]) as! [PortfolioItem]
-        
-        if portfolioItems.count == 0 {
-            tableView.isHidden = true
-            noItemsStackView.isHidden = false
-        }
+        attemptFetch()
         
         backgroundView.isUserInteractionEnabled = true
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.backgroundTapped))
         backgroundView.addGestureRecognizer(tapRecognizer)
         
+    }
+    
+    func attemptFetch() {
+        let fetchRequest: NSFetchRequest<PortfolioItem> = PortfolioItem.fetchRequest()
+        let dateSort = NSSortDescriptor(key: "created_at", ascending: false)
+        fetchRequest.sortDescriptors = [dateSort]
+        fetchRequest.predicate = NSPredicate(format: "user == %@", selectedUser)
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        controller.delegate = self
+        self.controller = controller
+        
+        do {
+            try controller.performFetch()
+            
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+        
+        if (controller.fetchedObjects?.count)! > 0 {
+            portfolioItems = controller.fetchedObjects!
+        }
+        
+        
+        //portfolioItems = (selectedUser.portfolioItem!.sortedArray(using: [NSSortDescriptor(key: "created_at", ascending: false)]) as! [PortfolioItem] as! NSFetchedResultsControllerDelegate) as! [PortfolioItem]
+        
+        //controller.delegate = self
+        
+        if portfolioItems.count == 0 {
+            tableView.isHidden = true
+            noItemsStackView.isHidden = false
+        }
     }
     
     func backgroundTapped() {
@@ -118,7 +148,21 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
     */
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return portfolioItems.count
+
+        if let sections = controller.sections {
+            return sections.count
+        }
+        
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let sections = controller.sections {
+            let sec = sections[section]
+            return sec.numberOfObjects
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -134,6 +178,47 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch(type) {
+            case.insert:
+                if let indexPath = newIndexPath {
+                    tableView.insertRows(at: [indexPath], with: .fade)
+                }
+                break
+            
+            case.delete:
+                if let indexPath = indexPath {
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+                break
+            
+            case.update:
+                if let indexPath = indexPath {
+                    let cell = tableView.cellForRow(at: indexPath) as! PortfolioItemCell
+                    let portfolioItem = controller.object(at: indexPath) as! PortfolioItem
+                    cell.configureCell(portfolioItem: portfolioItem)
+                }
+                break
+            case.move:
+                if let indexPath = indexPath {
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+                if let indexPath = newIndexPath {
+                    tableView.insertRows(at: [indexPath], with: .fade)
+                }
+                break
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         
@@ -157,14 +242,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
         
     }*/
     
-    override func viewWillAppear(_ animated: Bool) {
-        /*if let index = self.tableView.indexPathForSelectedRow {
-            self.tableView.deselectRow(at: index, animated: true)
-            //imageQuoteCell = index as? ImageQuoteCell
-        
-            
-        }*/
-    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
@@ -179,15 +256,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create a dequeue reuseable cell here to return.
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PortfolioItemCell", for: indexPath) as? PortfolioItemCell {
-            cell.configureCell(portfolioItem: portfolioItems[indexPath.section])
+            cell.configureCell(portfolioItem: portfolioItems[indexPath.row])
             return cell
         }
         
         return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
     }
     
     func saveSharePostInfo() {
@@ -244,7 +317,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
             shareDialog.shareContent = content
             shareDialog.delegate = self
             shareDialog.fromViewController = self
-            shareDialog.mode = .automatic
+            //shareDialog.mode = .automatic
+            shareDialog.mode = .native
             
             print(shareDialog.canShow())
             if !shareDialog.canShow() {
@@ -261,7 +335,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
     }
     
     func sharer(_ sharer: FBSDKSharing!, didFailWithError error: Error!) {
-        print("sharer NSError")
+        print("sharer NSError \(error!.localizedDescription)")
         //print(error.description)
     }
     
@@ -275,6 +349,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
         alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction) in
             context.delete(self.selectedPortfolioItem)
             ad.saveContext()
+            self.attemptFetch()
             
             self.tableView.reloadData()
             self.optionsView.isHidden = true
