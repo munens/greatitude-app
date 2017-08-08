@@ -107,12 +107,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
                 }
             }
         }
-        
-        
-        
-        //portfolioItems = (selectedUser.portfolioItem!.sortedArray(using: [NSSortDescriptor(key: "created_at", ascending: false)]) as! [PortfolioItem] as! NSFetchedResultsControllerDelegate) as! [PortfolioItem]
-        
-        //controller.delegate = self
+    
         
         if portfolioItems.count == 0 {
             tableView.isHidden = true

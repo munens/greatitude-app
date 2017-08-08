@@ -48,11 +48,19 @@ class ChooseImageVC: UIViewController {
     
     let transferManager = AWSS3TransferManager.default()
     
+    /*
     let t1 = ThemeImage(filename: "ocean.jpg", name: "Ocean theme", imageURL: "")
     let t2 = ThemeImage(filename: "black_pattern.jpg", name: "Black Pattern theme", imageURL: "")
     let t3 = ThemeImage(filename: "rainbow_background.jpg", name: "Rainbow Background theme", imageURL: "")
     let t4 = ThemeImage(filename: "medeival.jpg", name: "Medeival theme", imageURL: "")
     let t5 = ThemeImage(filename: "blue_and_pink.jpg", name: "Blue and Pink theme", imageURL: "")
+    */
+    
+    let t1 = ThemeImage(filename: "ocean.jpg", name: "Ocean theme", imageURL: "img0")
+    let t2 = ThemeImage(filename: "black_pattern.jpg", name: "Black Pattern theme", imageURL: "black_pattern.jpg")
+    let t3 = ThemeImage(filename: "rainbow_background.jpg", name: "Rainbow Background theme", imageURL: "rainbow_background.jpg")
+    let t4 = ThemeImage(filename: "medeival.jpg", name: "Medeival theme", imageURL: "medeival.jgp")
+    let t5 = ThemeImage(filename: "blue_and_pink.jpg", name: "Blue and Pink theme", imageURL: "blue_and_pink.jpg")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +85,7 @@ class ChooseImageVC: UIViewController {
         //print("getting image list: \(imageList)" )
         
         let scrollWidth = scrollView.frame.size.width
-        
+        /*
         getThemeImageUrls {themes in
             
             for (index, theme) in themes.enumerated() {
@@ -122,7 +130,49 @@ class ChooseImageVC: UIViewController {
             
             self.scrollView.contentSize = CGSize(width: (contentWidth - 2500.0), height: 350)
         }
+        */
         
+        for (index, theme) in themes.enumerated() {
+            
+            let image = UIImage(named: "\(theme.filename)")
+            let label = UILabel(frame: CGRect(x:0, y:240, width: 345, height: 30))
+            label.text = theme.name
+            label.textAlignment = NSTextAlignment.center
+            
+            let imageView = UIImageView(image: image)
+            
+            imageView.layer.shadowColor = UIColor.black.cgColor
+            imageView.layer.shadowOpacity = 1
+            imageView.layer.shadowOffset = CGSize.zero
+            imageView.layer.shadowRadius = 10
+            //imageView.layer.shadowPath = UIBezierPath(rect: imageView.bounds).cgPath
+            //imageView.layer.shouldRasterize = true
+            
+            imageView.addSubview(label)
+            
+            self.images.append(imageView)
+            
+            var newX: CGFloat = 0.0
+            newX = scrollWidth / 2 + scrollWidth * CGFloat(index)
+            
+            contentWidth += newX
+            
+            imageView.frame = CGRect(x: newX - 75, y: (self.scrollView.frame.size.height / 2) - 145, width: 345, height: 230)
+            
+            // give every image a UITapGestureRecognizer - allow a function to be called everytime as image is tapped.
+            let imageTapRecognizer = UITapGestureRecognizer(target: self, action:#selector( self.imageViewTapped(_:)))
+            imageTapRecognizer.delegate = self as? UIGestureRecognizerDelegate
+            imageTapRecognizer.numberOfTapsRequired = 1
+            imageTapRecognizer.isEnabled = true
+            imageTapRecognizer.cancelsTouchesInView = false
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(imageTapRecognizer)
+            
+            self.scrollView.addSubview(imageView)
+            //print("content Width 1: \(contentWidth)")
+        }
+        
+        self.scrollView.contentSize = CGSize(width: (contentWidth - 2500.0), height: 350)
         
         //print("content Width 2: \(contentWidth)")
         

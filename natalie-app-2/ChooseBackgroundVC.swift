@@ -97,7 +97,7 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     func getBackgroundImageUrls(completionHandler: @escaping () -> ()){
         
         for background in backgrounds {
-            
+            /*
             let downloadFileUrl = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(background.filename)")
             let downloadRequest = AWSS3TransferManagerDownloadRequest()
             downloadRequest?.bucket = "natalie-app"
@@ -127,10 +127,15 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
                 completionHandler()
                 return nil
             })
+             */
+            
+            self.backgroundList.append(background)
         }
+        
+        
     }
     
-    func resizeImageAndSaveOnDisk(image: UIImage, targetSize: CGSize, fileName: String) -> URL {
+    func resizeImageAndSaveOnDisk(image: UIImage, targetSize: CGSize, fileName: String) -> UIImage /* Using s3 -> URL */ {
         let size = image.size
         
         let widthRatio = targetSize.width / image.size.width
@@ -150,8 +155,12 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
+        return newImage!
+        
+        /* using s3:
+        
         let newJpegImage = UIImageJPEGRepresentation(newImage!, 1.0)
-    
+        
         let newFileName = fileName.components(separatedBy: ".")[0].appending("_small.jpeg")
         
         let imageURL = getDocumentsFromDirectory().appendingPathComponent(newFileName)
@@ -159,6 +168,7 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         try? newJpegImage?.write(to: imageURL)
         
         return imageURL
+        */
     }
     
     func getDocumentsFromDirectory() -> URL {
@@ -236,10 +246,22 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        /* using s3:
         let cell = collectionView.cellForItem(at: indexPath) as! BackgroundImageCell
         let cellImage = cell.backgroundImageView.image
         let img = UIImageJPEGRepresentation(cellImage!, 1.0)
         let thumbnail = UIImageJPEGRepresentation(cellImage!, 0.0)
+         
+        let img = UIImageJPEGRepresentation(cellImage!, 1.0)
+        let thumbnail = UIImageJPEGRepresentation(cellImage!, 0.0)
+        */
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! BackgroundImageCell
+        let cellImage = resizeImageAndSaveOnDisk(image: cell.backgroundImageView.image!, targetSize: CGSize(width: 2000.0, height: 2000.0), fileName: "")
+        let cellThumbnail = resizeImageAndSaveOnDisk(image: cell.backgroundImageView.image!, targetSize: CGSize(width: 100.0, height: 100.0), fileName: "")
+        
+        let img = UIImageJPEGRepresentation(cellImage, 1.0)
+        let thumbnail = UIImageJPEGRepresentation(cellThumbnail, 0.0)
         
         selectedImage.img = img! as NSData
         selectedImage.thumbnail = thumbnail! as NSData

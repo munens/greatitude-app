@@ -346,8 +346,10 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     func insideDraggableArea(point: CGPoint) -> Bool {
         let backgroundImageFrame = self.backgroundImage.frame
+        print("\(point), minY: \(backgroundImageFrame.minY), maxY: \(backgroundImageFrame.maxY)")
+        
         return point.x >= 0 && point.x <= backgroundImageFrame.width
-               && point.y >= backgroundImageFrame.minY && point.y <=  backgroundImageFrame.maxY
+               && point.y >= backgroundImageFrame.minY - 40 && point.y <=  backgroundImageFrame.maxY - 60
     }
     
     func newGestureCoords(point: CGPoint) -> CGPoint {

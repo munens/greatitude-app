@@ -22,8 +22,10 @@ class BackgroundImageCell: UICollectionViewCell {
     
     func configureCell(_ background: BackgroundImage){
         self.background = background
+        // using s3:
+        // backgroundImageView.image = UIImage(named: "\(self.background.imageURL)" )
         
-        backgroundImageView.image = UIImage(named: "\(self.background.imageURL)" )
+        backgroundImageView.image = UIImage(named: "\(self.background.filename)" )
         //backgroundImageLabel.text = self.backgroundImage.name
     }
     
