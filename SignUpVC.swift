@@ -91,7 +91,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                     user.firstname = firstname as? String
                 }
                 
-                
                 if let lastname = (result as AnyObject).value(forKey: "last_name") {
                     user.lastname = lastname as? String
                 }

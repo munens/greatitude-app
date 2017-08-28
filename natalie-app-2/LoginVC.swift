@@ -24,7 +24,6 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
             
         
         loginButton.readPermissions = ["public_profile", "email", "public_profile"]
@@ -73,15 +72,19 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "first_name, last_name, email, name"])
         graphRequest?.start(completionHandler: { (connection, result, error) -> Void in
             if error != nil {
+                connection?.cancel()
                 print("munesh: error with graph request \(String(describing: error))")
             } else {
                 if let email = (result as AnyObject).value(forKey: "email") {
                     print("returning user data email")
                     if let user = self.authenticateUser(email: email as? String, password: nil) {
                         //self.performSegue(withIdentifier: "QuestionVC", sender: user)
-                        let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+                        let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
                         questionVC.selectedUser = user as! User
                         self.present(questionVC, animated: true, completion: nil)
+                        connection?.cancel()
+                    } else {
+                        connection?.cancel()
                     }
                 }
             }
@@ -104,7 +107,7 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         let password = passwordField.text
         let user = authenticateUser(email: email, password: password)
         if (user != nil) {
-            let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+            let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
             questionVC.selectedUser = user as! User
             self.present(questionVC, animated: true, completion: nil)
         } else {
