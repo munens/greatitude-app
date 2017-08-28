@@ -28,6 +28,7 @@
 		C5AA46F71F044F6D00F23F12 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA46F61F044F6D00F23F12 /* BackgroundImage.swift */; };
 		C5AA46F91F04508900F23F12 /* ThemeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA46F81F04508900F23F12 /* ThemeImage.swift */; };
 		C5AD5DA61ECE80F300223064 /* BackgroundImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD5DA51ECE80F300223064 /* BackgroundImageCell.swift */; };
+		C5DC50A41F3A56E2003576E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DC50A31F3A56E2003576E3 /* Images.xcassets */; };
 		C5EA08941EF322650089FA88 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EA08931EF322650089FA88 /* KeychainWrapper.m */; };
 		C5F131691EBCF92D00624711 /* PortfolioItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F131681EBCF92D00624711 /* PortfolioItemCell.swift */; };
 		E0CB7F5419ADEBCC6086D042 /* Pods_natalie_app_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D90C6CD83E182A184F8A63 /* Pods_natalie_app_2.framework */; };
@@ -81,6 +82,7 @@
 		C5AA46F81F04508900F23F12 /* ThemeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeImage.swift; sourceTree = "<group>"; };
 		C5AD5DA11ECE61F400223064 /* ChooseBackgroundVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseBackgroundVC.swift; sourceTree = "<group>"; };
 		C5AD5DA51ECE80F300223064 /* BackgroundImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundImageCell.swift; sourceTree = "<group>"; };
+		C5DC50A31F3A56E2003576E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C5EA08911EF322640089FA88 /* natalie-app-2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "natalie-app-2-Bridging-Header.h"; sourceTree = "<group>"; };
 		C5EA08921EF322650089FA88 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
 		C5EA08931EF322650089FA88 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				E8DE92B11E9D447C007FC971 /* LaunchScreen.storyboard */,
 				E8DE92B41E9D447C007FC971 /* Info.plist */,
 				E8B6103E1E9E6F180019EBED /* Model.xcdatamodeld */,
+				C5DC50A31F3A56E2003576E3 /* Images.xcassets */,
 			);
 			path = "natalie-app-2";
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				E8B611161E9FA2130019EBED /* images in Resources */,
 				E8DE92B31E9D447C007FC971 /* LaunchScreen.storyboard in Resources */,
 				C539B1EC1EAC53A4006C3233 /* Welcome.png in Resources */,
+				C5DC50A41F3A56E2003576E3 /* Images.xcassets in Resources */,
 				E8DE92B01E9D447C007FC971 /* Assets.xcassets in Resources */,
 				E8DE92AE1E9D447C007FC971 /* Main.storyboard in Resources */,
 			);
@@ -755,8 +759,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A49BCB2CA448B48755E1AE70 /* Pods-natalie-app-2.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5E87WWGH2R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -770,6 +776,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookShare\"",
 				);
 				INFOPLIST_FILE = "natalie-app-2/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -780,6 +787,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "natalie-app-2/natalie-app-2-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -787,7 +795,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CC3F916E41D0E217415D5C39 /* Pods-natalie-app-2.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5E87WWGH2R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -802,6 +811,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookShare\"",
 				);
 				INFOPLIST_FILE = "natalie-app-2/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -811,6 +821,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "natalie-app-2/natalie-app-2-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
