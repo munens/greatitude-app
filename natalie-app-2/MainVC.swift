@@ -324,10 +324,9 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
             
             print(shareDialog.canShow())
             if !shareDialog.canShow() {
-                openFacebookAppStore()
+               showAlertController()
             }
             shareDialog.show()
- 
         }
  
     }
@@ -345,6 +344,20 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
     
     func sharerDidCancel(_ sharer: FBSDKSharing!) {
         print("sharerDidCancel")
+    }
+    
+    func showAlertController(){
+        let alertController = UIAlertController(title: "Facebook App not installed", message: "Sharing requires the Facebook app to be installed. Would you like to download it from the App Store?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alertController.addAction(UIAlertAction(title: "Open AppStore", style: UIAlertActionStyle.default, handler:{(action: UIAlertAction) in
+            self.openFacebookAppStore()
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: {(action: UIAlertAction) in
+            alertController.dismiss(animated: true, completion: nil)
+            
+        }))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func openFacebookAppStore() {
