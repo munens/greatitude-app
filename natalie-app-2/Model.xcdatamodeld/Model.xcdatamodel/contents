@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Background" representedClassName="Background" syncable="YES" codeGenerationType="class">
         <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -46,6 +46,7 @@
         <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="portfolio" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Portfolio" inverseName="user" inverseEntity="Portfolio" syncable="YES"/>
         <relationship name="portfolioItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PortfolioItem" inverseName="user" inverseEntity="PortfolioItem" syncable="YES"/>
     </entity>
@@ -55,6 +56,6 @@
         <element name="Portfolio" positionX="-155" positionY="-378" width="128" height="90"/>
         <element name="PortfolioItem" positionX="-92" positionY="27" width="128" height="240"/>
         <element name="Theme" positionX="27" positionY="-243" width="128" height="105"/>
-        <element name="User" positionX="-560" positionY="-297" width="128" height="150"/>
+        <element name="User" positionX="-560" positionY="-297" width="128" height="165"/>
     </elements>
 </model>

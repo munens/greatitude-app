@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -48,13 +48,24 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1S-o8-nLX">
+                                <rect key="frame" x="101" y="545" width="173" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="continue as guest"/>
+                                <connections>
+                                    <action selector="guestBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QPJ-UK-uLz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Eyi-g0-MeN" firstAttribute="top" secondItem="c2C-uQ-exM" secondAttribute="bottom" constant="162" id="PmC-5Q-Bel"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="o1S-o8-nLX" secondAttribute="trailing" constant="85" id="QZh-N7-e8d"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="o1S-o8-nLX" secondAttribute="bottom" constant="93" id="RMg-np-HY5"/>
                             <constraint firstItem="c2C-uQ-exM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TXb-Rh-ZEb"/>
                             <constraint firstItem="c2C-uQ-exM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="dyB-Hj-Rn4"/>
                             <constraint firstItem="Eyi-g0-MeN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sfZ-Xp-EWp"/>
+                            <constraint firstItem="o1S-o8-nLX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="85" id="vsx-aV-WhS"/>
                         </constraints>
                     </view>
                     <connections>
@@ -63,7 +74,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="86" y="322"/>
+            <point key="canvasLocation" x="85.599999999999994" y="321.58920539730138"/>
         </scene>
         <!--Sign UpVC-->
         <scene sceneID="cJj-Pg-Lj1">

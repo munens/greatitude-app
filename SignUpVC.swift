@@ -76,6 +76,20 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     func returnUserData() {
+        /*
+         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+         let user = checkUserInDB(uuid: uuid)
+         
+         if user != nil {
+         //update user info in the database and on device with new UUID
+         } else {
+         // perform the task below from line 138 onwards.. in this function
+         }
+         
+         } else {
+         print("unable to get the phone uuid")
+         }
+        */
         
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email"])
         graphRequest?.start(completionHandler: { (connection, result, error) -> Void in
@@ -86,6 +100,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 let user = User(entity: self.desc!, insertInto: context)
                 print("fetched user : \(String(describing: result))")
                 //print("fetched user email: \((result as AnyObject).value(forKey: "email"))")
+                
+                user.uuid = NSUUID().uuidString
                 
                 if let firstname = (result as AnyObject).value(forKey: "first_name") {
                     user.firstname = firstname as? String
@@ -102,6 +118,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 // addUserToKeyChain(email: user.email!, password: nil)
                 
                 ad.saveContext()
+                //self.saveUserInDB(user: user)
                 //self.performSegue(withIdentifier: "QuestionVC", sender: user)
                 
                 let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
@@ -115,8 +132,24 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signUpPressed(_ sender: UIButton) {
+        /*
+        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+            let user = checkUserInDB(uuid: uuid)
+            
+            if user != nil {
+                //update user info in the database and on device with new UUID
+            } else {
+                // perform the task below from line 138 onwards.. in this function
+            }
+            
+        } else {
+            print("unable to get the phone uuid")
+        }
+        */
         
         user = User(entity: desc!, insertInto: context)
+        
+        user.uuid = NSUUID().uuidString
         
         if let firstname = firstNameField.text {
             user.firstname = firstname
@@ -136,12 +169,13 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
 
         if(user.firstname != "" && user.lastname != "" && user.email != "" && user.password != ""){
             ad.saveContext()
+            //saveUserInDB(user: user)
             if(user != nil){
                 let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
                 
                 questionVC.selectedUser = user
                 print(user)
-                addUserToKeyChain(email: user.email!, password: user.password!)
+                addUserToKeyChain(uuid: user.uuid!, email: user.email!, password: user.password!)
                 //performSegue(withIdentifier: "QuestionVC", sender: user)
                 self.present(questionVC, animated: true, completion: nil)
             }
@@ -149,12 +183,89 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             dismiss(animated: true, completion: nil)
         }
         
+        
     }
     
-    func addUserToKeyChain(email: String, password: Any) -> Void {
+    func checkUserInDB(uuid: String) -> Any {
+        /*
+         
+         // TBD:
+         let url: NSURL = NSURL(string: "http://www.livetalent.ca/api/natapp.php")!
+         var request = URLRequest(url: url as URL)
+         
+         request.httpMethod = "GET"
+         
+         // to solve at later time:
+         let getParams = "uuid="+uuid
+         request.httpBody = getParams.data(using: String.Encoding.utf8)
+         
+         let session = URLSession.shared
+         let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+         
+         if error != nil {
+         print(error!)
+         return;
+         }
+         
+         do {
+         let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+         
+         if let json = jsonResponse {
+            // return the user from jsonResponse
+         }
+         
+         } catch {
+         print(error)
+         }
+         
+         })
+         task.resume()
+         */
+        
+        return false
+    }
+    
+    func saveUserInDB(user: User){
+        /*
+         
+        // TBD:
+        let url: NSURL = NSURL(string: "http://www.livetalent.ca/api/natapp.php")!
+        var request = URLRequest(url: url as URL)
+        
+        request.httpMethod = "POST"
+        
+        // to solve at later time:
+        let postParams = "email="+selectedUser.email!
+        request.httpBody = postParams.data(using: String.Encoding.utf8)
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+            
+            if error != nil {
+                print(error!)
+                return;
+            }
+            
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                if let json = jsonResponse {
+                    print(json)
+                }
+                
+            } catch {
+                print(error)
+            }
+            
+        })
+        task.resume()
+        */
+    }
+    
+    func addUserToKeyChain(uuid: String, email: String, password: Any) -> Void {
         let hasLoginKey = UserDefaults.standard.bool(forKey: "hasLoginKey")
         if hasLoginKey == false {
-            UserDefaults.standard.setValue(email, forKey: "email")
+            UserDefaults.standard.setValue(uuid, forKey: "uuid")
         }
         
         MyKeyChainWrapper.mySetObject(password, forKey: kSecValueData)

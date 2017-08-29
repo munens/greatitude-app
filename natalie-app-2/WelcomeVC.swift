@@ -14,6 +14,8 @@ import FBSDKLoginKit
 class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     
     var user:User!
+    
+    let desc = NSEntityDescription.entity(forEntityName: "User", in: context)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,6 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
             if let email = UserDefaults.standard.object(forKey: "email") {
                 
                 if let user =  getUser(email: email as! String) {
-                    print(user)
                     performSegue(withIdentifier: "QuestionVC", sender: user)
                 }
             }
@@ -43,6 +44,106 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func guestBtnPressed(_ sender: Any) {
+        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+            let userFomDB = checkUserInDB(uuid: uuid)
+            
+            if userFomDB != nil {
+                let questionVC = storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+                questionVC.selectedUser = userFomDB as! User
+                self.present(questionVC, animated: true, completion: nil)
+            } else {
+                user = User(entity: desc!, insertInto: context)
+                
+                user.uuid = uuid
+                ad.saveContext()
+                
+                saveUserInDB(user: user)
+                
+                let questionVC = storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+                questionVC.selectedUser = userFomDB as! User
+                self.present(questionVC, animated: true, completion: nil)
+            }
+        } else {
+            print("unable to get the phone uuid")        }
+    }
+    
+    func saveUserInDB(user: User){
+        /*
+         
+         // TBD:
+         let url: NSURL = NSURL(string: "http://www.livetalent.ca/api/natapp.php")!
+         var request = URLRequest(url: url as URL)
+         
+         request.httpMethod = "POST"
+         
+         // to solve at later time:
+         let postParams = "email="+selectedUser.email!
+         request.httpBody = postParams.data(using: String.Encoding.utf8)
+         
+         let session = URLSession.shared
+         let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+         
+         if error != nil {
+         print(error!)
+         return;
+         }
+         
+         do {
+         let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+         
+         if let json = jsonResponse {
+         print(json)
+         }
+         
+         } catch {
+         print(error)
+         }
+         
+         })
+         task.resume()
+         */
+    }
+    
+    func checkUserInDB(uuid: String) -> Any {
+        /*
+         
+         // TBD:
+         let url: NSURL = NSURL(string: "http://www.livetalent.ca/api/natapp.php")!
+         var request = URLRequest(url: url as URL)
+         
+         request.httpMethod = "GET"
+         
+         // to solve at later time:
+         let getParams = "uuid="+uuid
+         request.httpBody = getParams.data(using: String.Encoding.utf8)
+         
+         let session = URLSession.shared
+         let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+         
+         if error != nil {
+         print(error!)
+         return;
+         }
+         
+         do {
+         let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+         
+         if let json = jsonResponse {
+         // return the user from jsonResponse
+         }
+         
+         } catch {
+         print(error)
+         }
+         
+         })
+         task.resume()
+         */
+        
+        return false
     }
     
     func returnUserData() {

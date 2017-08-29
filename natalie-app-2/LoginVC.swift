@@ -84,6 +84,8 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
                         self.present(questionVC, animated: true, completion: nil)
                         connection?.cancel()
                     } else {
+                        let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as! WelcomeVC
+                        self.present(questionVC, animated: true, completion: nil)
                         connection?.cancel()
                     }
                 }
