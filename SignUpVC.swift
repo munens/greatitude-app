@@ -226,7 +226,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     func saveUserInDB(user: User){
-        /*
+        
          
         // TBD:
         let url: NSURL = NSURL(string: "http://www.livetalent.ca/api/natapp.php")!
@@ -235,7 +235,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         request.httpMethod = "POST"
         
         // to solve at later time:
-        let postParams = "email="+selectedUser.email!
+        let postParams = "uuid=" + user.uuid! + "&firstname=" + user.firstname + "&lastname=" + user.lastname + "&email=" + user.email + "&password=" + user.password
         request.httpBody = postParams.data(using: String.Encoding.utf8)
         
         let session = URLSession.shared
@@ -259,7 +259,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             
         })
         task.resume()
-        */
+        
     }
     
     func addUserToKeyChain(uuid: String, email: String, password: Any) -> Void {
