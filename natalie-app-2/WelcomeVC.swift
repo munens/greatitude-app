@@ -80,6 +80,45 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         }
     }
     
+    func checkGuestInDB(uuid: String, dataHandler: @escaping (NSError?, Bool?) -> Void) {
+        
+        let url: NSURL = NSURL(string: API_URL +  "/api/guest/" + uuid)!
+        var request = URLRequest(url: url as URL)
+        
+        request.httpMethod = "GET"
+        
+        //let getParams = "uuid="+uuid
+        //request.httpBody = getParams.data(using: String.Encoding.utf8)
+        
+        let session = URLSession.shared
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            
+            if error != nil {
+                print(error!)
+                dataHandler(error! as NSError, false)
+                return;
+            }
+            
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                if let json = jsonResponse {
+                    print(json)
+                    let res = json["results"] as! NSArray
+                    dataHandler(nil, !(res as Array).isEmpty)
+                }
+                
+            } catch {
+                print(error)
+                dataHandler(error as NSError, false)
+            }
+            
+        }
+        
+        task.resume()
+    }
+    
     
     func saveGuest(user: User) {
         saveGuestInDB(user: user) { error, results in
@@ -127,45 +166,6 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
             }
             
         }
-        task.resume()
-    }
-    
-    func checkGuestInDB(uuid: String, dataHandler: @escaping (NSError?, Bool?) -> Void) {
-        
-        let url: NSURL = NSURL(string: API_URL +  "/api/guest/" + uuid)!
-        var request = URLRequest(url: url as URL)
-        
-        request.httpMethod = "GET"
-        
-        //let getParams = "uuid="+uuid
-        //request.httpBody = getParams.data(using: String.Encoding.utf8)
-        
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: request) { (data, response, error) in
-            
-            if error != nil {
-                print(error!)
-                dataHandler(error! as NSError, false)
-                return;
-            }
-            
-            do {
-                let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-                
-                if let json = jsonResponse {
-                    print(json)
-                    let res = json["results"] as! NSArray
-                    dataHandler(nil, !(res as Array).isEmpty)
-                }
-                
-            } catch {
-                print(error)
-                dataHandler(error as NSError, false)
-            }
-            
-        }
-        
         task.resume()
     }
     

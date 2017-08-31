@@ -61,6 +61,14 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     */
     
+    func openQuestionVC(user: User){
+        DispatchQueue.main.sync(execute:{
+            let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+            questionVC.selectedUser = user
+            self.present(questionVC, animated: true, completion: nil)
+        })
+    }
+    
     @objc func facebookSignupBtnClicked() {
         let signupManager = FBSDKLoginManager()
             
@@ -144,75 +152,38 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                     return
                 }
 
-                user = User(entity: desc!, insertInto: context)
+                var user = self.user
+                user = User(entity: self.desc!, insertInto: context)
                 
-                user.uuid = NSUUID().uuidString
+                user?.uuid = NSUUID().uuidString
                 
-                if let firstname = firstNameField.text {
-                    user.firstname = firstname
+                if let firstname = self.firstNameField.text {
+                    user?.firstname = firstname
                 }
                 
-                if let lastname = lastNameField.text {
-                    user.lastname = lastname
+                if let lastname = self.lastNameField.text {
+                    user?.lastname = lastname
                 }
                 
-                if let email = emailField.text {
-                    user.email = email
+                if let email = self.emailField.text {
+                    user?.email = email
                 }
                 
-                if let password = passwordField.text {
-                    user.password = password
+                if let password = self.passwordField.text {
+                    user?.password = password
                 }
                 
-                if(user.firstname != "" && user.lastname != "" && user.email != "" && user.password != ""){
-                    
+                if(user?.firstname != "" && user?.lastname != "" && user?.email != "" && user?.password != ""){
                     ad.saveContext()
                     if data! {
-                        
-                        
+                        self.updateUser(user: user!)
                     } else {
-                        
+                        self.saveUser(user: user!)
                     }
-                    
-                    
-                    
-                    
-                    saveUserInDB(user: user)
-                    if(user != nil){
-                        let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
-                        
-                        questionVC.selectedUser = user
-                        addUserToKeyChain(uuid: user.uuid!, email: user.email!, password: user.password!)
-                        //performSegue(withIdentifier: "QuestionVC", sender: user)
-                        self.present(questionVC, animated: true, completion: nil)
-                    }
+
                 } else {
-                    dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                 }
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                if data! {
-                    
-                    
-                    
-                    
-                    self.openQuestionVC(user: self.user!)
-                    
-                    
-                } else {
-                    self.user.uuid = uuid
-                    ad.saveContext()
-                    self.saveGuest(user: self.user)
-                }
-                
             }
         } else {
             print("unable to get the phone uuid")
@@ -221,7 +192,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     func checkUserInDB(uuid: String, dataHandler: @escaping (NSError?, Bool?) -> Void) {
         
-        let url: NSURL = NSURL(string: API_URL +  "/api/user/:uuid")!
+        let url: NSURL = NSURL(string: API_URL +  "/api/user/" + uuid)!
         var request = URLRequest(url: url as URL)
          
         request.httpMethod = "GET"
@@ -231,10 +202,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         request.httpBody = getParams.data(using: String.Encoding.utf8)
          
         let session = URLSession.shared
-        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
          
         if error != nil {
             print(error!)
+            dataHandler(error! as NSError, false)
             return;
         }
          
@@ -242,38 +214,49 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
          
             if let json = jsonResponse {
-                print(json)
+                let res = json["results"] as! NSArray
+                dataHandler(nil, !(res as Array).isEmpty)
             }
          
          } catch {
             print(error)
+            dataHandler(error as NSError, false)
          }
          
-        })
+        }
         task.resume()
 
     }
     
     func saveUser(user: User){
-        
+        saveUserInDB(user: user) { err, user in
+            if err != nil {
+                print(err!)
+                return
+            } else if user != nil {
+                self.addUserToKeyChain(uuid: (user?.uuid!)!, email: (user?.email!)!, password: (user?.password!)!)
+                self.openQuestionVC(user: user!)
+            }
+        }
     }
     
-    func saveUserInDB(user: User){
+    func saveUserInDB(user: User, completionHandler: @escaping (NSError?, User?) -> Void){
 
         let url: NSURL = NSURL(string: API_URL + "/api/users")!
         var request = URLRequest(url: url as URL)
         
         request.httpMethod = "POST"
         
-        // to solve at later time:
+        
         let postParams = "uuid=" + user.uuid! + "&firstname=" + user.firstname! + "&lastname=" + user.lastname! + "&email=" + user.email! + "&password=" + user.password!
         request.httpBody = postParams.data(using: String.Encoding.utf8)
         
         let session = URLSession.shared
-        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             
             if error != nil {
                 print(error!)
+                completionHandler(error! as NSError, nil)
                 return;
             }
             
@@ -282,20 +265,28 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 
                 if let json = jsonResponse {
                     print(json)
+                    ((json["results"] as! NSArray) as Array).isEmpty ? completionHandler(nil, nil) : completionHandler(nil, user)
                 }
                 
             } catch {
+                completionHandler(error as NSError, nil)
                 print(error)
             }
             
-        })
+        }
         task.resume()
     }
     
     
-    func updatUser(user: User){
-        updatUser(user: user) { error, user in
-            
+    func updateUser(user: User){
+        updateUserInDB(user: user) { error, user in
+            if error != nil {
+                print(error!)
+                return
+            } else if(user != nil) {
+                self.addUserToKeyChain(uuid: (user?.uuid!)!, email: (user?.email!)!, password: (user?.password!)!)
+                self.openQuestionVC(user: user!)
+            }
         }
     }
     
@@ -310,7 +301,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         request.httpBody = postParams.data(using: String.Encoding.utf8)
         
         let session = URLSession.shared
-        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             
             if error != nil {
                 print(error!)
@@ -328,7 +319,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 print(error)
             }
             
-        })
+        }
         task.resume()
     }
     
