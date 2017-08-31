@@ -20,6 +20,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordField: UITextField!
     
     var user: User!
+    var API_URL = "https://infinite-wildwood-35465.herokuapp.com"
     
     let desc = NSEntityDescription.entity(forEntityName: "User", in: context)
     
@@ -132,20 +133,29 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signUpPressed(_ sender: UIButton) {
-        /*
+        
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             let user = checkUserInDB(uuid: uuid)
             
             if user != nil {
                 //update user info in the database and on device with new UUID
+                
+                
+                
+                
             } else {
-                // perform the task below from line 138 onwards.. in this function
+                
+                
+                
+                
+                
+                
             }
             
         } else {
             print("unable to get the phone uuid")
         }
-        */
+ 
         
         user = User(entity: desc!, insertInto: context)
         
@@ -169,7 +179,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
 
         if(user.firstname != "" && user.lastname != "" && user.email != "" && user.password != ""){
             ad.saveContext()
-            //saveUserInDB(user: user)
+            saveUserInDB(user: user)
             if(user != nil){
                 let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
                 
@@ -182,60 +192,53 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         } else {
             dismiss(animated: true, completion: nil)
         }
-        
-        
     }
     
     func checkUserInDB(uuid: String) -> Any {
-        /*
+        
+        let url: NSURL = NSURL(string: API_URL +  "/api/user")!
+        var request = URLRequest(url: url as URL)
          
-         // TBD:
-         let url: NSURL = NSURL(string: "http://www.livetalent.ca/api/natapp.php")!
-         var request = URLRequest(url: url as URL)
+        request.httpMethod = "GET"
          
-         request.httpMethod = "GET"
+        // to solve at later time:
+        let getParams = "uuid="+uuid
+        request.httpBody = getParams.data(using: String.Encoding.utf8)
          
-         // to solve at later time:
-         let getParams = "uuid="+uuid
-         request.httpBody = getParams.data(using: String.Encoding.utf8)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
          
-         let session = URLSession.shared
-         let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+        if error != nil {
+            print(error!)
+            return;
+        }
          
-         if error != nil {
-         print(error!)
-         return;
-         }
+        do {
+            let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
          
-         do {
-         let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-         
-         if let json = jsonResponse {
-            // return the user from jsonResponse
-         }
+            if let json = jsonResponse {
+                print(json)
+            }
          
          } catch {
-         print(error)
+            print(error)
          }
          
-         })
-         task.resume()
-         */
+        })
+        task.resume()
         
         return false
     }
     
     func saveUserInDB(user: User){
-        
-         
-        // TBD:
-        let url: NSURL = NSURL(string: "http://www.livetalent.ca/api/natapp.php")!
+
+        let url: NSURL = NSURL(string: API_URL + "/api/users")!
         var request = URLRequest(url: url as URL)
         
         request.httpMethod = "POST"
         
         // to solve at later time:
-        let postParams = "uuid=" + user.uuid! + "&firstname=" + user.firstname + "&lastname=" + user.lastname + "&email=" + user.email + "&password=" + user.password
+        let postParams = "uuid=" + user.uuid! + "&firstname=" + user.firstname! + "&lastname=" + user.lastname! + "&email=" + user.email! + "&password=" + user.password!
         request.httpBody = postParams.data(using: String.Encoding.utf8)
         
         let session = URLSession.shared
@@ -259,13 +262,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             
         })
         task.resume()
-        
     }
     
     func addUserToKeyChain(uuid: String, email: String, password: Any) -> Void {
         let hasLoginKey = UserDefaults.standard.bool(forKey: "hasLoginKey")
         if hasLoginKey == false {
-            UserDefaults.standard.setValue(uuid, forKey: "uuid")
+            UserDefaults.standard.setValue(uuid, forKey: "email")
         }
         
         MyKeyChainWrapper.mySetObject(password, forKey: kSecValueData)

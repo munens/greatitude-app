@@ -75,7 +75,12 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        greetingLabel.text = "Hi, \(selectedUser.firstname!).."
+        
+        if (selectedUser.firstname) != nil {
+            greetingLabel.text = "Hi, \(selectedUser.firstname!).."
+        } else {
+            greetingLabel.text = "Hi, guest"
+        }
         
         self.greetingLabel.fadeOut(1.0, delay: 1.0, completion: {(finished: Bool) -> Void in
             self.questionLabel.fadeIn(1.0, delay: 0.5)

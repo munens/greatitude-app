@@ -15,6 +15,9 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     
     var user:User!
     
+    //var API_URL = "https://infinite-wildwood-35465.herokuapp.com"
+    var API_URL = "http://localhost:5000"
+    
     let desc = NSEntityDescription.entity(forEntityName: "User", in: context)
 
     override func viewDidLoad() {
@@ -46,104 +49,123 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func openQuestionVC(user: User) {
+        DispatchQueue.main.sync(execute: {
+            let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+            questionVC.selectedUser = user
+            self.present(questionVC, animated: true, completion: nil)
+        })
+    }
+    
     @IBAction func guestBtnPressed(_ sender: Any) {
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-            let userFomDB = checkUserInDB(uuid: uuid)
-            
-            if userFomDB != nil {
-                let questionVC = storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
-                questionVC.selectedUser = userFomDB as! User
-                self.present(questionVC, animated: true, completion: nil)
-            } else {
-                user = User(entity: desc!, insertInto: context)
+            self.user = User(entity: self.desc!, insertInto: context)
+            checkGuestInDB(uuid: uuid) {error, data in
                 
-                user.uuid = uuid
-                ad.saveContext()
+                if error != nil {
+                    print("database error: \(String(describing: error))")
+                }
                 
-                saveUserInDB(user: user)
-                
-                let questionVC = storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
-                questionVC.selectedUser = userFomDB as! User
-                self.present(questionVC, animated: true, completion: nil)
+                if data! {
+                    self.openQuestionVC(user: self.user!)
+                } else {
+                    self.user.uuid = uuid
+                    ad.saveContext()
+                    self.saveGuest(user: self.user)
+                }
             }
+ 
         } else {
-            print("unable to get the phone uuid")        }
+            print("unable to get the phone uuid")
+        }
     }
     
-    func saveUserInDB(user: User){
-        /*
-         
-         // TBD:
-         let url: NSURL = NSURL(string: "http://www.livetalent.ca/api/natapp.php")!
-         var request = URLRequest(url: url as URL)
-         
-         request.httpMethod = "POST"
-         
-         // to solve at later time:
-         let postParams = "email="+selectedUser.email!
-         request.httpBody = postParams.data(using: String.Encoding.utf8)
-         
-         let session = URLSession.shared
-         let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
-         
-         if error != nil {
-         print(error!)
-         return;
-         }
-         
-         do {
-         let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-         
-         if let json = jsonResponse {
-         print(json)
-         }
-         
-         } catch {
-         print(error)
-         }
-         
-         })
-         task.resume()
-         */
+    
+    func saveGuest(user: User) {
+        saveGuestInDB(user: user) { error, results in
+            
+            if error != nil {
+                print("database error: \(String(describing: error))")
+            } else if  results != nil {
+                print("user been saved: \(String(describing: results!))")
+                self.openQuestionVC(user: user)
+            }
+        }
     }
     
-    func checkUserInDB(uuid: String) -> Any {
-        /*
-         
-         // TBD:
-         let url: NSURL = NSURL(string: "http://www.livetalent.ca/api/natapp.php")!
-         var request = URLRequest(url: url as URL)
-         
-         request.httpMethod = "GET"
-         
-         // to solve at later time:
-         let getParams = "uuid="+uuid
-         request.httpBody = getParams.data(using: String.Encoding.utf8)
-         
-         let session = URLSession.shared
-         let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
-         
-         if error != nil {
-         print(error!)
-         return;
-         }
-         
-         do {
-         let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-         
-         if let json = jsonResponse {
-         // return the user from jsonResponse
-         }
-         
-         } catch {
-         print(error)
-         }
-         
-         })
-         task.resume()
-         */
+    func saveGuestInDB(user: User, dataHandler:  @escaping (NSError?, User?) -> Void) {
+
+        let url: NSURL = NSURL(string: API_URL + "/api/guest")!
+        var request = URLRequest(url: url as URL)
         
-        return false
+        request.httpMethod = "POST"
+        
+        // to solve at later time:
+        let postParams = "uuid=" + user.uuid!
+        request.httpBody = postParams.data(using: String.Encoding.utf8)
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            
+            if error != nil {
+                print(error!)
+                return;
+            }
+            
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                if let json = jsonResponse {
+                    print("jsonResponse: saveGuestInDB")
+                    ((json["results"] as! NSArray) as Array).isEmpty ? dataHandler(nil, nil) : dataHandler(nil, user)
+                }
+                
+            } catch {
+                print(error)
+                dataHandler(error as NSError, nil)
+            }
+            
+        }
+        task.resume()
+    }
+    
+    func checkGuestInDB(uuid: String, dataHandler: @escaping (NSError?, Bool?) -> Void) {
+        
+        let url: NSURL = NSURL(string: API_URL +  "/api/guest/" + uuid)!
+        var request = URLRequest(url: url as URL)
+        
+        request.httpMethod = "GET"
+        
+        //let getParams = "uuid="+uuid
+        //request.httpBody = getParams.data(using: String.Encoding.utf8)
+        
+        let session = URLSession.shared
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            
+            if error != nil {
+                print(error!)
+                dataHandler(error! as NSError, false)
+                return;
+            }
+            
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                if let json = jsonResponse {
+                    print(json)
+                    let res = json["results"] as! NSArray
+                    dataHandler(nil, !(res as Array).isEmpty)
+                }
+                
+            } catch {
+                print(error)
+                dataHandler(error as NSError, false)
+            }
+            
+        }
+        
+        task.resume()
     }
     
     func returnUserData() {
