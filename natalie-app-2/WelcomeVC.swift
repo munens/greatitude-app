@@ -64,6 +64,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
                 
                 if error != nil {
                     print("database error: \(String(describing: error))")
+                    return
                 }
                 
                 if data! {
@@ -74,7 +75,6 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
                     self.saveGuest(user: self.user)
                 }
             }
- 
         } else {
             print("unable to get the phone uuid")
         }
@@ -86,6 +86,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
             
             if error != nil {
                 print("database error: \(String(describing: error))")
+                return
             } else if  results != nil {
                 print("user been saved: \(String(describing: results!))")
                 self.openQuestionVC(user: user)

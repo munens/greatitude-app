@@ -20,7 +20,9 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordField: UITextField!
     
     var user: User!
-    var API_URL = "https://infinite-wildwood-35465.herokuapp.com"
+    
+    //var API_URL = "https://infinite-wildwood-35465.herokuapp.com"
+    var API_URL = "http://localhost:5000"
     
     let desc = NSEntityDescription.entity(forEntityName: "User", in: context)
     
@@ -135,68 +137,91 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBAction func signUpPressed(_ sender: UIButton) {
         
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-            let user = checkUserInDB(uuid: uuid)
-            
-            if user != nil {
-                //update user info in the database and on device with new UUID
+            checkUserInDB(uuid: uuid) { error, data in
+                
+                if error != nil {
+                    print("database error: \(String(describing: error))")
+                    return
+                }
+
+                user = User(entity: desc!, insertInto: context)
+                
+                user.uuid = NSUUID().uuidString
+                
+                if let firstname = firstNameField.text {
+                    user.firstname = firstname
+                }
+                
+                if let lastname = lastNameField.text {
+                    user.lastname = lastname
+                }
+                
+                if let email = emailField.text {
+                    user.email = email
+                }
+                
+                if let password = passwordField.text {
+                    user.password = password
+                }
+                
+                if(user.firstname != "" && user.lastname != "" && user.email != "" && user.password != ""){
+                    
+                    ad.saveContext()
+                    if data! {
+                        
+                        
+                    } else {
+                        
+                    }
+                    
+                    
+                    
+                    
+                    saveUserInDB(user: user)
+                    if(user != nil){
+                        let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+                        
+                        questionVC.selectedUser = user
+                        addUserToKeyChain(uuid: user.uuid!, email: user.email!, password: user.password!)
+                        //performSegue(withIdentifier: "QuestionVC", sender: user)
+                        self.present(questionVC, animated: true, completion: nil)
+                    }
+                } else {
+                    dismiss(animated: true, completion: nil)
+                }
                 
                 
                 
                 
-            } else {
                 
                 
                 
                 
                 
+                
+                if data! {
+                    
+                    
+                    
+                    
+                    self.openQuestionVC(user: self.user!)
+                    
+                    
+                } else {
+                    self.user.uuid = uuid
+                    ad.saveContext()
+                    self.saveGuest(user: self.user)
+                }
                 
             }
-            
         } else {
             print("unable to get the phone uuid")
         }
- 
-        
-        user = User(entity: desc!, insertInto: context)
-        
-        user.uuid = NSUUID().uuidString
-        
-        if let firstname = firstNameField.text {
-            user.firstname = firstname
-        }
-
-        if let lastname = lastNameField.text {
-            user.lastname = lastname
-        }
-        
-        if let email = emailField.text {
-            user.email = email
-        }
-       
-        if let password = passwordField.text {
-            user.password = password
-        }
-
-        if(user.firstname != "" && user.lastname != "" && user.email != "" && user.password != ""){
-            ad.saveContext()
-            saveUserInDB(user: user)
-            if(user != nil){
-                let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
-                
-                questionVC.selectedUser = user
-                print(user)
-                addUserToKeyChain(uuid: user.uuid!, email: user.email!, password: user.password!)
-                //performSegue(withIdentifier: "QuestionVC", sender: user)
-                self.present(questionVC, animated: true, completion: nil)
-            }
-        } else {
-            dismiss(animated: true, completion: nil)
-        }
     }
     
-    func checkUserInDB(uuid: String) -> Any {
+    func checkUserInDB(uuid: String, dataHandler: @escaping (NSError?, Bool?) -> Void) {
         
-        let url: NSURL = NSURL(string: API_URL +  "/api/user")!
+        let url: NSURL = NSURL(string: API_URL +  "/api/user/:uuid")!
         var request = URLRequest(url: url as URL)
          
         request.httpMethod = "GET"
@@ -226,8 +251,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
          
         })
         task.resume()
+
+    }
+    
+    func saveUser(user: User){
         
-        return false
     }
     
     func saveUserInDB(user: User){
@@ -236,6 +264,46 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         var request = URLRequest(url: url as URL)
         
         request.httpMethod = "POST"
+        
+        // to solve at later time:
+        let postParams = "uuid=" + user.uuid! + "&firstname=" + user.firstname! + "&lastname=" + user.lastname! + "&email=" + user.email! + "&password=" + user.password!
+        request.httpBody = postParams.data(using: String.Encoding.utf8)
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+            
+            if error != nil {
+                print(error!)
+                return;
+            }
+            
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                if let json = jsonResponse {
+                    print(json)
+                }
+                
+            } catch {
+                print(error)
+            }
+            
+        })
+        task.resume()
+    }
+    
+    
+    func updatUser(user: User){
+        updatUser(user: user) { error, user in
+            
+        }
+    }
+    
+    func updateUserInDB(user: User, completionHandler: @escaping (NSError?, User?) -> Void){
+        let url: NSURL = NSURL(string: API_URL + "/api/users")!
+        var request = URLRequest(url: url as URL)
+        
+        request.httpMethod = "PUT"
         
         // to solve at later time:
         let postParams = "uuid=" + user.uuid! + "&firstname=" + user.firstname! + "&lastname=" + user.lastname! + "&email=" + user.email! + "&password=" + user.password!
