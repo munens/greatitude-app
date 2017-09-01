@@ -21,8 +21,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     var user: User!
     
-    //var API_URL = "https://infinite-wildwood-35465.herokuapp.com"
-    var API_URL = "http://localhost:5000"
+    var API_URL = "https://infinite-wildwood-35465.herokuapp.com"
+    //var API_URL = "http://localhost:5000"
     
     let desc = NSEntityDescription.entity(forEntityName: "User", in: context)
     
