@@ -62,7 +62,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     */
     
     func openQuestionVC(user: User){
-        DispatchQueue.main.sync(execute:{
+        DispatchQueue.main.sync(execute: {
             let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
             questionVC.selectedUser = user
             self.present(questionVC, animated: true, completion: nil)
@@ -71,7 +71,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     @objc func facebookSignupBtnClicked() {
         let signupManager = FBSDKLoginManager()
-            
+        
         signupManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
             if error != nil {
                 print("munesh: unable to authenticate with facebook: \(String(describing: error))")
@@ -155,7 +155,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 var user = self.user
                 user = User(entity: self.desc!, insertInto: context)
                 
-                user?.uuid = NSUUID().uuidString
+                user?.uuid = uuid
                 
                 if let firstname = self.firstNameField.text {
                     user?.firstname = firstname
@@ -176,7 +176,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 if(user?.firstname != "" && user?.lastname != "" && user?.email != "" && user?.password != ""){
                     ad.saveContext()
                     if data! {
-                        self.updateUser(user: user!)
+                        self.updateUser(user: user!, uuid:  uuid)
                     } else {
                         self.saveUser(user: user!)
                     }
@@ -198,8 +198,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         request.httpMethod = "GET"
          
         // to solve at later time:
-        let getParams = "uuid="+uuid
-        request.httpBody = getParams.data(using: String.Encoding.utf8)
+        //let getParams = "uuid="+uuid
+        //request.httpBody = getParams.data(using: String.Encoding.utf8)
          
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -225,13 +225,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
          
         }
         task.resume()
-
     }
     
     func saveUser(user: User){
-        saveUserInDB(user: user) { err, user in
-            if err != nil {
-                print(err!)
+        saveUserInDB(user: user) { error, user in
+            if error != nil {
+                print(error!)
                 return
             } else if user != nil {
                 self.addUserToKeyChain(uuid: (user?.uuid!)!, email: (user?.email!)!, password: (user?.password!)!)
@@ -246,7 +245,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         var request = URLRequest(url: url as URL)
         
         request.httpMethod = "POST"
-        
         
         let postParams = "uuid=" + user.uuid! + "&firstname=" + user.firstname! + "&lastname=" + user.lastname! + "&email=" + user.email! + "&password=" + user.password!
         request.httpBody = postParams.data(using: String.Encoding.utf8)
@@ -264,7 +262,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                 
                 if let json = jsonResponse {
-                    print(json)
+                    print("jsonResponse saveUserInDB : \(json)")
                     ((json["results"] as! NSArray) as Array).isEmpty ? completionHandler(nil, nil) : completionHandler(nil, user)
                 }
                 
@@ -278,8 +276,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     
-    func updateUser(user: User){
-        updateUserInDB(user: user) { error, user in
+    func updateUser(user: User, uuid: String){
+        updateUserInDB(user: user, uuid: uuid) { error, user in
             if error != nil {
                 print(error!)
                 return
@@ -290,21 +288,25 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func updateUserInDB(user: User, completionHandler: @escaping (NSError?, User?) -> Void){
-        let url: NSURL = NSURL(string: API_URL + "/api/users")!
+    func updateUserInDB(user: User, uuid: String, completionHandler: @escaping (NSError?, User?) -> Void){
+        let url: NSURL = NSURL(string: API_URL + "/api/user")!
         var request = URLRequest(url: url as URL)
         
-        request.httpMethod = "PUT"
+        request.httpMethod = "POST"
         
-        // to solve at later time:
-        let postParams = "uuid=" + user.uuid! + "&firstname=" + user.firstname! + "&lastname=" + user.lastname! + "&email=" + user.email! + "&password=" + user.password!
-        request.httpBody = postParams.data(using: String.Encoding.utf8)
+        let putParams = "uuid=" + user.uuid! + "&firstname=" + user.firstname! + "&lastname=" + user.lastname! + "&email=" + user.email! + "&password=" + user.password!
+        
+        //let putParams:[String: String] = ["uuid": user.uuid!, "firstname": user.firstname!, "lastname": user.lastname!, "email": user.email!, "password": user.password!, "prevuuid": uuid ]
+        //request.httpBody = try JSONSerialization.data(withJSONObject: putParams, options: JSONSerialization.WritingOptions())
+        
+        request.httpBody = putParams.data(using: String.Encoding.utf8)
         
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             
             if error != nil {
                 print(error!)
+                completionHandler(error! as NSError, nil)
                 return;
             }
             
@@ -312,21 +314,28 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                 
                 if let json = jsonResponse {
-                    print(json)
+                    print("jsonResponse updateUserInDB : \(json)")
+                    ((json["results"] as! NSArray) as Array).isEmpty ? completionHandler(nil, nil) : completionHandler(nil, user)
                 }
                 
             } catch {
+                completionHandler(error as NSError, nil)
                 print(error)
             }
             
         }
         task.resume()
+        
+        
+        
+        
+        
     }
     
     func addUserToKeyChain(uuid: String, email: String, password: Any) -> Void {
         let hasLoginKey = UserDefaults.standard.bool(forKey: "hasLoginKey")
         if hasLoginKey == false {
-            UserDefaults.standard.setValue(uuid, forKey: "email")
+            UserDefaults.standard.setValue(email, forKey: "email")
         }
         
         MyKeyChainWrapper.mySetObject(password, forKey: kSecValueData)

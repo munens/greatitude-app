@@ -12,19 +12,24 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 
 class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate, FBSDKLoginButtonDelegate {
-
+    
+    var user: User!
+    let desc = NSEntityDescription.entity(forEntityName: "User", in: context)
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
     var controller: NSFetchedResultsController<User>!
     
+    //var API_URL = "https://infinite-wildwood-35465.herokuapp.com"
+    var API_URL = "http://localhost:5000"
+    
     let loginButton = FBSDKLoginButton()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-            
+        
         
         loginButton.readPermissions = ["public_profile", "email", "public_profile"]
             
@@ -104,6 +109,21 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
      // Pass the selected object to the new view controller.
      }
     */
+    func clearFields() {
+        emailField.text = ""
+        passwordField.text = ""
+        createAuthenticationOverlay()
+        //dismiss(animated: true, completion: nil)
+    }
+    
+    func openQuestionVC(user: User){
+        DispatchQueue.main.sync(execute: {
+            let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+            questionVC.selectedUser = user
+            self.present(questionVC, animated: true, completion: nil)
+        })
+    }
+    
     @IBAction func loginPressed(_ sender: Any) {
         let email = emailField.text
         let password = passwordField.text
@@ -113,10 +133,26 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
             questionVC.selectedUser = user as! User
             self.present(questionVC, animated: true, completion: nil)
         } else {
-            emailField.text = ""
-            passwordField.text = ""
-            createAuthenticationOverlay()
-            //dismiss(animated: true, completion: nil)
+            if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+                getUser(uuid: uuid, email: email!, password: password!) { error, user in
+                    if error != nil {
+                        print(error!)
+                        self.clearFields()
+                        return
+                    }
+                    
+                    if user != nil {
+                        self.addUserToKeyChain(uuid: (user?.uuid)!, email: (user?.email)!, password: (user?.password)!)
+                        self.openQuestionVC(user: user!)
+                    } else {
+                        self.clearFields()
+                        return
+                    }
+                }
+            } else {
+                print("unable to get the phone uuid")
+                self.clearFields()
+            }
         }
     }
     
@@ -143,6 +179,76 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         }
     }
     
+    func getUser(uuid: String, email: String, password: String, completionHandler: @escaping (NSError?, User?) -> Void){
+        let url: NSURL = NSURL(string: API_URL +  "/api/login")!
+        var request = URLRequest(url: url as URL)
+        
+        request.httpMethod = "POST"
+        
+        let postParams = "uuid=" + uuid + "&email=" + email + "&password=" + password
+        request.httpBody = postParams.data(using: String.Encoding.utf8)
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            
+            if error != nil {
+                print(error!)
+                completionHandler(error! as NSError, nil)
+                return;
+            }
+            
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                if let json = jsonResponse {
+                    let res = ((json["results"]! as! NSArray) as Array)
+                    if !res.isEmpty {
+                        let userFromDB = self.saveUser(result: res[0])
+                        completionHandler(nil, userFromDB)
+                    } else {
+                        completionHandler(nil, nil)
+                    }
+                    
+                    //completionHandler(nil, !(res as Array).isEmpty)
+                    
+                }
+                
+            } catch {
+                print(error)
+                completionHandler(error as NSError, nil)
+            }
+            
+        }
+        task.resume()
+    }
+    
+    func saveUser(result: AnyObject) -> User {
+        let user = User(entity: desc!, insertInto: context)
+        
+        if let uuid = result["uuid"]! {
+            user.uuid = uuid as? String
+        }
+        
+        if let firstname = result["firstname"]! {
+            user.firstname = firstname as? String
+        }
+        
+        if let lastname = result["lastname"]! {
+            user.firstname = lastname as? String
+        }
+        
+        if let email = result["email"]! {
+            user.email = email as? String
+        }
+        
+        if let password = result["password"]! {
+            user.password = password as? String
+        }
+        
+        ad.saveContext()
+        return user
+    }
+    
     func createAuthenticationOverlay(){
         let deadlineTime = DispatchTime.now() + .seconds(5)
         let window = UIApplication.shared.keyWindow!
@@ -161,6 +267,18 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
             rectangleView.removeFromSuperview()
         }
+    }
+    
+    func addUserToKeyChain(uuid: String, email: String, password: Any) -> Void {
+        let hasLoginKey = UserDefaults.standard.bool(forKey: "hasLoginKey")
+        if hasLoginKey == false {
+            UserDefaults.standard.setValue(email, forKey: "email")
+        }
+        
+        MyKeyChainWrapper.mySetObject(password, forKey: kSecValueData)
+        MyKeyChainWrapper.writeToKeychain()
+        UserDefaults.standard.set(true, forKey: "hasLoginKey")
+        UserDefaults.standard.synchronize()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
