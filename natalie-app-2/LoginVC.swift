@@ -24,21 +24,20 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     //var API_URL = "https://infinite-wildwood-35465.herokuapp.com"
     var API_URL = "http://localhost:5000"
     
-    let loginButton = FBSDKLoginButton()
+    let MyKeyChainWrapper = KeychainWrapper()
+
+    let loginManager = FBSDKLoginManager()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        let facebookLoginBtn = UIButton(frame: CGRect(x: 40, y: 100, width: 200, height: 45))
+        facebookLoginBtn.backgroundColor = UIColor.init(red: 59, green: 89, blue: 152, alpha: 0)
         
-        loginButton.readPermissions = ["public_profile", "email", "public_profile"]
-            
-        loginButton.frame.origin.y = 100
-        loginButton.frame.origin.x = 40
-            
-        loginButton.delegate = self as FBSDKLoginButtonDelegate
-            
-        view.addSubview(loginButton)
+        facebookLoginBtn.setTitle("continue with facebook", for: .normal)
+        facebookLoginBtn.addTarget(self, action: #selector(self.facebookLoginBtnClicked), for: .touchUpInside)
+        view.addSubview(facebookLoginBtn)
         
         // Do any additional setup after loading the view.
         emailField.delegate = self
@@ -73,29 +72,59 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         // Dispose of any resources that can be recreated.
     }
     
+    func facebookLoginBtnClicked(){
+        loginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+            if error != nil {
+                print("munesh: unable to authenticate with facebook: \(String(describing: error))")
+            } else if result?.isCancelled == true {
+                print("munesh: authentication has been cancelled")
+            } else {
+                print("munesh: Successful authentication with facebook")
+                print("munesh: \(String(describing: result))")
+                self.returnUserData()
+            }
+        }
+    }
+    
     func returnUserData() {
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "first_name, last_name, email, name"])
-        graphRequest?.start(completionHandler: { (connection, result, error) -> Void in
+        let connection = FBSDKGraphRequestConnection()
+        connection.add(graphRequest, completionHandler: { (connection, result, error) -> Void in
             if error != nil {
-                connection?.cancel()
                 print("munesh: error with graph request \(String(describing: error))")
+                connection?.cancel()
             } else {
                 if let email = (result as AnyObject).value(forKey: "email") {
                     print("returning user data email")
                     if let user = self.authenticateUser(email: email as? String, password: nil) {
-                        //self.performSegue(withIdentifier: "QuestionVC", sender: user)
-                        let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
-                        questionVC.selectedUser = user as! User
-                        self.present(questionVC, animated: true, completion: nil)
+
+                        self.openQuestionVC(user: user as! User)
                         connection?.cancel()
+                        
                     } else {
-                        let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as! WelcomeVC
-                        self.present(questionVC, animated: true, completion: nil)
+                        
+                        let uuid = UIDevice.current.identifierForVendor?.uuidString
+                        self.getUser(uuid: uuid!, email: email as! String, password: "") { error, user in
+                            if error != nil {
+                                print(error!)
+                                self.loginManager.logOut()
+                                return
+                            }
+                            
+                            if user != nil {
+                                self.openQuestionVC(user: user!)
+                            } else {
+                                self.loginManager.logOut()
+                                self.openWelcomeVC()
+                                return
+                            }
+                        }
                         connection?.cancel()
                     }
                 }
             }
         })
+        connection.start()
     }
     
     
@@ -110,10 +139,19 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
      }
     */
     func clearFields() {
-        emailField.text = ""
-        passwordField.text = ""
-        createAuthenticationOverlay()
-        //dismiss(animated: true, completion: nil)
+        DispatchQueue.main.sync(execute: {
+            emailField.text = ""
+            passwordField.text = ""
+            createAuthenticationOverlay()
+            //dismiss(animated: true, completion: nil)
+        })
+    }
+    
+    func openWelcomeVC() {
+        DispatchQueue.main.sync(execute: {
+            let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as! WelcomeVC
+            self.present(questionVC, animated: true, completion: nil)
+        })
     }
     
     func openQuestionVC(user: User){
@@ -234,7 +272,7 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         }
         
         if let lastname = result["lastname"]! {
-            user.firstname = lastname as? String
+            user.lastname = lastname as? String
         }
         
         if let email = result["email"]! {

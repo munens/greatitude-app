@@ -26,6 +26,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     let desc = NSEntityDescription.entity(forEntityName: "User", in: context)
     
+    let signupManager = FBSDKLoginManager()
+    
     let MyKeyChainWrapper = KeychainWrapper()
     
     override func viewDidLoad() {
@@ -70,8 +72,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     @objc func facebookSignupBtnClicked() {
-        let signupManager = FBSDKLoginManager()
-        
         signupManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
             if error != nil {
                 print("munesh: unable to authenticate with facebook: \(String(describing: error))")
@@ -87,59 +87,62 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     func returnUserData() {
-        /*
          if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-         let user = checkUserInDB(uuid: uuid)
-         
-         if user != nil {
-         //update user info in the database and on device with new UUID
-         } else {
-         // perform the task below from line 138 onwards.. in this function
-         }
-         
-         } else {
-         print("unable to get the phone uuid")
-         }
-        */
-        
-        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email"])
-        graphRequest?.start(completionHandler: { (connection, result, error) -> Void in
-            if(error != nil){
-                print("munesh: error with graph request \(String(describing: error))")
-                connection?.cancel()
-            } else {
-                let user = User(entity: self.desc!, insertInto: context)
-                print("fetched user : \(String(describing: result))")
-                //print("fetched user email: \((result as AnyObject).value(forKey: "email"))")
+            checkUserInDB(uuid: uuid) { error, data in
+                let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email"])
+                let connection = FBSDKGraphRequestConnection()
                 
-                user.uuid = NSUUID().uuidString
+                connection.add(graphRequest, completionHandler: { (connection, result, error) -> Void in
+                    
+                    if(error != nil){
+                        
+                        print("munesh: error with graph request \(String(describing: error))")
+                        connection?.cancel()
+                        self.signupManager.logOut()
+                        
+                    } else {
+                        
+                        let user = User(entity: self.desc!, insertInto: context)
+                        print("fetched user : \(String(describing: result))")
+                    
+                        user.uuid = uuid
+                    
+                        if let firstname = (result as AnyObject).value(forKey: "first_name") {
+                            user.firstname = firstname as? String
+                        }
+                    
+                        if let lastname = (result as AnyObject).value(forKey: "last_name") {
+                            user.lastname = lastname as? String
+                        }
+                    
+                        if let email = (result as AnyObject).value(forKey: "email") {
+                            user.email = email as? String
+                        }
+                        
+                        user.password = ""
+                    
+                        ad.saveContext()
+                    
+                        if data! {
+                            self.updateUser(user: user, uuid:  uuid, type: "login")
+                        } else {
+                            self.saveUser(user: user, type: "login")
+                        }
+                        connection?.cancel()
+                    }
+                    
+                    
+                })
                 
-                if let firstname = (result as AnyObject).value(forKey: "first_name") {
-                    user.firstname = firstname as? String
-                }
-                
-                if let lastname = (result as AnyObject).value(forKey: "last_name") {
-                    user.lastname = lastname as? String
-                }
-                
-                if let email = (result as AnyObject).value(forKey: "email") {
-                    user.email = email as? String
-                }
-                
-                // addUserToKeyChain(email: user.email!, password: nil)
-                
-                ad.saveContext()
-                //self.saveUserInDB(user: user)
-                //self.performSegue(withIdentifier: "QuestionVC", sender: user)
-                
-                let questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
-                questionVC.selectedUser = user
-                self.present(questionVC, animated: true, completion: nil)
-                connection?.cancel()
-                
+                connection.start()
             }
-        
-        })
+            
+         } else {
+            
+            signupManager.logOut()
+            print("unable to get the phone uuid")
+            
+         }
     }
     
     @IBAction func signUpPressed(_ sender: UIButton) {
@@ -176,9 +179,9 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 if(user?.firstname != "" && user?.lastname != "" && user?.email != "" && user?.password != ""){
                     ad.saveContext()
                     if data! {
-                        self.updateUser(user: user!, uuid:  uuid)
+                        self.updateUser(user: user!, uuid:  uuid, type: "user")
                     } else {
-                        self.saveUser(user: user!)
+                        self.saveUser(user: user!, type: "user")
                     }
 
                 } else {
@@ -227,13 +230,15 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         task.resume()
     }
     
-    func saveUser(user: User){
+    func saveUser(user: User, type: String){
         saveUserInDB(user: user) { error, user in
             if error != nil {
                 print(error!)
                 return
             } else if user != nil {
-                self.addUserToKeyChain(uuid: (user?.uuid!)!, email: (user?.email!)!, password: (user?.password!)!)
+                if type == "user" {
+                    self.addUserToKeyChain(uuid: (user?.uuid!)!, email: (user?.email!)!, password: (user?.password!)!)
+                }
                 self.openQuestionVC(user: user!)
             }
         }
@@ -276,13 +281,15 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     
-    func updateUser(user: User, uuid: String){
+    func updateUser(user: User, uuid: String, type: String){
         updateUserInDB(user: user, uuid: uuid) { error, user in
             if error != nil {
                 print(error!)
                 return
             } else if(user != nil) {
-                self.addUserToKeyChain(uuid: (user?.uuid!)!, email: (user?.email!)!, password: (user?.password!)!)
+                if type == "user" {
+                    self.addUserToKeyChain(uuid: (user?.uuid!)!, email: (user?.email!)!, password: (user?.password!)!)
+                }
                 self.openQuestionVC(user: user!)
             }
         }
