@@ -18,6 +18,7 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var loginBtn: UIButton!
     
     var controller: NSFetchedResultsController<User>!
     
@@ -32,8 +33,14 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         
         super.viewDidLoad()
         
-        let facebookLoginBtn = UIButton(frame: CGRect(x: 40, y: 100, width: 200, height: 45))
+        let facebookLoginBtn = UIButton()
+        facebookLoginBtn.frame.size = CGSize(width: 200, height: 35)
+        facebookLoginBtn.center = CGPoint(x: self.view.frame.width/2, y: 120)
         facebookLoginBtn.backgroundColor = UIColor.init(red: 59, green: 89, blue: 152, alpha: 0)
+        
+        facebookLoginBtn.layer.borderWidth = 1.0
+        facebookLoginBtn.layer.borderColor = UIColor.white.cgColor
+        facebookLoginBtn.layer.cornerRadius = 3
         
         facebookLoginBtn.setTitle("continue with facebook", for: .normal)
         facebookLoginBtn.addTarget(self, action: #selector(self.facebookLoginBtnClicked), for: .touchUpInside)
@@ -44,6 +51,10 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpVC.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        loginBtn.layer.borderWidth = 1.0
+        loginBtn.layer.borderColor = UIColor.white.cgColor
+        loginBtn.layer.cornerRadius = 3
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
