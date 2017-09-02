@@ -12,12 +12,14 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 class SignUpVC: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordConfirmationField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    @IBOutlet weak var signUpBtn: UIButton!
     
     var user: User!
     
@@ -33,20 +35,30 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         emailField.delegate = self
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpVC.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        let facebookSignupBtn = UIButton(frame: CGRect(x: 40, y: 100, width: 200, height: 45))
+        let facebookSignupBtn = UIButton()
+        facebookSignupBtn.frame.size = CGSize(width: 200, height: 35)
+        facebookSignupBtn.center = CGPoint(x: self.view.frame.width/2, y: 120)
         facebookSignupBtn.backgroundColor = UIColor.init(red: 59, green: 89, blue: 152, alpha: 0)
+        
+        facebookSignupBtn.layer.borderWidth = 1.0
+        facebookSignupBtn.layer.borderColor = UIColor.white.cgColor
+        facebookSignupBtn.layer.cornerRadius = 3
         
         facebookSignupBtn.setTitle("Sign up with facebook", for: .normal)
         facebookSignupBtn.addTarget(self, action: #selector(SignUpVC.facebookSignupBtnClicked), for: .touchUpInside)
         //facebookSignupBtn.addTarget(self, action: self.facebookSignupBtnClicked, for: .touchUpInside)
         view.addSubview(facebookSignupBtn)
+        
+        signUpBtn.layer.borderWidth = 1.0
+        signUpBtn.layer.borderColor = UIColor.white.cgColor
+        signUpBtn.layer.cornerRadius = 3
     }
     
     func dismissKeyboard(){
@@ -54,14 +66,14 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     func openQuestionVC(user: User){
         DispatchQueue.main.sync(execute: {
@@ -83,11 +95,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 self.returnUserData()
             }
         }
-    
+        
     }
     
     func returnUserData() {
-         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             checkUserInDB(uuid: uuid) { error, data in
                 let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email"])
                 let connection = FBSDKGraphRequestConnection()
@@ -104,25 +116,25 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                         
                         let user = User(entity: self.desc!, insertInto: context)
                         print("fetched user : \(String(describing: result))")
-                    
+                        
                         user.uuid = uuid
-                    
+                        
                         if let firstname = (result as AnyObject).value(forKey: "first_name") {
                             user.firstname = firstname as? String
                         }
-                    
+                        
                         if let lastname = (result as AnyObject).value(forKey: "last_name") {
                             user.lastname = lastname as? String
                         }
-                    
+                        
                         if let email = (result as AnyObject).value(forKey: "email") {
                             user.email = email as? String
                         }
                         
                         user.password = ""
-                    
+                        
                         ad.saveContext()
-                    
+                        
                         if data! {
                             self.updateUser(user: user, uuid:  uuid, type: "login")
                         } else {
@@ -137,12 +149,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 connection.start()
             }
             
-         } else {
+        } else {
             
             signupManager.logOut()
             print("unable to get the phone uuid")
             
-         }
+        }
     }
     
     @IBAction func signUpPressed(_ sender: UIButton) {
@@ -154,7 +166,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                     print("database error: \(String(describing: error))")
                     return
                 }
-
+                
                 var user = self.user
                 user = User(entity: self.desc!, insertInto: context)
                 
@@ -183,7 +195,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                     } else {
                         self.saveUser(user: user!, type: "user")
                     }
-
+                    
                 } else {
                     self.dismiss(animated: true, completion: nil)
                 }
@@ -197,35 +209,35 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         
         let url: NSURL = NSURL(string: API_URL +  "/api/user/" + uuid)!
         var request = URLRequest(url: url as URL)
-         
+        
         request.httpMethod = "GET"
-         
+        
         // to solve at later time:
         //let getParams = "uuid="+uuid
         //request.httpBody = getParams.data(using: String.Encoding.utf8)
-         
+        
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
-         
-        if error != nil {
-            print(error!)
-            dataHandler(error! as NSError, false)
-            return;
-        }
-         
-        do {
-            let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-         
-            if let json = jsonResponse {
-                let res = json["results"] as! NSArray
-                dataHandler(nil, !(res as Array).isEmpty)
+            
+            if error != nil {
+                print(error!)
+                dataHandler(error! as NSError, false)
+                return;
             }
-         
-         } catch {
-            print(error)
-            dataHandler(error as NSError, false)
-         }
-         
+            
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                if let json = jsonResponse {
+                    let res = json["results"] as! NSArray
+                    dataHandler(nil, !(res as Array).isEmpty)
+                }
+                
+            } catch {
+                print(error)
+                dataHandler(error as NSError, false)
+            }
+            
         }
         task.resume()
     }
@@ -245,7 +257,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     func saveUserInDB(user: User, completionHandler: @escaping (NSError?, User?) -> Void){
-
+        
         let url: NSURL = NSURL(string: API_URL + "/api/users")!
         var request = URLRequest(url: url as URL)
         
@@ -356,15 +368,15 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         if let user = sender as? User {
             questionVC.selectedUser = user
         }
-
-//        if segue.identifier == "QuestionVC" {
-//            if let questionVC = segue.destination as? QuestionVC {
-//                if let user = sender as? User {
-//                    print(user)
-//                    questionVC.selectedUser = user
-//                }
-//            }
-//        }
+        
+        //        if segue.identifier == "QuestionVC" {
+        //            if let questionVC = segue.destination as? QuestionVC {
+        //                if let user = sender as? User {
+        //                    print(user)
+        //                    questionVC.selectedUser = user
+        //                }
+        //            }
+        //        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -424,5 +436,5 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         resignFirstResponder()
         return true
     }
-
+    
 }

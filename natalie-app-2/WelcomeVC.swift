@@ -44,6 +44,11 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         }
     }
     
+    @IBAction func SignUpBtnPressed(_ sender: Any) {
+        let signUpVC = self.storyboard?.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
+        present(signUpVC, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
