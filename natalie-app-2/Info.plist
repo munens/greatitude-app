@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2017 All rights reserved.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -34,7 +32,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>FacebookAppID</key>
 	<string>1363944760361580</string>
 	<key>FacebookDisplayName</key>
@@ -66,6 +64,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Access to camers is necessary for creating your own background</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2017 All rights reserved.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Access to photos is required for using your own background</string>
 	<key>UIApplicationExitsOnSuspend</key>

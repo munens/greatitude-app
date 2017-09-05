@@ -34,8 +34,18 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         super.viewDidLoad()
         
         let facebookLoginBtn = UIButton()
-        facebookLoginBtn.frame.size = CGSize(width: 200, height: 35)
-        facebookLoginBtn.center = CGPoint(x: self.view.frame.width/2, y: 120)
+        //facebookSignupBtn.center = CGPoint(x: self.view.frame.width/2, y: signUpStackView.frame.origin.y + 50)
+        
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            facebookLoginBtn.frame.size = CGSize(width: 170, height: 30)
+            facebookLoginBtn.center = CGPoint(x: self.view.frame.width/2, y: 120)
+            facebookLoginBtn.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 14)
+        } else {
+            facebookLoginBtn.frame.size = CGSize(width: 200, height: 35)
+            facebookLoginBtn.center = CGPoint(x: self.view.frame.width/2, y: 120)
+            facebookLoginBtn.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 17)
+        }
+        
         facebookLoginBtn.backgroundColor = UIColor.init(red: 59, green: 89, blue: 152, alpha: 0)
         
         facebookLoginBtn.layer.borderWidth = 1.0

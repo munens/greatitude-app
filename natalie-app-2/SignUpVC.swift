@@ -13,6 +13,7 @@ import FBSDKLoginKit
 
 class SignUpVC: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var signUpStackView: UIStackView!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -43,8 +44,19 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tap)
         
         let facebookSignupBtn = UIButton()
-        facebookSignupBtn.frame.size = CGSize(width: 200, height: 35)
-        facebookSignupBtn.center = CGPoint(x: self.view.frame.width/2, y: 120)
+        
+        
+        
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            facebookSignupBtn.frame.size = CGSize(width: 170, height: 30)
+            facebookSignupBtn.center = CGPoint(x: self.view.frame.width/2, y: signUpStackView.frame.origin.y + 50)
+            facebookSignupBtn.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 14)
+        } else {
+            facebookSignupBtn.frame.size = CGSize(width: 200, height: 35)
+            facebookSignupBtn.center = CGPoint(x: self.view.frame.width/2, y: signUpStackView.frame.origin.y + 70)
+            facebookSignupBtn.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 17)
+        }
+        
         facebookSignupBtn.backgroundColor = UIColor.init(red: 59, green: 89, blue: 152, alpha: 0)
         
         facebookSignupBtn.layer.borderWidth = 1.0
