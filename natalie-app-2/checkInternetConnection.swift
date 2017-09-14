@@ -17,7 +17,7 @@ public class checkInternetConnection {
         address.sin_family = sa_family_t(AF_INET)
         
         let defaultRoute = withUnsafePointer(to: &address) {
-            $0.withMemoryRebound(to: <#T##T.Type#>, capacity: <#T##Int#>, <#T##body: (UnsafePointer<T>) throws -> Result##(UnsafePointer<T>) throws -> Result#>)
+            //$0.withMemoryRebound(to: <#T##T.Type#>, capacity: <#T##Int#>, <#T##body: (UnsafePointer<T>) throws -> Result##(UnsafePointer<T>) throws -> Result#>)
         }
         
     }

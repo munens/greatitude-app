@@ -128,7 +128,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 self.returnUserData()
             }
         }
-        
     }
     
     func returnUserData() {
