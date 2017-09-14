@@ -38,18 +38,20 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
+        firstNameField.delegate = self
+        lastNameField.delegate = self
         emailField.delegate = self
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpVC.dismissKeyboard))
+        passwordField.delegate = self
+        passwordConfirmationField.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
         let facebookSignupBtn = UIButton()
-        
-        
-        
+     
         if UIDevice.current.userInterfaceIdiom == .phone {
             facebookSignupBtn.frame.size = CGSize(width: 170, height: 30)
-            facebookSignupBtn.center = CGPoint(x: self.view.frame.width/2, y: signUpStackView.frame.origin.y + 50)
+            facebookSignupBtn.center = CGPoint(x: self.view.frame.width/2, y: signUpStackView.frame.origin.y + 52)
             facebookSignupBtn.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 14)
         } else {
             facebookSignupBtn.frame.size = CGSize(width: 200, height: 35)
@@ -69,8 +71,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         view.addSubview(facebookSignupBtn)
         
         signUpBtn.layer.borderWidth = 1.0
-        signUpBtn.layer.borderColor = UIColor.white.cgColor
         signUpBtn.layer.cornerRadius = 3
+        disableSignUpBtn()
+        
+        signUpBtn.isUserInteractionEnabled = false
+        signUpBtn.isEnabled = false
     }
     
     func dismissKeyboard(){
@@ -86,6 +91,22 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
      // Pass the selected object to the new view controller.
      }
      */
+    
+    func enableSignUpBtn(){
+        let enabledColor = UIColor.white.withAlphaComponent(CGFloat(1.0))
+        signUpBtn.setTitleColor(enabledColor, for: .normal)
+        signUpBtn.layer.borderColor = enabledColor.cgColor
+        signUpBtn.isUserInteractionEnabled = true
+        signUpBtn.isEnabled = true
+    }
+    
+    func disableSignUpBtn(){
+        let disabledColor = UIColor.white.withAlphaComponent(CGFloat(0.5))
+        signUpBtn.setTitleColor(disabledColor, for: .normal)
+        signUpBtn.layer.borderColor = disabledColor.cgColor
+        signUpBtn.isUserInteractionEnabled = false
+        signUpBtn.isEnabled = false
+    }
     
     func openQuestionVC(user: User){
         DispatchQueue.main.sync(execute: {
@@ -154,8 +175,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                         }
                         connection?.cancel()
                     }
-                    
-                    
                 })
                 
                 connection.start()
@@ -170,7 +189,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signUpPressed(_ sender: UIButton) {
-        
+        disableSignUpBtn()
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             checkUserInDB(uuid: uuid) { error, data in
                 
@@ -213,6 +232,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 }
             }
         } else {
+            enableSignUpBtn()
             print("unable to get the phone uuid")
         }
     }
@@ -353,13 +373,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 completionHandler(error as NSError, nil)
                 print(error)
             }
-            
         }
         task.resume()
-        
-        
-        
-        
         
     }
     
@@ -380,21 +395,28 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         if let user = sender as? User {
             questionVC.selectedUser = user
         }
-        
-        //        if segue.identifier == "QuestionVC" {
-        //            if let questionVC = segue.destination as? QuestionVC {
-        //                if let user = sender as? User {
-        //                    print(user)
-        //                    questionVC.selectedUser = user
-        //                }
-        //            }
-        //        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("password fields are being editted \(passwordConfirmationField.isEditing) , \(passwordField.text == passwordConfirmationField.text)")
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        if passwordField.text != passwordConfirmationField.text && passwordConfirmationField.text != "" {
+            createPasswordUnMatchOverlay()
+        }
+        
+        if(passwordField.text == passwordConfirmationField.text && firstNameField.text != "" && lastNameField.text != "" && emailField.text != ""
+            ){
+            enableSignUpBtn()
+        } else {
+            disableSignUpBtn()
+        }
+        
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -406,23 +428,47 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        let validation = emailTest.evaluate(with: emailField.text)
-        if(validation == false){
-            emailField.layer.borderColor = UIColor.red.cgColor
-            emailField.layer.borderWidth = 1
-            emailField.placeholder = "Email should be in the correct format."
-            createOverlay()
-            
-        } else {
-            emailField.layer.borderWidth = 0
-            emailField.placeholder = ""
+        
+        if emailField.isEditing {
+            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+            let validation = emailTest.evaluate(with: emailField.text)
+            if(validation == false){
+                emailField.layer.borderColor = UIColor.red.cgColor
+                emailField.layer.borderWidth = 1
+                emailField.placeholder = "Email should be in the correct format."
+                createInvalidEmailOverlay()
+                
+            } else {
+                emailField.layer.borderWidth = 0
+                emailField.placeholder = ""
+            }
+            return validation
         }
-        return validation;
+        
+        return true
+        
     }
     
-    func createOverlay() {
+    func createPasswordUnMatchOverlay() {
+        let deadlineTime = DispatchTime.now() + .seconds(4)
+        let window = UIApplication.shared.keyWindow!
+        
+        let rectangleView = UIView(frame: CGRect(x:0, y:30, width: self.view.frame.size.width, height: 20))
+        rectangleView.backgroundColor = UIColor.red
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
+        label.text = "passwords do not match"
+        label.textColor = UIColor.white
+        label.textAlignment = NSTextAlignment.center
+        
+        rectangleView.addSubview(label)
+        window.addSubview(rectangleView)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            rectangleView.removeFromSuperview()
+        }
+    }
+    
+    func createInvalidEmailOverlay() {
         let deadlineTime = DispatchTime.now() + .seconds(4)
         let window = UIApplication.shared.keyWindow!
         

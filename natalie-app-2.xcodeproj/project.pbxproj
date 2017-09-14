@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3424147DA2219AB5C178BE71 /* Pods_natalie_app_2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E75CD80181D04DB59C55CD /* Pods_natalie_app_2Tests.framework */; };
 		86C4681EA3A354B0732737CD /* Pods_natalie_app_2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7658D75CD64A7B62E02DD2B /* Pods_natalie_app_2UITests.framework */; };
+		C5247BDC1F6A1F3600574CFE /* checkInternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5247BDB1F6A1F3600574CFE /* checkInternetConnection.swift */; };
 		C539B1EC1EAC53A4006C3233 /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = C539B1EB1EAC53A4006C3233 /* Welcome.png */; };
 		C55472691F1EC6E80017C66E /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55472681F1EC6E80017C66E /* TestVC.swift */; };
 		C557928E1F34F84600BFA82F /* FBSDKShareKit in Frameworks */ = {isa = PBXBuildFile; fileRef = C557928D1F34F84600BFA82F /* FBSDKShareKit */; };
@@ -70,6 +71,7 @@
 		8CD4CDA082D7CA722AE57B01 /* Pods-natalie-app-2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natalie-app-2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-natalie-app-2UITests/Pods-natalie-app-2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		91D90C6CD83E182A184F8A63 /* Pods_natalie_app_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_natalie_app_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49BCB2CA448B48755E1AE70 /* Pods-natalie-app-2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natalie-app-2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-natalie-app-2/Pods-natalie-app-2.debug.xcconfig"; sourceTree = "<group>"; };
+		C5247BDB1F6A1F3600574CFE /* checkInternetConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = checkInternetConnection.swift; sourceTree = "<group>"; };
 		C539B1EB1EAC53A4006C3233 /* Welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Welcome.png; sourceTree = "<group>"; };
 		C55472681F1EC6E80017C66E /* TestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		C557928D1F34F84600BFA82F /* FBSDKShareKit */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = FBSDKShareKit; sourceTree = "<group>"; };
@@ -163,6 +165,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C5247BDA1F6A1EFD00574CFE /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C5247BDB1F6A1F3600574CFE /* checkInternetConnection.swift */,
+			);
+			name = utilities;
+			sourceTree = "<group>";
+		};
 		C586AE611EEF23910084671B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +229,7 @@
 		E8B610961E9EC0CD0019EBED /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C5247BDA1F6A1EFD00574CFE /* utilities */,
 				E8B6103C1E9E68F90019EBED /* LoginVC.swift */,
 				E8DE92AA1E9D447C007FC971 /* WelcomeVC.swift */,
 				E8B611131E9F2A520019EBED /* MainVC.swift */,
@@ -591,6 +602,7 @@
 				C5AD5DA61ECE80F300223064 /* BackgroundImageCell.swift in Sources */,
 				C5A0D2001ED672E20053CDCD /* EditPortfolioItemVC.swift in Sources */,
 				C5EA08941EF322650089FA88 /* KeychainWrapper.m in Sources */,
+				C5247BDC1F6A1F3600574CFE /* checkInternetConnection.swift in Sources */,
 				C56049CF1F5A2FFC0078B9C7 /* SignUpVC.swift in Sources */,
 				E8B611181E9FA5230019EBED /* ChooseImageVC.swift in Sources */,
 				E8B610401E9E6F180019EBED /* Model.xcdatamodeld in Sources */,
