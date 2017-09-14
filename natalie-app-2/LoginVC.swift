@@ -19,6 +19,7 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var backBtn: UIButton!
     
     var controller: NSFetchedResultsController<User>!
     
@@ -61,6 +62,10 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpVC.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        backBtn.layer.borderWidth = 1.0
+        backBtn.layer.borderColor = UIColor.white.cgColor
+        backBtn.layer.cornerRadius = 3
         
         loginBtn.layer.borderWidth = 1.0
         loginBtn.layer.borderColor = UIColor.white.cgColor
@@ -181,6 +186,9 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
             questionVC.selectedUser = user
             self.present(questionVC, animated: true, completion: nil)
         })
+    }
+    @IBAction func backBtnPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func loginPressed(_ sender: Any) {

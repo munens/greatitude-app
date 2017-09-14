@@ -21,6 +21,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordField: UITextField!
     
     @IBOutlet weak var signUpBtn: UIButton!
+    @IBOutlet weak var backBtn: UIButton!
     
     var user: User!
     
@@ -51,7 +52,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
      
         if UIDevice.current.userInterfaceIdiom == .phone {
             facebookSignupBtn.frame.size = CGSize(width: 170, height: 30)
-            facebookSignupBtn.center = CGPoint(x: self.view.frame.width/2, y: signUpStackView.frame.origin.y + 52)
+            facebookSignupBtn.center = CGPoint(x: self.view.frame.width/2, y: signUpStackView.frame.origin.y + 55)
             facebookSignupBtn.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 14)
         } else {
             facebookSignupBtn.frame.size = CGSize(width: 200, height: 35)
@@ -69,6 +70,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         facebookSignupBtn.addTarget(self, action: #selector(SignUpVC.facebookSignupBtnClicked), for: .touchUpInside)
         //facebookSignupBtn.addTarget(self, action: self.facebookSignupBtnClicked, for: .touchUpInside)
         view.addSubview(facebookSignupBtn)
+        
+        backBtn.layer.borderWidth = 1.0
+        backBtn.layer.cornerRadius = 3
+        backBtn.setTitleColor(UIColor.white, for: .normal)
+        backBtn.layer.borderColor = UIColor.white.cgColor
         
         signUpBtn.layer.borderWidth = 1.0
         signUpBtn.layer.cornerRadius = 3
@@ -185,6 +191,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             print("unable to get the phone uuid")
             
         }
+    }
+    
+    @IBAction func backBtnPressed(_ sender: Any) {
+        //let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as! WelcomeVC
+        //self.present(welcomeVC, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func signUpPressed(_ sender: UIButton) {
