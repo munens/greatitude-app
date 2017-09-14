@@ -99,7 +99,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
      */
     
     func enableSignUpBtn(){
-        let enabledColor = UIColor.white.withAlphaComponent(CGFloat(1.0))
+        let enabledColor = UIColor.white
         signUpBtn.setTitleColor(enabledColor, for: .normal)
         signUpBtn.layer.borderColor = enabledColor.cgColor
         signUpBtn.isUserInteractionEnabled = true
@@ -112,6 +112,16 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         signUpBtn.layer.borderColor = disabledColor.cgColor
         signUpBtn.isUserInteractionEnabled = false
         signUpBtn.isEnabled = false
+    }
+    
+    func displaySignUpErrorAlert(){
+        let alertController = UIAlertController(title: "Sign up error", message: "There appears to be an error. Please try again.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(alert: UIAlertAction) in
+            alertController.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     func openQuestionVC(user: User){
@@ -186,10 +196,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             }
             
         } else {
-            
             signupManager.logOut()
             print("unable to get the phone uuid")
-            
         }
     }
     
@@ -201,50 +209,62 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func signUpPressed(_ sender: UIButton) {
         disableSignUpBtn()
-        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-            checkUserInDB(uuid: uuid) { error, data in
-                
-                if error != nil {
-                    print("database error: \(String(describing: error))")
-                    return
-                }
-                
-                var user = self.user
-                user = User(entity: self.desc!, insertInto: context)
-                
-                user?.uuid = uuid
-                
-                if let firstname = self.firstNameField.text {
-                    user?.firstname = firstname
-                }
-                
-                if let lastname = self.lastNameField.text {
-                    user?.lastname = lastname
-                }
-                
-                if let email = self.emailField.text {
-                    user?.email = email
-                }
-                
-                if let password = self.passwordField.text {
-                    user?.password = password
-                }
-                
-                if(user?.firstname != "" && user?.lastname != "" && user?.email != "" && user?.password != ""){
-                    ad.saveContext()
-                    if data! {
-                        self.updateUser(user: user!, uuid:  uuid, type: "user")
-                    } else {
-                        self.saveUser(user: user!, type: "user")
+        if CheckInternetConnection.isConnected() {
+            if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+                checkUserInDB(uuid: uuid) { error, data in
+                    
+                    if error != nil {
+                        print("database error: \(String(describing: error))")
+                        return
                     }
                     
-                } else {
-                    self.dismiss(animated: true, completion: nil)
+                    var user = self.user
+                    user = User(entity: self.desc!, insertInto: context)
+                    
+                    user?.uuid = uuid
+                    
+                    if let firstname = self.firstNameField.text {
+                        user?.firstname = firstname
+                    }
+                    
+                    if let lastname = self.lastNameField.text {
+                        user?.lastname = lastname
+                    }
+                    
+                    if let email = self.emailField.text {
+                        user?.email = email
+                    }
+                    
+                    if let password = self.passwordField.text {
+                        user?.password = password
+                    }
+                    
+                    if(user?.firstname != "" && user?.lastname != "" && user?.email != "" && user?.password != ""){
+                        ad.saveContext()
+                        if data! {
+                            self.updateUser(user: user!, uuid:  uuid, type: "user")
+                        } else {
+                            self.saveUser(user: user!, type: "user")
+                        }
+                        
+                    } else {
+                        self.displaySignUpErrorAlert()
+                    }
                 }
+            } else {
+                enableSignUpBtn()
+                displaySignUpErrorAlert()
+                print("unable to get the phone uuid")
             }
         } else {
             enableSignUpBtn()
-            print("unable to get the phone uuid")
+            let alertController = UIAlertController(title: "No Internet Connection", message: "This application requires an internet connection to complete sign up.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(alert: UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            }))
+            
+            present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -386,7 +406,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             }
         }
         task.resume()
-        
     }
     
     func addUserToKeyChain(uuid: String, email: String, password: Any) -> Void {
@@ -421,7 +440,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             createPasswordUnMatchOverlay()
         }
         
-        if(passwordField.text == passwordConfirmationField.text && firstNameField.text != "" && lastNameField.text != "" && emailField.text != ""
+        if(passwordField.text == passwordConfirmationField.text && passwordField.text != "" && passwordConfirmationField.text != "" && firstNameField.text != "" && lastNameField.text != "" && emailField.text != ""
             ){
             enableSignUpBtn()
         } else {
@@ -456,9 +475,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             }
             return validation
         }
-        
         return true
-        
     }
     
     func createPasswordUnMatchOverlay() {
@@ -498,7 +515,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return true;
+        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

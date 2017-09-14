@@ -118,7 +118,7 @@
                                 <variation key="heightClass=regular-widthClass=compact" spacing="7"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="A0t-ZD-1od">
-                                <rect key="frame" x="47.5" y="134.5" width="280" height="350"/>
+                                <rect key="frame" x="47.5" y="132.5" width="280" height="350"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Q3Z-Nb-JP9">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="51.5"/>
@@ -252,7 +252,7 @@
                                 <variation key="heightClass=regular-widthClass=compact" spacing="23"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Qp-gt-vnE">
-                                <rect key="frame" x="238.5" y="508.5" width="89" height="29"/>
+                                <rect key="frame" x="238.5" y="509.5" width="89" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="89" id="HeB-hp-h1i"/>
                                 </constraints>
@@ -267,7 +267,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jx8-ge-Jo8">
-                                <rect key="frame" x="47" y="508" width="89" height="29"/>
+                                <rect key="frame" x="47" y="509.5" width="89" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="89" id="lMq-Gc-IIX"/>
                                 </constraints>
@@ -295,14 +295,14 @@
                             <constraint firstItem="Jx8-ge-Jo8" firstAttribute="leading" secondItem="A0t-ZD-1od" secondAttribute="leading" id="RWX-9w-EZF"/>
                             <constraint firstItem="Dyg-t9-Mud" firstAttribute="top" secondItem="I5P-Rk-dWT" secondAttribute="bottom" id="euI-pu-986"/>
                             <constraint firstItem="3Qp-gt-vnE" firstAttribute="top" secondItem="A0t-ZD-1od" secondAttribute="bottom" constant="24" id="mOe-AN-y28">
-                                <variation key="heightClass=regular-widthClass=compact" constant="24"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="27"/>
                             </constraint>
                             <constraint firstItem="I5P-Rk-dWT" firstAttribute="leading" secondItem="wic-Qo-oe6" secondAttribute="leading" id="qHS-Ho-33l"/>
                             <constraint firstItem="A0t-ZD-1od" firstAttribute="top" secondItem="UOb-Eo-9Nn" secondAttribute="bottom" constant="100" id="qWa-eE-TjS">
-                                <variation key="heightClass=regular-widthClass=compact" constant="70"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="68"/>
                             </constraint>
                             <constraint firstItem="A0t-ZD-1od" firstAttribute="trailing" secondItem="3Qp-gt-vnE" secondAttribute="trailing" id="sea-Xo-wzg"/>
-                            <constraint firstItem="Jx8-ge-Jo8" firstAttribute="top" secondItem="A0t-ZD-1od" secondAttribute="bottom" constant="24" id="xlJ-oa-ats"/>
+                            <constraint firstItem="Jx8-ge-Jo8" firstAttribute="top" secondItem="A0t-ZD-1od" secondAttribute="bottom" constant="27" id="xlJ-oa-ats"/>
                             <constraint firstItem="UOb-Eo-9Nn" firstAttribute="centerX" secondItem="A0t-ZD-1od" secondAttribute="centerX" id="yWV-BJ-dce"/>
                         </constraints>
                     </view>

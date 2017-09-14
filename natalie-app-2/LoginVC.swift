@@ -70,6 +70,8 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         loginBtn.layer.borderWidth = 1.0
         loginBtn.layer.borderColor = UIColor.white.cgColor
         loginBtn.layer.cornerRadius = 3
+        
+        disableLoginBtn()
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
@@ -91,6 +93,32 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     
     func dismissKeyboard(){
         view.endEditing(true)
+    }
+    
+    func enableLoginBtn(){
+        let enabledColor = UIColor.white
+        loginBtn.setTitleColor(enabledColor, for: .normal)
+        loginBtn.layer.borderColor = enabledColor.cgColor
+        loginBtn.isUserInteractionEnabled = true
+        loginBtn.isEnabled = true
+    }
+    
+    func disableLoginBtn(){
+        let disabledColor = UIColor.white.withAlphaComponent(CGFloat(0.5))
+        loginBtn.setTitleColor(disabledColor, for: .normal)
+        loginBtn.layer.borderColor = disabledColor.cgColor
+        loginBtn.isUserInteractionEnabled = false
+        loginBtn.isEnabled = false
+    }
+    
+    func displayLoginErrorAlert(){
+        let alertController = UIAlertController(title: "Sign up error", message: "There appears to be an error. Please try again.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(alert: UIAlertAction) in
+            alertController.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -192,34 +220,44 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        let email = emailField.text
-        let password = passwordField.text
-        let user = authenticateUser(email: email, password: password)
-        if (user != nil) {
-            let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
-            questionVC.selectedUser = user as! User
-            self.present(questionVC, animated: true, completion: nil)
-        } else {
-            if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-                getUser(uuid: uuid, email: email!, password: password!) { error, user in
-                    if error != nil {
-                        print(error!)
-                        self.clearFields()
-                        return
-                    }
-                    
-                    if user != nil {
-                        self.addUserToKeyChain(uuid: (user?.uuid)!, email: (user?.email)!, password: (user?.password)!)
-                        self.openQuestionVC(user: user!)
-                    } else {
-                        self.clearFields()
-                        return
-                    }
-                }
+        if CheckInternetConnection.isConnected() {
+            let email = emailField.text
+            let password = passwordField.text
+            let user = authenticateUser(email: email, password: password)
+            if (user != nil) {
+                let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
+                questionVC.selectedUser = user as! User
+                self.present(questionVC, animated: true, completion: nil)
             } else {
-                print("unable to get the phone uuid")
-                self.clearFields()
+                if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+                    getUser(uuid: uuid, email: email!, password: password!) { error, user in
+                        if error != nil {
+                            print(error!)
+                            self.clearFields()
+                            return
+                        }
+                        
+                        if user != nil {
+                            self.addUserToKeyChain(uuid: (user?.uuid)!, email: (user?.email)!, password: (user?.password)!)
+                            self.openQuestionVC(user: user!)
+                        } else {
+                            self.displayLoginErrorAlert()
+                            self.clearFields()
+                            return
+                        }
+                    }
+                } else {
+                    print("unable to get the phone uuid")
+                    displayLoginErrorAlert()
+                    self.clearFields()
+                }
             }
+        } else {
+            let alertController = UIAlertController(title: "No Internet Connection", message: "This application requires an internet connection to complete login.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(alert: UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            }))
+            present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -359,6 +397,9 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        if emailField.text != "" {
+            enableLoginBtn()
+        }
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
