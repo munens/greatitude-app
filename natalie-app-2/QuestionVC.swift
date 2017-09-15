@@ -104,15 +104,49 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
         }
     }
     
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage /* Using s3 -> URL */ {
+        let size = image.size
+        
+        let widthRatio = targetSize.width / image.size.width
+        let heightRatio = targetSize.height / image.size.height
+        
+        // find image oriantation and form rectangle from it:
+        var newSize: CGSize
+        if(widthRatio > heightRatio){
+            newSize = CGSize(width: size.width*heightRatio, height: size.height*heightRatio)
+        } else {
+            newSize = CGSize(width: size.width*widthRatio, height: size.height*widthRatio)
+        }
+        // create a new rect from the result:
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-         portfolioItem.created_at = NSDate()
+        portfolioItem.created_at = NSDate()
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
-            let img = UIImageJPEGRepresentation(image, 1.0)
-            let thumbnail = UIImageJPEGRepresentation(image, 0.0)
+            
+            var cellImage = UIImage()
+            var cellThumbnail = UIImage()
+            
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                cellImage = resizeImage(image: image, targetSize: CGSize(width: 1000.0, height: 1000.0))
+                cellThumbnail = resizeImage(image: image, targetSize: CGSize(width: 50.0, height: 50.0))
+            } else {
+                cellImage = resizeImage(image: image, targetSize: CGSize(width: 2000.0, height: 2000.0))
+                cellThumbnail = resizeImage(image: image, targetSize: CGSize(width: 100.0, height: 100.0))
+            }
+            
+            let img = UIImageJPEGRepresentation(cellImage, 1.0)
+            let thumbnail = UIImageJPEGRepresentation(cellThumbnail, 0.0)
             
             selectedImage.img = img! as NSData
             selectedImage.thumbnail = thumbnail! as NSData
@@ -129,8 +163,19 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
             
         } else if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             
-            let img = UIImageJPEGRepresentation(image, 1.0)
-            let thumbnail = UIImageJPEGRepresentation(image, 0.0)
+            var cellImage = UIImage()
+            var cellThumbnail = UIImage()
+            
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                cellImage = resizeImage(image: image, targetSize: CGSize(width: 1000.0, height: 1000.0))
+                cellThumbnail = resizeImage(image: image, targetSize: CGSize(width: 50.0, height: 50.0))
+            } else {
+                cellImage = resizeImage(image: image, targetSize: CGSize(width: 2000.0, height: 2000.0))
+                cellThumbnail = resizeImage(image: image, targetSize: CGSize(width: 100.0, height: 100.0))
+            }
+            
+            let img = UIImageJPEGRepresentation(cellImage, 1.0)
+            let thumbnail = UIImageJPEGRepresentation(cellThumbnail, 0.0)
             
             selectedImage.img = img! as NSData
             selectedImage.thumbnail = thumbnail! as NSData
@@ -144,6 +189,8 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
             portfolioItem.image = selectedImage
             
             ad.saveContext()
+            imagePickerController.dismiss(animated: true, completion: nil)
+        } else {
             imagePickerController.dismiss(animated: true, completion: nil)
         }
         

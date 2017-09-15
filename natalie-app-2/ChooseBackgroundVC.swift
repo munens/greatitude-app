@@ -257,8 +257,17 @@ class ChooseBackgroundVC: UIViewController, UICollectionViewDelegate, UICollecti
         */
         
         let cell = collectionView.cellForItem(at: indexPath) as! BackgroundImageCell
-        let cellImage = resizeImageAndSaveOnDisk(image: cell.backgroundImageView.image!, targetSize: CGSize(width: 2000.0, height: 2000.0), fileName: "")
-        let cellThumbnail = resizeImageAndSaveOnDisk(image: cell.backgroundImageView.image!, targetSize: CGSize(width: 100.0, height: 100.0), fileName: "")
+        
+        var cellImage = UIImage()
+        var cellThumbnail = UIImage()
+        
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            cellImage = resizeImageAndSaveOnDisk(image: cell.backgroundImageView.image!, targetSize: CGSize(width: 1000.0, height: 1000.0), fileName: "")
+            cellThumbnail = resizeImageAndSaveOnDisk(image: cell.backgroundImageView.image!, targetSize: CGSize(width: 50.0, height: 50.0), fileName: "")
+        } else {
+            cellImage = resizeImageAndSaveOnDisk(image: cell.backgroundImageView.image!, targetSize: CGSize(width: 2000.0, height: 2000.0), fileName: "")
+            cellThumbnail = resizeImageAndSaveOnDisk(image: cell.backgroundImageView.image!, targetSize: CGSize(width: 100.0, height: 100.0), fileName: "")
+        }
         
         let img = UIImageJPEGRepresentation(cellImage, 1.0)
         let thumbnail = UIImageJPEGRepresentation(cellThumbnail, 0.0)
