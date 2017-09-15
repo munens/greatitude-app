@@ -38,6 +38,9 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
         }
     }
     
+    var API_URL = "https://infinite-wildwood-35465.herokuapp.com"
+    //var API_URL = "http://localhost:5000"
+    
     var selectedPortfolioItem: PortfolioItem!
     
     let cellSpacing: CGFloat = 12
@@ -266,12 +269,12 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
     }
     
     func saveSharePostInfo() {
-        let url: NSURL = NSURL(string: "http://www.livetalent.ca/api/natapp.php")!
+        let url: NSURL = NSURL(string: API_URL + "/api/posts")!
         var request = URLRequest(url: url as URL)
         
         request.httpMethod = "POST"
         
-        let postParams = "email="+selectedUser.email!
+        let postParams = "uuid="+selectedUser.uuid!
         request.httpBody = postParams.data(using: String.Encoding.utf8)
         
         let session = URLSession.shared
@@ -319,8 +322,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
             shareDialog.shareContent = content
             shareDialog.delegate = self
             shareDialog.fromViewController = self
-            shareDialog.mode = .automatic
-            //shareDialog.mode = .native
+            //shareDialog.mode = .automatic
+            shareDialog.mode = .native
             
             print(shareDialog.canShow())
             if !shareDialog.canShow() {
@@ -339,7 +342,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSD
     func sharer(_ sharer: FBSDKSharing!, didFailWithError error: Error!) {
         print("sharer NSError \(error)")
         //print(error.description)
-        openFacebookAppStore()
+        showAlertController()
     }
     
     func sharerDidCancel(_ sharer: FBSDKSharing!) {
