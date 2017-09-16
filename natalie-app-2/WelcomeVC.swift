@@ -36,7 +36,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
             
             if let email = UserDefaults.standard.object(forKey: "email") {
                 
-                if let user =  getUser(email: email as! String) {
+                if let user = getUser(email: email as! String) {
                     performSegue(withIdentifier: "QuestionVC", sender: user)
                 }
             }

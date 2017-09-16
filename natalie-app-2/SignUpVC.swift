@@ -71,6 +71,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         //facebookSignupBtn.addTarget(self, action: self.facebookSignupBtnClicked, for: .touchUpInside)
         view.addSubview(facebookSignupBtn)
         
+        backBtn.setTitleColor(UIColor.white, for: .normal)
+        backBtn.layer.borderColor = UIColor.white.cgColor
         backBtn.layer.borderWidth = 1.0
         backBtn.layer.cornerRadius = 3
         backBtn.setTitleColor(UIColor.white, for: .normal)
@@ -418,6 +420,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         MyKeyChainWrapper.writeToKeychain()
         UserDefaults.standard.set(true, forKey: "hasLoginKey")
         UserDefaults.standard.synchronize()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

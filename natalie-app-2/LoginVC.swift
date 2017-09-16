@@ -63,6 +63,8 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpVC.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
+        backBtn.setTitleColor(UIColor.white, for: .normal)
+        backBtn.layer.borderColor = UIColor.white.cgColor
         backBtn.layer.borderWidth = 1.0
         backBtn.layer.borderColor = UIColor.white.cgColor
         backBtn.layer.cornerRadius = 3
@@ -223,10 +225,11 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         if CheckInternetConnection.isConnected() {
             let email = emailField.text
             let password = passwordField.text
-            let user = authenticateUser(email: email, password: password)
+            let user = authenticateUser(email: email, password: password) as? User
             if (user != nil) {
+                addUserToKeyChain(uuid: (user?.uuid!)!, email: (user?.email!)!, password: (user?.password)!)
                 let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
-                questionVC.selectedUser = user as! User
+                questionVC.selectedUser = user! 
                 self.present(questionVC, animated: true, completion: nil)
             } else {
                 if let uuid = UIDevice.current.identifierForVendor?.uuidString {

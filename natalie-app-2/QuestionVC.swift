@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import DropDown
+import FBSDKLoginKit
 
 class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -26,8 +28,11 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
     @IBOutlet weak var questionTextView: UITextView!
     @IBOutlet weak var buttonStackView: UIStackView!
     @IBOutlet weak var selectPicBtn: UIButton!
+    @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var viewPortfolioBtn: UIButton!
     @IBOutlet weak var nxtBtn: UIButton!
+    
+    let dropDown = DropDown()
     
     var imagePickerController: UIImagePickerController!
     
@@ -65,8 +70,11 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
         questionTextView.layer.cornerRadius = 3
         
         buttonStackView.alpha = 0.0
-        
+ 
+        menuBtn.isEnabled = selectedUser.email != nil
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -87,6 +95,52 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
             self.questionTextView.fadeIn(1.0, delay: 0.5)
         })
         
+    }
+    
+    func openWelcomeVC() {
+        let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as! WelcomeVC
+        present(welcomeVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func menuBtnClicked(_ sender: Any) {
+        
+        dropDown.dataSource = ["logout"]
+        
+        //let logoutBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+        //logoutBtn.setTitle("logout", for: .normal)
+        //logoutBtn.setTitleColor(UIColor.white, for: .normal)
+        //let logoutBtnView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+        //logoutBtnView.addSubview(logoutBtn)
+        
+        dropDown.anchorView = menuBtn
+        
+        DropDown.appearance().textColor = UIColor.white
+        DropDown.appearance().textFont = UIFont.systemFont(ofSize: 15)
+        DropDown.appearance().backgroundColor = UIColor.black
+        DropDown.appearance().selectionBackgroundColor = UIColor.lightGray
+        DropDown.appearance().cellHeight = 40
+        
+        let dropDownOffset = (dropDown.anchorView?.plainView.bounds.height)! - 45
+        dropDown.bottomOffset = CGPoint(x: 0, y: dropDownOffset)
+        dropDown.width = CGFloat(60)
+        dropDown.direction = .top
+        
+        dropDown.show()
+        
+        
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            
+            let hasLoginKey = UserDefaults.standard.bool(forKey: "hasLoginKey")
+            if(FBSDKAccessToken.current() != nil) {
+                let loginManager = FBSDKLoginManager()
+                loginManager.logOut()
+                self.openWelcomeVC()
+            } else if hasLoginKey == true {
+                UserDefaults.standard.removeObject(forKey: "email")
+                self.openWelcomeVC()
+            }
+        }
+ 
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -190,8 +244,6 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
             
             ad.saveContext()
             imagePickerController.dismiss(animated: true, completion: nil)
-        } else {
-            imagePickerController.dismiss(animated: true, completion: nil)
         }
         
         imagePickerController.dismiss(animated: true, completion: nil)
@@ -203,7 +255,7 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
+        imagePickerController.dismiss(animated: true, completion: nil)
     }
     
 
@@ -279,3 +331,5 @@ extension UIView {
         }, completion: completion)
     }
 }
+
+

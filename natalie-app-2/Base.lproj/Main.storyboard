@@ -392,7 +392,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="original" translatesAutoresizingMaskIntoConstraints="NO" id="GqR-FF-q1w">
-                                                    <rect key="frame" x="0.0" y="0.0" width="288" height="299"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="299"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1068,11 +1068,23 @@
                                     <action selector="viewPortfolioBtnPressed:" destination="oOB-jy-mNu" eventType="touchUpInside" id="ojB-Of-y8o"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEd-cg-c5k">
+                                <rect key="frame" x="303" y="45" width="40" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="dL1-XL-GjA"/>
+                                    <constraint firstAttribute="height" constant="35" id="lAk-U7-Sey"/>
+                                </constraints>
+                                <state key="normal" image="if_menu-alt_134216_1"/>
+                                <connections>
+                                    <action selector="menuBtnClicked:" destination="oOB-jy-mNu" eventType="touchUpInside" id="0S2-f6-oyw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="rQP-Jb-xk0" secondAttribute="trailing" constant="16" id="0Ot-d3-buS"/>
                             <constraint firstItem="MnF-LK-xqw" firstAttribute="top" secondItem="TP0-MT-GxQ" secondAttribute="bottom" constant="25" id="3wp-n5-Sie"/>
+                            <constraint firstItem="iEd-cg-c5k" firstAttribute="trailing" secondItem="wB8-Du-tMR" secondAttribute="trailing" id="46h-lF-XJU"/>
                             <constraint firstItem="0kA-Lx-7xL" firstAttribute="top" secondItem="okD-ds-rOB" secondAttribute="bottom" id="6KI-NQ-4si"/>
                             <constraint firstItem="rQP-Jb-xk0" firstAttribute="top" secondItem="wB8-Du-tMR" secondAttribute="bottom" id="9KX-G8-eOt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RlP-MI-Lwt" secondAttribute="trailing" constant="16" id="BmG-7h-9Xn"/>
@@ -1082,6 +1094,7 @@
                             <constraint firstItem="RlP-MI-Lwt" firstAttribute="top" secondItem="rQP-Jb-xk0" secondAttribute="bottom" constant="22" id="cZh-1v-jPP"/>
                             <constraint firstItem="okD-ds-rOB" firstAttribute="top" secondItem="bw8-b0-LoI" secondAttribute="top" id="eoU-eq-hU0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wB8-Du-tMR" secondAttribute="trailing" constant="16" id="pgN-Ma-65o"/>
+                            <constraint firstItem="iEd-cg-c5k" firstAttribute="top" secondItem="MnF-LK-xqw" secondAttribute="top" id="uIm-h7-iXy"/>
                             <constraint firstItem="MnF-LK-xqw" firstAttribute="leading" secondItem="bw8-b0-LoI" secondAttribute="leadingMargin" constant="16" id="vht-1f-whO"/>
                             <constraint firstAttribute="trailing" secondItem="okD-ds-rOB" secondAttribute="trailing" id="vyn-Sn-ao1"/>
                             <constraint firstItem="rQP-Jb-xk0" firstAttribute="leading" secondItem="bw8-b0-LoI" secondAttribute="leadingMargin" constant="16" id="zjB-Ts-mA8"/>
@@ -1091,6 +1104,7 @@
                     <connections>
                         <outlet property="buttonStackView" destination="RlP-MI-Lwt" id="ti2-R1-2RV"/>
                         <outlet property="greetingLabel" destination="wB8-Du-tMR" id="bNi-nN-E0D"/>
+                        <outlet property="menuBtn" destination="iEd-cg-c5k" id="QrN-ba-JeG"/>
                         <outlet property="nxtBtn" destination="9ck-tY-67c" id="i81-t2-yCc"/>
                         <outlet property="questionLabel" destination="GIO-mk-MYk" id="f6x-jr-Una"/>
                         <outlet property="questionTextView" destination="x3a-zn-fov" id="r8n-hg-CgD"/>
@@ -1261,6 +1275,7 @@
         <image name="Welcome.png" width="305" height="105"/>
         <image name="abstract-1851065_1920" width="1920" height="1277"/>
         <image name="color-spoke" width="700" height="50"/>
+        <image name="if_menu-alt_134216_1" width="128" height="128"/>
         <image name="original" width="500" height="377"/>
         <image name="pexels-photo-186645" width="5004" height="3084"/>
         <image name="photo_41997_20151004" width="2490" height="1625"/>

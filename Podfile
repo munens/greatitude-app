@@ -13,7 +13,9 @@ target 'natalie-app-2' do
   pod 'AWSS3'
   pod 'AWSCognito'
   
-
+  # dropdown menu:
+  pod 'DropDown'
+  
   target 'natalie-app-2Tests' do
     inherit! :search_paths
     # Pods for testing
