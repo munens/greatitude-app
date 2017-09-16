@@ -12,6 +12,7 @@
 		C5247BDC1F6A1F3600574CFE /* checkInternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5247BDB1F6A1F3600574CFE /* checkInternetConnection.swift */; };
 		C539B1EC1EAC53A4006C3233 /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = C539B1EB1EAC53A4006C3233 /* Welcome.png */; };
 		C55472691F1EC6E80017C66E /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55472681F1EC6E80017C66E /* TestVC.swift */; };
+		C554DEB91F6CC797003F3010 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C554DEB71F6CC797003F3010 /* Main.storyboard */; };
 		C557928E1F34F84600BFA82F /* FBSDKShareKit in Frameworks */ = {isa = PBXBuildFile; fileRef = C557928D1F34F84600BFA82F /* FBSDKShareKit */; };
 		C56049CF1F5A2FFC0078B9C7 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56049CE1F5A2FFC0078B9C7 /* SignUpVC.swift */; };
 		C5628FBF1ECBCFDD00A3555F /* QuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */; };
@@ -39,7 +40,6 @@
 		E8B611181E9FA5230019EBED /* ChooseImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B611171E9FA5230019EBED /* ChooseImageVC.swift */; };
 		E8DE92A91E9D447C007FC971 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE92A81E9D447C007FC971 /* AppDelegate.swift */; };
 		E8DE92AB1E9D447C007FC971 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE92AA1E9D447C007FC971 /* WelcomeVC.swift */; };
-		E8DE92AE1E9D447C007FC971 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8DE92AC1E9D447C007FC971 /* Main.storyboard */; };
 		E8DE92B01E9D447C007FC971 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8DE92AF1E9D447C007FC971 /* Assets.xcassets */; };
 		E8DE92B31E9D447C007FC971 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8DE92B11E9D447C007FC971 /* LaunchScreen.storyboard */; };
 		E8DE92BE1E9D447C007FC971 /* natalie_app_2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE92BD1E9D447C007FC971 /* natalie_app_2Tests.swift */; };
@@ -73,6 +73,7 @@
 		C5247BDB1F6A1F3600574CFE /* checkInternetConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = checkInternetConnection.swift; sourceTree = "<group>"; };
 		C539B1EB1EAC53A4006C3233 /* Welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Welcome.png; sourceTree = "<group>"; };
 		C55472681F1EC6E80017C66E /* TestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
+		C554DEB81F6CC797003F3010 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C557928D1F34F84600BFA82F /* FBSDKShareKit */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = FBSDKShareKit; sourceTree = "<group>"; };
 		C56049CE1F5A2FFC0078B9C7 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		C5628FBE1ECBCFDD00A3555F /* QuestionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionVC.swift; sourceTree = "<group>"; };
@@ -96,7 +97,6 @@
 		E8DE92A51E9D447C007FC971 /* natalie-app-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "natalie-app-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DE92A81E9D447C007FC971 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8DE92AA1E9D447C007FC971 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
-		E8DE92AD1E9D447C007FC971 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E8DE92AF1E9D447C007FC971 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8DE92B21E9D447C007FC971 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8DE92B41E9D447C007FC971 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -273,10 +273,10 @@
 				E8B610961E9EC0CD0019EBED /* Controllers */,
 				E8B610941E9E90600019EBED /* Model */,
 				E8DE92A81E9D447C007FC971 /* AppDelegate.swift */,
-				E8DE92AC1E9D447C007FC971 /* Main.storyboard */,
 				E8DE92AF1E9D447C007FC971 /* Assets.xcassets */,
 				C539B1EB1EAC53A4006C3233 /* Welcome.png */,
 				E8DE92B11E9D447C007FC971 /* LaunchScreen.storyboard */,
+				C554DEB71F6CC797003F3010 /* Main.storyboard */,
 				E8DE92B41E9D447C007FC971 /* Info.plist */,
 				E8B6103E1E9E6F180019EBED /* Model.xcdatamodeld */,
 				C5DC50A31F3A56E2003576E3 /* Images.xcassets */,
@@ -421,10 +421,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8DE92B31E9D447C007FC971 /* LaunchScreen.storyboard in Resources */,
+				C554DEB91F6CC797003F3010 /* Main.storyboard in Resources */,
 				C539B1EC1EAC53A4006C3233 /* Welcome.png in Resources */,
 				C5DC50A41F3A56E2003576E3 /* Images.xcassets in Resources */,
 				E8DE92B01E9D447C007FC971 /* Assets.xcassets in Resources */,
-				E8DE92AE1E9D447C007FC971 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,10 +647,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E8DE92AC1E9D447C007FC971 /* Main.storyboard */ = {
+		C554DEB71F6CC797003F3010 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E8DE92AD1E9D447C007FC971 /* Base */,
+				C554DEB81F6CC797003F3010 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

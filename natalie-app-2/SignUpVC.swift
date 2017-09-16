@@ -19,9 +19,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordConfirmationField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    
+    @IBOutlet weak var facebookSignupBtn: UIButton!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    var activeField = UITextField()
     
     var user: User!
     
@@ -34,8 +37,10 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     let MyKeyChainWrapper = KeychainWrapper()
     
+    
+    
     override func viewDidLoad() {
-        
+
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
@@ -48,8 +53,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        let facebookSignupBtn = UIButton()
-     
+        
+        /*
         if UIDevice.current.userInterfaceIdiom == .phone {
             facebookSignupBtn.frame.size = CGSize(width: 170, height: 30)
             facebookSignupBtn.center = CGPoint(x: self.view.frame.width/2, y: signUpStackView.frame.origin.y + 55)
@@ -59,17 +64,15 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             facebookSignupBtn.center = CGPoint(x: self.view.frame.width/2, y: signUpStackView.frame.origin.y + 70)
             facebookSignupBtn.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 17)
         }
+        */
+        
         
         facebookSignupBtn.backgroundColor = UIColor.init(red: 59, green: 89, blue: 152, alpha: 0)
         
         facebookSignupBtn.layer.borderWidth = 1.0
         facebookSignupBtn.layer.borderColor = UIColor.white.cgColor
         facebookSignupBtn.layer.cornerRadius = 3
-        
-        facebookSignupBtn.setTitle("Sign up with facebook", for: .normal)
-        facebookSignupBtn.addTarget(self, action: #selector(SignUpVC.facebookSignupBtnClicked), for: .touchUpInside)
-        //facebookSignupBtn.addTarget(self, action: self.facebookSignupBtnClicked, for: .touchUpInside)
-        view.addSubview(facebookSignupBtn)
+        facebookSignupBtn.addTarget(self, action: #selector(self.facebookSignupBtnClicked), for: .touchUpInside)
         
         backBtn.setTitleColor(UIColor.white, for: .normal)
         backBtn.layer.borderColor = UIColor.white.cgColor
@@ -84,6 +87,76 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         
         signUpBtn.isUserInteractionEnabled = false
         signUpBtn.isEnabled = false
+       
+        //scrollView.isScrollEnabled = true
+    }
+    
+    func registerForKeyboardNotifications(){
+        //Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications(){
+        //Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    
+    func keyboardWasShown(notification: NSNotification){
+        //Need to calculate keyboard exact size due to Apple suggestions
+        self.scrollView.isScrollEnabled = true
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
+        
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        
+        //var aRect : CGRect = self.view.frame
+        //aRect.size.height -= keyboardSize!.height
+        
+        /*
+         if let activeField = self.activeField {
+            if (!aRect.contains(activeField.frame.origin)){
+                self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
+            }
+         }
+        */
+        
+        /*
+        if emailField.isEditing {
+            
+            if (!aRect.contains(emailField.frame.origin)){
+                self.scrollView.scrollRectToVisible(emailField.frame, animated: true)
+            }
+        } else if passwordField.isEditing {
+            
+            if (!aRect.contains(passwordField.frame.origin)){
+                self.scrollView.scrollRectToVisible(passwordField.frame, animated: true)
+            }
+        } else if passwordConfirmationField.isEditing {
+            
+            if (!aRect.contains(passwordConfirmationField.frame.origin)){
+                self.scrollView.scrollRectToVisible(passwordConfirmationField.frame, animated: true)
+            }
+        }
+        */
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        //Once keyboard disappears, restore original positions
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        //self.scrollView.contentSize = CGSize(width: 331, height: 540)
+        //self.view.endEditing(true)
+        self.scrollView.isScrollEnabled = false
+        //self.scrollView.alwaysBounceVertical = true
     }
     
     func dismissKeyboard(){
@@ -435,21 +508,26 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("password fields are being editted \(passwordConfirmationField.isEditing) , \(passwordField.text == passwordConfirmationField.text)")
+        registerForKeyboardNotifications()
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if passwordField.text != passwordConfirmationField.text && passwordConfirmationField.text != "" {
-            createPasswordUnMatchOverlay()
-        }
-        
+    func textFieldDidChange(_: Notification){
         if(passwordField.text == passwordConfirmationField.text && passwordField.text != "" && passwordConfirmationField.text != "" && firstNameField.text != "" && lastNameField.text != "" && emailField.text != ""
             ){
             enableSignUpBtn()
         } else {
             disableSignUpBtn()
         }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
         
+        deregisterFromKeyboardNotifications()
+        scrollView.isScrollEnabled = true
+        
+        if passwordField.text != passwordConfirmationField.text && passwordConfirmationField.text != "" {
+            createPasswordUnMatchOverlay()
+        }
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
