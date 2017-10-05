@@ -228,7 +228,7 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
             let password = passwordField.text
             let user = authenticateUser(email: email, password: password) as? User
             if (user != nil) {
-                addUserToKeyChain(uuid: (user?.uuid!)!, email: (user?.email!)!, password: (user?.password)!)
+                self.addUserToKeyChain(uuid: (user?.uuid!)!, email: (user?.email!)!, password: (user?.password)!)
                 let questionVC = self.storyboard?.instantiateViewController(withIdentifier: "QuestionVC") as! QuestionVC
                 questionVC.selectedUser = user! 
                 self.present(questionVC, animated: true, completion: nil)
@@ -379,7 +379,8 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     }
     
     func addUserToKeyChain(uuid: String, email: String, password: Any) -> Void {
-        let hasLoginKey = UserDefaults.standard.bool(forKey: "hasLoginKey")
+        
+        let hasLoginKey = UserDefaults.standard.bool(forKey: "email")
         if hasLoginKey == false {
             UserDefaults.standard.setValue(email, forKey: "email")
         }

@@ -484,7 +484,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     func addUserToKeyChain(uuid: String, email: String, password: Any) -> Void {
-        let hasLoginKey = UserDefaults.standard.bool(forKey: "hasLoginKey")
+        let hasLoginKey = UserDefaults.standard.bool(forKey: "email")
         if hasLoginKey == false {
             UserDefaults.standard.setValue(email, forKey: "email")
         }
