@@ -199,7 +199,7 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
         DispatchQueue.main.sync(execute: {
             emailField.text = ""
             passwordField.text = ""
-            createAuthenticationOverlay()
+            //createAuthenticationOverlay()
             //dismiss(animated: true, completion: nil)
         })
     }
