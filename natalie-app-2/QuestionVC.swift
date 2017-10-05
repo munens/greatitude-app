@@ -71,7 +71,7 @@ class QuestionVC: UIViewController, UITextViewDelegate, UIImagePickerControllerD
         
         buttonStackView.alpha = 0.0
  
-        menuBtn.isEnabled = selectedUser.email != nil
+        //menuBtn.isEnabled = selectedUser.email != nil
     }
     
     

@@ -114,13 +114,14 @@ class LoginVC: UIViewController, NSFetchedResultsControllerDelegate, UITextField
     }
     
     func displayLoginErrorAlert(){
-        let alertController = UIAlertController(title: "Sign up error", message: "There appears to be an error. Please try again.", preferredStyle: UIAlertControllerStyle.alert)
+        DispatchQueue.main.sync(execute: {
+            let alertController = UIAlertController(title: "Sign up error", message: "There appears to be an error. Please try again.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(alert: UIAlertAction) in
+                alertController.dismiss(animated: true, completion: nil)
+            }))
+            present(alertController, animated: true, completion: nil)
+        })
         
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(alert: UIAlertAction) in
-            alertController.dismiss(animated: true, completion: nil)
-        }))
-        
-        present(alertController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
