@@ -338,7 +338,7 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
         let attributedText = NSMutableAttributedString(string: quoteText.text)
         let text = NSMutableParagraphStyle()
         text.alignment = .center
-        attributedText.addAttributes([NSBackgroundColorAttributeName: UIColor.black, NSForegroundColorAttributeName: quoteText.textColor == UIColor.black ? UIColor.white : quoteText.textColor!, NSFontAttributeName: UIFont(name:(quoteText.font?.familyName)!, size: (quoteText.font?.pointSize)!)!, NSParagraphStyleAttributeName: text ], range: range)
+        attributedText.addAttributes([/*NSBackgroundColorAttributeName: UIColor.black,*/ NSForegroundColorAttributeName: quoteText.textColor == UIColor.black ? UIColor.white : quoteText.textColor!, NSFontAttributeName: UIFont(name:(quoteText.font?.familyName)!, size: (quoteText.font?.pointSize)!)!, NSParagraphStyleAttributeName: text ], range: range)
         
         quoteText.attributedText = attributedText
         //quoteText.tintColor = .white
