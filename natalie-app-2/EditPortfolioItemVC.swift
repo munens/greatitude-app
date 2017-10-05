@@ -189,14 +189,24 @@ class EditPortfolioItemVC: UIViewController, UITextViewDelegate, UIPickerViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as? FilterCell {
+            
             let thumbnail = selectedPortfolioItem.image?.thumbnail
             let thumbnailImage = UIImage(data: (thumbnail!) as Data)
-            let filteredImage = addFilterToImage(image: thumbnailImage! , filter: filters[indexPath.row])
-            //let filteredImage = addFilterToImage(image: backgroundImage.image!, filter: filters[indexPath.row])
             
-            //cell.configureCell(filterImage: backgroundImage.image!)
-            cell.configureCell(filterImage: filteredImage)
+            if indexPath.row != 0 {
+                
+                let filteredImage = addFilterToImage(image: thumbnailImage! , filter: filters[indexPath.row])
+                //let filteredImage = addFilterToImage(image: backgroundImage.image!, filter: filters[indexPath.row])
+                
+                //cell.configureCell(filterImage: backgroundImage.image!)
+                cell.configureCell(filterImage: filteredImage)
+                
+            } else {
+                cell.configureCell(filterImage: thumbnailImage!)
+            }
+            
             return cell
+            
         }
         
         return UICollectionViewCell()
